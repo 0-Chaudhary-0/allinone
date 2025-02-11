@@ -1,0 +1,77 @@
+<!-- views/partials/_spinner.ejs -->
+<aside class="spinner-container my-12">
+  <div id="spinner" class="spinner">
+    <h5></h5>
+    <h5></h5>
+    <h5></h5>
+    <h5></h5>
+    <h5></h5>
+    <h5h5></h5h5
+  </div>
+</aside>
+  
+  <style>
+    .spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    width: 100vw; /* Full viewport width */
+  }
+    .spinner {
+      width: 65.4px;
+      height: 65.4px;
+      --clr: rgb(0, 0, 0);
+      --clr-alpha: rgba(0, 0, 0, 0.1);
+      animation: spinner 2s infinite ease;
+      transform-style: preserve-3d;
+    }
+  
+    .spinner > h5 {
+      background-color: var(--clr-alpha);
+      height: 100%;
+      position: absolute;
+      width: 100%;
+      border: 3.5px solid var(--clr);
+    }
+  
+    .spinner h5:nth-of-type(1) {
+      transform: translateZ(-35.2px) rotateY(180deg);
+    }
+  
+    .spinner h5:nth-of-type(2) {
+      transform: rotateY(-270deg) translateX(50%);
+      transform-origin: top right;
+    }
+  
+    .spinner h5:nth-of-type(3) {
+      transform: rotateY(270deg) translateX(-50%);
+      transform-origin: center left;
+    }
+  
+    .spinner h5:nth-of-type(4) {
+      transform: rotateX(90deg) translateY(-50%);
+      transform-origin: top center;
+    }
+  
+    .spinner h5:nth-of-type(5) {
+      transform: rotateX(-90deg) translateY(50%);
+      transform-origin: bottom center;
+    }
+  
+    .spinner h5:nth-of-type(6) {
+      transform: translateZ(35.2px);
+    }
+  
+    @keyframes spinner {
+      0% {
+        transform: rotate(45deg) rotateX(-25deg) rotateY(25deg);
+      }
+      50% {
+        transform: rotate(45deg) rotateX(-385deg) rotateY(25deg);
+      }
+      100% {
+        transform: rotate(45deg) rotateX(-385deg) rotateY(385deg);
+      }
+    }
+  </style>
+  

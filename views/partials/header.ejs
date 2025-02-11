@@ -1,0 +1,73 @@
+<header class="bg-blue-900 text-white py-4 text-center">
+    <div class="flex justify-start items-center mx-2 px-2">
+        <img class="h-20 rounded-full p-4" src="logo.png" alt="logo" />
+        <a href="/"
+            class="text-xl relative inline-block py-3 px-12 font-semibold text-lg text-transparent bg-clip-text bg-gradient-to-r from-gray-500 via-white to-gray-400 animate-shine">
+            Welcome to Kemistry Knots
+        </a>
+    </div>
+    <p>Your one-stop destination for chemistry resources.</p>
+</header>
+
+<nav class="bg-gray-800">
+    <section class="flex items-center justify-between px-4 py-2">
+        <section>
+            <button id="nav-toggle" class="text-white focus:outline-none">
+                <svg class="w-6 h-6 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                    height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h10" />
+                </svg>
+            </button>
+        </section>
+        <section class="flex gap-3">
+            <%- include('dark-mode-toggle') %>
+            <a href="cart.ejs">
+                <button>
+                    <svg class="w-6 h-6 text-white block text-right" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24" fill="currentColor" width="48" height="48">
+                        <path
+                            d="M12 2C9.79 2 8 3.79 8 6v2H6c-1.1 0-2 .9-2 2v10c0 2.21 1.79 4 4 4h8c2.21 0 4-1.79 4-4V10c0-1.1-.9-2-2-2h-2V6c0-2.21-1.79-4-4-4zm-2 6V6c0-1.1.9-2 2-2s2 .9 2 2v2h-4zm8 2v10c0 1.1-.9 2-2 2H8c-1.1 0-2-.9-2-2V10h12z" />
+                    </svg>
+                </button>
+            </a>
+            <a href="login.ejs" id="add-user">
+                <button>
+                    <svg class="w-6 h-6 text-white dark:text-white block text-right" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                        viewBox="0 0 24 24">
+                        <path fill-rule="evenodd"
+                            d="M9 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4H7Zm8-1a1 1 0 0 1 1-1h1v-1a1 1 0 1 1 2 0v1h1a1 1 0 1 1 0 2h-1v1a1 1 0 1 1-2 0v-1h-1a1 1 0 0 1-1-1Z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </button>
+            </a>
+        </section>
+    </section>
+    <ul id="mobile-menu"
+        class="hidden grid grid-cols-2 gap-2 text-center transition-height max-h-0 px-4 py-2 list-none p-0 m-0">
+        <li class="block mr-5">
+            <a class="text-white font-medium text-sm p-2 block" href="/">Home</a>
+        </li>
+        <li class="block mr-5">
+            <a class="text-white font-medium text-sm p-2 block" href="books.ejs">Books</a>
+        </li>
+        <li class="block mr-5">
+            <a class="text-white font-medium text-sm p-2 block" href="videos.ejs">Videos</a>
+        </li>
+        <li class="block mr-5">
+            <a class="cursor-pointer text-white font-medium text-sm p-2 block" id="access-protected">Quizzes</a>
+        </li>
+        <li class="block mr-5">
+            <a class="text-white font-medium text-sm p-2 block" href="shopping.ejs">Shopping</a>
+        </li>
+        <li class="block mr-5">
+            <a class="text-white font-medium text-sm p-2 block" href="about.ejs">About Us</a>
+        </li>
+        <li class="block mr-5">
+            <a class="text-white font-medium text-sm p-2 block" href="account.ejs">My Account</a>
+        </li>
+        <li class="block mr-5">
+            <a class="text-white font-medium text-sm p-2 block" href="cart.ejs">My Shopping Bag</a>
+        </li>
+    </ul>
+</nav>

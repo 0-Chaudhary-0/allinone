@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('partials/head') %>
+</head>
+
+<body class="font-sans leading-normal tracking-normal">
+    <%- include('partials/header') %>
+        <div class="min-h-screen flex items-center justify-center px-4">
+          <div class="bg-white max-w-3xl w-full p-8">
+
+            <!-- Product Details -->
+            <div class="mb-6">
+              <h1 class="text-xl font-bold font-medium text-gray-700">Product Details</h2>
+              <div class="mt-4 p-4 border border-gray-300 rounded-lg">
+                <h3 class="text-gray-800 text-xl font-semibold"><%= product.title %></h3>
+                <p class="text-gray-600 mt-2"><%= product.desc %></p>
+                <p class="text-gray-800 font-medium mt-4">Price: $<%= product.price %></p>
+              </div>
+            </div>
+      
+            <!-- Billing Information -->
+            <div class="mb-6">
+              <h2 class="text-lg font-medium text-gray-700">Billing Information</h2>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                <div>
+                  <label for="first_name" class="block text-gray-600 text-sm font-medium mb-2">First Name</label>
+                  <input id="first_name" type="text" class="w-full p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" placeholder="John">
+                </div>
+                <div>
+                  <label for="last_name" class="block text-gray-600 text-sm font-medium mb-2">Last Name</label>
+                  <input id="last_name" type="text" class="w-full p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" placeholder="Doe">
+                </div>
+              </div>
+            </div>
+      
+            <!-- Payment Details -->
+            <div class="mb-6">
+              <h2 class="text-lg font-medium text-gray-700">Payment Details</h2>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                <div>
+                  <label for="card_number" class="block text-gray-600 text-sm font-medium mb-2">Card Number</label>
+                  <input id="card_number" type="text" class="w-full p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" placeholder="1234 5678 9012 3456">
+                </div>
+                <div>
+                  <label for="expiry_date" class="block text-gray-600 text-sm font-medium mb-2">Expiry Date</label>
+                  <input id="expiry_date" type="text" class="w-full p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" placeholder="MM/YY">
+                </div>
+              </div>
+            </div>
+      
+            <!-- Submit Button -->
+            <button class="w-full bg-indigo-600 text-white p-3 rounded-md hover:bg-indigo-700 transition-all duration-200">Complete Purchase</button>
+          </div>
+        </div>
+
+    <%- include('partials/footer') %>
+    <script src="/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!-- partials/dark-mode-toggle.ejs -->
+<section class="flex items-center">
+    <button id="darkModeToggle" class="rounded-full shadow-md">
+        <!-- Show Sun icon in dark mode -->
+        <svg id="lightModeIcon" class="text-white bg-gray-800 w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"></circle>
+            <line x1="12" y1="1" x2="12" y2="4" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line>
+            <line x1="12" y1="20" x2="12" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line>
+            <line x1="1" y1="12" x2="4" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line>
+            <line x1="20" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line>
+        </svg>
+        <!-- Moon icon for dark mode -->
+        <svg id="darkModeIcon" class="text-white w-6 h-6 bg-gray-800 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z"></path>
+        </svg>
+    </button>
+</section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const darkModeToggle = document.getElementById("darkModeToggle");
+        const lightModeIcon = document.getElementById("lightModeIcon");
+        const darkModeIcon = document.getElementById("darkModeIcon");
+
+        // Check theme preference on page load
+        const isDarkMode = localStorage.getItem("theme") === "light";
+        if (isDarkMode) {
+            document.documentElement.classList.add("light");
+            darkModeIcon.classList.remove("hidden");
+            lightModeIcon.classList.add("hidden");
+        }
+
+    // Toggle dark mode on button click
+    darkModeToggle.addEventListener("click", () => {
+        const isDark = document.documentElement.classList.toggle("dark");
+        console.log(document.documentElement.classList.toggle("dark"))
+        // Check the current theme and switch
+        if (localStorage.getItem("theme") === "light") {
+            localStorage.setItem("theme", "dark");
+
+        } else {
+            localStorage.removeItem("theme")
+            localStorage.setItem("theme", "light");
+        }
+
+        // Swap icons
+        if (!isDark) {
+                darkModeIcon.classList.remove("hidden");
+                lightModeIcon.classList.add("hidden");
+            } else {
+                darkModeIcon.classList.add("hidden");
+                lightModeIcon.classList.remove("hidden");
+            }
+
+    });
+});
+       
+</script>

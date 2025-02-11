@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('partials/head') %>
+</head>
+
+<body class="bg-white text-black font-sans">
+    <%- include('partials/header') %>
+    <div class="py-6 text-center">
+        <h1 class="text-3xl font-bold">About Us</h1>
+    </div>
+    
+    <main class="container mx-auto py-8 px-4">
+        <div class="p-6">
+            <div class="flex flex-col md:flex-row items-center">
+                <img class="w-32 h-32 rounded-full mb-4 md:mb-0 md:mr-6" src="teacher.jpg" alt="Professional Chemistry Teacher">
+                <div>
+                    <h2 class="text-2xl font-bold mb-2">Dr. John Doe</h2>
+                    <p class="text-gray-600">Professional Chemistry Teacher</p>
+                    <p class="mt-4">Dr. John Doe is a highly experienced Chemistry teacher with a passion for educating students of all ages. With a deep understanding of Organic, Inorganic, and Physical Chemistry, Dr. Doe brings a wealth of knowledge to the classroom.</p>
+                    <p class="mt-4">In addition to Chemistry, Dr. Doe is proficient in web development languages such as HTML, CSS, and JavaScript. He is also skilled in using Microsoft Office Suite for various educational and administrative purposes.</p>
+                </div>
+            </div>
+    
+            <div class="mt-6">
+                <h3 class="text-xl font-semibold mb-2">Contact Information</h3>
+                <ul class="list-none">
+                    <li class="mb-2 flex items-center">
+                        <i class="fas fa-envelope mr-2"></i>
+                        <a href="mailto:john.doe@example.com" class="text-blue-900 hover:underline">john.doe@example.com</a>
+                    </li>
+                    <li class="mb-2 flex items-center">
+                        <i class="fab fa-whatsapp mr-2"></i>
+                        <a href="https://wa.me/1234567890" class="text-blue-900 hover:underline">+1234567890</a>
+                    </li>
+                    <li class="mb-2 flex items-center">
+                        <i class="fas fa-phone mr-2"></i>
+                        <span class="text-blue-900">+1-234-567-890</span>
+                    </li>
+                </ul>
+            </div>
+    
+            <div class="mt-6">
+                <h3 class="text-xl font-semibold mb-2">Skills and Expertise</h3>
+                <ul class="list-disc ml-6">
+                    <li>Expert in Organic, Inorganic, and Physical Chemistry</li>
+                    <li>Proficient in HTML, CSS, and JavaScript</li>
+                    <li>Skilled in Microsoft Office Suite (Word, Excel, PowerPoint, Access)</li>
+                    <li>Experience with online teaching and digital educational tools</li>
+                </ul>
+            </div>
+    
+            <div class="mt-6">
+                <h3 class="text-xl font-semibold mb-2">Professional Experience</h3>
+                <p class="mb-4">Dr. John Doe has over 15 years of experience teaching Chemistry at various educational institutions. He has a proven track record of helping students achieve their academic goals through interactive and engaging lessons.</p>
+                <p>He has also conducted numerous workshops and seminars on Chemistry and web development, sharing his knowledge and expertise with a wider audience.</p>
+            </div>
+        </div>
+    </main>
+    <%- include('partials/footer') %>
+    <script src="script.js"></script>
+</body>
+
+</html>
