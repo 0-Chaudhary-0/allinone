@@ -18,11 +18,11 @@
                     <img class="rounded-t-lg w-full object-cover h-52" src="<%= product.img %>" alt="<%= product.title %>" />
                   </a>
                   <div class="p-5">
-                    <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
-                      <%= product.title.split(" ").slice(0, 10).join(" ") + (product.desc.split(" ").length > 15 ? "..." : "") %>
+                    <h5 class="text-lg font-semibold tracking-tight text-gray-900 dark:text-white">
+                      <%= product.desc.slice(0, 10) + "..." %>
                     </h5>
                     <p class="mt-2 text-sm text-gray-700 dark:text-gray-400">
-                      <%= product.desc.split(" ").slice(0, 15).join(" ") + (product.desc.split(" ").length > 15 ? "..." : "") %>
+                      <%= product.desc.slice(0, 18) + "..." %>
                     </p>
                     <p class="my-3 text-3xl font-bold text-gray-900 dark:text-white">$<%= product.price %></p>
                     <div class="flex items-center justify-between mt-4">
