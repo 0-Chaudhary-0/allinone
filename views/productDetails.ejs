@@ -1,57 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <%- include('partials/head') %>
-  </head>
 
-  <body class="bg-gray-100 text-black font-sans">
-    <%- include('partials/header') %>
+<head>
+  <%- include('partials/head') %>
+</head>
+
+<body class="bg-gray-100 text-black font-sans">
+  <%- include('partials/header') %>
 
     <div class="container mx-auto mt-10">
-      <div class="max-w-4xl mx-auto rounded-lg shadow-lg p-6">
-        <div class="flex flex-wrap -mx-4">
+      <div class="max-w-4xl mx-auto m-6 p-6">
+        <div class="-mx-4">
           <!-- Product Image -->
           <div class="w-full md:w-1/2 px-4">
-            <img
-              src="<%= product.img %>"
-              alt="<%= product.title %>"
-              class="rounded-lg w-full"
-            />
+            <img src="<%= product.img %>" alt="<%= product.title %>" class="rounded-lg w-full" />
           </div>
 
           <!-- Product Details -->
-          <div class="w-full md:w-1/2 px-4">
-            <h1 class="text-3xl font-bold text-gray-900">
-              <%= product.title %>
-            </h1>
-            <p class="text-gray-700 mt-4"><%= product.desc %></p>
-            <div class="mt-6">
-              <span class="text-3xl font-bold text-green-600"
-                >$<%= product.price %></span
-              >
-            </div>
-            <div class="flex my-3 gap-4">
-              <button
-                class="btn-xs text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800 add-in-bag"
-                data-product="<%= JSON.stringify(product) %>"
-              >
-                Add to Bag
-              </button>
-              <button
-  id="checkAuthorization"
-  class="btn-xs px-5 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300 text-sm"
-  data-product-id="<%= product ? product._id : '' %>">
-  Checkout
-</button>
-            </div>
+          <p class="mt-6 text-3xl font-bold text-gray-900">
+            <%= product.title %>
+          </p>
+          <p class="text-gray-700 mt-4">
+            <%= product.desc %>
+          </p>
+          <div class="flex">
+          <% if (product.color && product.color.length > 0) { %>
+            <% product.color.forEach((e) => { %>
+              <h5 class="rounded-full w-8 h-8 mx-1 my-2 border-black border bg-<%= e %>-900">
+              </h5>
+            <% }) %>
+          <% } else { %>
+            <span> - - - - - </span>
+          <% } %>
+        </div>
+        <div class="flex">
+          <% if (product.size && product.size.length > 0) { %>
+            <% product.size.forEach((e) => { %>
+              <h5 class="rounded text-2xl font-semibold text-center w-10 h-10 pt-1 mx-1 my-2 border-black border">
+                <%= e %>
+              </h5>
+            <% }) %>
+          <% } else { %>
+            <span> - - - - - </span>
+          <% } %>
+        </div>
+          <p class="my-4 mx-2 text-3xl font-bold text-red-600 italic underline">
+            Rs <%= product.price %>
+          </p>
+          <div class="px-4 py-1">
+            <button
+              class="mr-3 btn-xs text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 add-in-bag"
+              data-product="<%= JSON.stringify(product) %>">
+              Add to Bag
+            </button>
+            <button id="checkAuthorization"
+              class="btn-xs px-5 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300 text-sm"
+              data-product-id="<%= product ? product._id : '' %>">
+              Checkout
+            </button>
           </div>
         </div>
       </div>
     </div>
 
     <%- include('partials/footer') %>
-    <script src="script.js"></script>
-    <script src="shopping.js"></script>
-    <script src="authentication.js"></script>
-  </body>
+      <script src="script.js"></script>
+      <script src="shopping.js"></script>
+      <script src="authentication.js"></script>
+</body>
+
 </html>
