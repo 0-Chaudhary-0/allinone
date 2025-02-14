@@ -41,7 +41,12 @@ router.get("/shopping.ejs", async (req, res)=>{
   res.render("shopping.ejs", {products})
 })
 
-router.get("/checkout/:id", authenticateToken, async (req, res) => {
+router.get("/verify-auth", authenticateToken, (req, res) => {
+  res.json({ success: true });
+});
+
+
+router.get("/checkout/:id", async (req, res) => {
   try {
     const productId = req.params.id;
 
@@ -82,6 +87,20 @@ router.get("/id=:id", async (req, res) => {
   } catch (error) {
     console.error("Error fetching product:", error);
     res.status(500).send("Server error");
+  }
+});
+
+router.post("/refresh", (req, res) => {
+  const { refreshToken } = req.body;
+  let jwtSecret = "#@abdulsattar"
+  if (!refreshToken) return res.status(401).json({ message: "Unauthorized" });
+
+  try {
+    const verified = jwt.verify(refreshToken, jwtSecret);
+    const newAccessToken = jwt.sign({ userId: verified.userId }, jwtSecret, { expiresIn: "15m" }); // Shorter time
+    res.json({ accessToken: newAccessToken });
+  } catch (error) {
+    return res.status(403).json({ message: "Invalid refresh token" });
   }
 });
 

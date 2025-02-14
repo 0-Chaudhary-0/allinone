@@ -2,24 +2,23 @@ const jwt = require('jsonwebtoken');
 const jwtSecret = "#@abdulsattar";
 
 function authenticateToken(req, res, next) {
-  const authHeader = req.headers.authorization; // ✅ Correct way to get token
+    console.log("🔍 Request Headers:", req.headers); // ✅ Log all headers
 
-  if (!authHeader) {
-    return res.status(401).json({ message: 'Access denied. No token provided.' });
-  }
+    const authHeader = req.headers.authorization;
 
-  try {
-    const token = authHeader.split(' ')[1]; // ✅ Extract token
-    console.log(token)
-    const verified = jwt.verify(token, jwtSecret);
-    if (!verified) {
-      console.log("user is unverified")
+    const token = authHeader.split(" ")[1]; // ✅ Extract token
+    console.log("Received Token:", token); // 🔍 Debugging log
+
+    try {
+        const verified = jwt.verify(token, jwtSecret);
+        console.log("✅ User is verified:", verified); // ✅ If verification is successful
+
+        req.user = verified;
+        next();
+    } catch (err) {
+        console.error("❌ Token verification error:", err.message);
+        return res.status(403).json({ message: "Invalid token." });
     }
-    req.user = verified;
-    next();
-  } catch (err) {
-    return res.status(403).json({ message: 'Invalid token.' });
-  }
 }
 
 module.exports = authenticateToken;
