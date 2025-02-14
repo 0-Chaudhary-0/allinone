@@ -41,19 +41,20 @@ router.get("/shopping.ejs", async (req, res)=>{
   res.render("shopping.ejs", {products})
 })
 
-router.get("/checkout.ejs/id=:id", async (req, res) => {
+router.get("/checkout/:id", authenticateToken, async (req, res) => {
   try {
-    const productId = req.params.id; // Extract product ID from the route parameter
-    console.log(productId)
-    // Fetch the product by ID from the database
-    const product = await Product.findById(productId);
+    const productId = req.params.id;
 
+    if (!productId) {
+      console.error("Product ID is undefined in route!");
+      return res.status(400).json({ message: "Invalid product ID" });
+    }
+
+    const product = await Product.findById(productId);
     if (!product) {
-      // If the product is not found, render a 404 page
       return res.status(404).render("404", { message: "Product not found" });
     }
 
-    // Render the checkout page with the product details
     res.render("checkout.ejs", { product });
   } catch (error) {
     console.error("Error fetching product:", error);

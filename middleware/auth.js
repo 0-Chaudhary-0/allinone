@@ -1,20 +1,25 @@
 const jwt = require('jsonwebtoken');
 const jwtSecret = "#@abdulsattar";
 
-const authenticateToken = (req, res, next) => {
-  const token = req.headers["authorization"];
+function authenticateToken(req, res, next) {
+  const authHeader = req.headers.authorization; // ✅ Correct way to get token
 
-  if (token == null) {
+  if (!authHeader) {
     return res.status(401).json({ message: 'Access denied. No token provided.' });
   }
 
-  jwt.verify(token, jwtSecret, (err, user) => {
-    if (err) {
-      return res.status(403).json({ message: 'Invalid token.' });
+  try {
+    const token = authHeader.split(' ')[1]; // ✅ Extract token
+    console.log(token)
+    const verified = jwt.verify(token, jwtSecret);
+    if (!verified) {
+      console.log("user is unverified")
     }
-    req.user = user; // Add user info to request object
+    req.user = verified;
     next();
-  });
-};
+  } catch (err) {
+    return res.status(403).json({ message: 'Invalid token.' });
+  }
+}
 
 module.exports = authenticateToken;
