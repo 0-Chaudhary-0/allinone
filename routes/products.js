@@ -13,4 +13,14 @@ router.post('/', async (req, res) => {
   }
 });
 
+router.get('/getall', async (req, res) => {
+  try {
+    const product = await Product.find();
+    res.status(201).json(product);
+    
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
 module.exports = router;

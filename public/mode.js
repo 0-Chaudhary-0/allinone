@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
     styleElements("h1", 1, -2, "white", "black");
     styleElements("h2", 1, -2, "white", "black");
     styleElements("h3", 1, 0, "white", "black");
-    styleElements("h6", 0, -2, "white", "black");
+    styleElements("h6", 0, 0, "white", "black");
   }
 
   // Apply light mode styles to elements
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
     styleElements("h1", 1, -2, "black", "white");
     styleElements("h2", 1, -1, "black", "white");
     styleElements("h3", 1, -2, "black", "white");
-    styleElements("h6", 0, -2, "black", "white");
+    styleElements("h6", 0, 0, "black", "white");
   }
 
   // Helper function to style elements based on conditions and colors
