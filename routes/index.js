@@ -42,12 +42,8 @@ router.get("/shopping.ejs", async (req, res)=>{
   res.render("shopping.ejs", {products})
 })
 
-router.get("/verify-auth", authenticateToken, (req, res) => {
-  res.json({ success: true });
-});
 
-
-router.get("/checkout/:id", async (req, res) => {
+router.get("/checkout/:id", authenticateToken, async (req, res) => {
   try {
     const productId = req.params.id;
 

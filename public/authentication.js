@@ -39,19 +39,20 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log(`Fetching from URL: ${url} ${token}`);
 
     try {
-      const response = await fetch("/verify-auth", {
+      const response = await fetch(url, {
         method: "GET",
         headers: {
           "Authorization": `Bearer ${token}`,
-          "Content-Type": "application/json"
+          "Content-Type": "text/html" // ✅ Important for getting HTML
         }
       });
 
       console.log("Fetch response status:", response.status);
 
       if (response.ok) {
-        window.location.href = url;
-        console.log("success")
+        const htmlContent = await response.text();  // ✅ Convert response to text (HTML)
+        document.body.innerHTML = htmlContent;  // ✅ Replace body content
+        console.log("✅ Checkout page loaded successfully!");
       } else {
         console.error("❌ Authorization failed, redirecting to login...");
         localStorage.removeItem("token");
