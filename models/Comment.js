@@ -1,17 +1,18 @@
 // models/User.js
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 
-const CommentSchema = new Schema({
-  email: {
-    type: String,
-    required: true,
-    unique: true
-  },
-  message: {
-    type: String,
-    required: true
-  }
-});
+const CommentSchema = new mongoose.Schema({
+    email: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    comment: {
+      type: String,
+      required: true,
+      trim: true,
+      maxlength: 200, // Ensure max length isn't too low
+    },
+  });
 
-module.exports = mongoose.model('Comment', UserSchema);
+module.exports = mongoose.model('Comment', CommentSchema);

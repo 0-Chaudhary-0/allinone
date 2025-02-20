@@ -48,3 +48,46 @@ if (localStorage.getItem("token")) {
                 </button>
             </a>   `;
 }
+
+
+document.getElementById("submitComment").addEventListener("click", async function (event) {
+  event.preventDefault(); // Prevent default form submission
+
+  // Check if the user is logged in
+  const userLoggedIn = localStorage.getItem("token")
+
+  if (!userLoggedIn) {
+    window.location.href = "/login"; // Redirect to login
+    return;
+  }
+
+  // Get form values
+  const email = document.getElementById("email").value.trim();
+  const comment = document.getElementById("comment").value.trim();
+
+  console.log(email, comment)
+  // Validation
+  if (!email || !comment) {
+    alert("Please fill in all fields.");
+    return;
+  }
+
+  // Submit the form via AJAX
+  try {
+    const response = await fetch("/comment", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, comment }),
+    });
+
+    const result = await response.json();
+
+    console.log(result)
+    if (response.ok) {
+      document.getElementById("commentForm").reset();
+      alert(result.message)
+    }
+  } catch (error) {
+    alert("Something went wrong. Please try again.");
+  }
+});

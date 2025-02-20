@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const authenticateToken = require("../middleware/auth");
 const Product = require('../models/Product');
+const Comment = require('../models/Comment');
 
 // Define your routes here
 router.get("/", (req, res)=>{
@@ -104,5 +105,21 @@ router.post("/refresh", (req, res) => {
   }
 });
 
+router.post("/comment", async (req, res) => {
+  const { email, comment } = req.body;
+  console.log("Received Data:", req.body); // Debugging
+
+  if (!email || !comment) {
+    return res.status(400).json({ message: "Email and comment are required!" });
+  }
+
+  try {
+    const newComment = new Comment({ email, comment });
+    await newComment.save();
+    res.status(201).json({ message: "Comment Successfully Submitted. Thanks For Your Comment" });
+  } catch (error) {
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
 
 module.exports = router;
