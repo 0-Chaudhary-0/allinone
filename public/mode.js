@@ -13,13 +13,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const darkModeToggle = document.getElementById("darkModeToggle");
   if (darkModeToggle) {
     darkModeToggle.addEventListener("click", () => {
-      let spinner = document.getElementById("spinner");
-      let parent_spinner = document.getElementById("parent_spinner")
 
-      
-        const isDark = document.documentElement.classList.toggle("dark");
-        localStorage.setItem("theme", isDark ? "dark" : "light");
-        
+      const isDark = document.documentElement.classList.toggle("dark");
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+
       // Apply the corresponding theme styles
       if (isDark) {
         applyDarkMode();
@@ -74,9 +71,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const elements = document.querySelectorAll(element);
     elements.forEach((el, index) => {
       if (index >= startIndex && index < elements.length + endIndex) {
+        // Skip carousel dots
+        if (el.classList.contains("carousel__navigation-button")) return;
+
         el.style.color = textColor;
         el.style.backgroundColor = bgColor;
-        el.style.textDecoration = "none"; // Optional: Remove underline for better visibility
+        el.style.textDecoration = "none";
       }
     });
   }
