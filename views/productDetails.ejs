@@ -6,7 +6,8 @@
   <style>
     .selected {
     border-width: 2px;
-    border-color: #333;
+    border-color: rgb(10, 170, 223);
+    box-shadow: 2px 2px 5px rgb(10, 170, 223);
     }
   </style>
 </head>
@@ -32,7 +33,7 @@
             <div class="flex free">
               <span class="my-2 text-2xl free">Color : </span>
               <% if (product.variants && product.variants.length> 0) { %> <% product.variants.forEach((variant)=> { %>
-                  <button class="color-option rounded-full w-8 h-8 mx-1 my-2 border-black border free"
+                  <button class="color-option border-gray-200 rounded-full w-8 h-8 mx-1 my-2 border-black border free"
                     style='background-color: <%= variant.color.toLowerCase() %>' data-color="<%= variant.color %>"
                     data-images="<%= JSON.stringify(variant.images) %>"
                     data-sizes="<%= JSON.stringify(variant.sizes) %>"></button>
@@ -49,7 +50,7 @@
                   <div class="size-options hidden free" data-color="<%= variant.color %>">
                     <% variant.sizes.forEach((size)=> { %>
                       <button
-                        class="size-option free rounded text-2xl font-semibold text-center px-2 pt-1 mx-1 my-2 border-black border"
+                        class="border-gray-200 size-option free rounded text-2xl font-semibold text-center px-2 pt-1 mx-1 my-2 border-black border"
                         data-size="<%= size.size %>" data-stock="<%= size.stock %>">
                         <%= size.size %>
                       </button>
@@ -66,7 +67,7 @@
             <p class="my-4 mx-2 text-3xl font-semibold italic">
               Rs <%= product.price %>
             </p>
-            <p class="text-xl line-through text-red-400">Rs 4999</p>
+            <p class="text-base line-through text-red-400 free italic">Rs 4999</p>
           </div>
 
             <!-- Buttons -->
@@ -74,10 +75,10 @@
               <button
                 class="mr-3 btn-xs text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 add-in-bag"
                 data-product="<%= JSON.stringify(product) %>">
-                Add to Bag
+                Add In Bag 
               </button>
               <button id="checkAuthorization"
-                class="btn-xs px-5 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300 text-sm"
+                class="btn-xs px-5 py-2.5 bg-blue-600 font-medium text-white rounded-lg hover:bg-blue-700 transition duration-300 text-sm"
                 data-product-id="<%= product ? product._id : '' %>">
                 Checkout
               </button>

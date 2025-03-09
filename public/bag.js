@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
     <!-- Buttons on the right side -->
     <div class="flex gap-4">
         <!-- View Item Button -->
-        <a href="/product/${product._id}" class="flex items-center text-xl italic gap-2 text-green-600 font-semibold rounded-md hover:text-green-800">
+        <a href="id=${product._id}" class="flex items-center text-xl italic gap-2 text-green-600 font-semibold rounded-md hover:text-green-800">
             <span>View Item</span>
             <i class="fa-solid fa-cart-arrow-down text-xl"></i>
         </a>
