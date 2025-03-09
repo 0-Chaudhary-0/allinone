@@ -28,6 +28,7 @@
 
 <style>
   .carousel {
+    width: 100%;
     position: relative;
     top: 0;
     margin-top: 0;
@@ -59,7 +60,7 @@
   .carousel__snapper img {
     width: 100%;
     /* Make image responsive */
-    height: auto;
+    height: 400px;
     /* Maintain aspect ratio */
     max-height: 400px;
     /* Adjust this based on design */
@@ -90,7 +91,8 @@
   }
 
   .carousel__navigation-button.active {
-    background-color: black;
+    color: white;
+    border: 2px solid white; /* White border for active dot */
     transform: scale(1.2);
   }
 </style>
