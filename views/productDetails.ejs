@@ -3,6 +3,12 @@
 
 <head>
   <%- include('partials/head') %>
+  <style>
+    .selected {
+    border-width: 2px;
+    border-color: #333;
+    }
+  </style>
 </head>
 
 <body class="bg-gray-100 text-black font-sans">
@@ -23,10 +29,10 @@
             </p>
 
             <!-- Colors -->
-            <div class="flex">
-              <span class="my-2 text-2xl">Color : </span>
+            <div class="flex free">
+              <span class="my-2 text-2xl free">Color : </span>
               <% if (product.variants && product.variants.length> 0) { %> <% product.variants.forEach((variant)=> { %>
-                  <button class="color-option rounded-full w-8 h-8 mx-1 my-2 border-black border"
+                  <button class="color-option rounded-full w-8 h-8 mx-1 my-2 border-black border free"
                     style='background-color: <%= variant.color.toLowerCase() %>' data-color="<%= variant.color %>"
                     data-images="<%= JSON.stringify(variant.images) %>"
                     data-sizes="<%= JSON.stringify(variant.sizes) %>"></button>
@@ -38,12 +44,12 @@
 
             <!-- Sizes (Initially showing first variant's sizes) -->
             <!-- Sizes -->
-            <div class="flex" id="size-container">
+            <div class="flex free" id="size-container">
               <% if (product.variants && product.variants.length> 0) { %> <% product.variants.forEach((variant)=> { %>
-                  <div class="size-options hidden" data-color="<%= variant.color %>">
+                  <div class="size-options hidden free" data-color="<%= variant.color %>">
                     <% variant.sizes.forEach((size)=> { %>
                       <button
-                        class="size-option rounded text-2xl font-semibold text-center px-2 pt-1 mx-1 my-2 border-black border"
+                        class="size-option free rounded text-2xl font-semibold text-center px-2 pt-1 mx-1 my-2 border-black border"
                         data-size="<%= size.size %>" data-stock="<%= size.stock %>">
                         <%= size.size %>
                       </button>

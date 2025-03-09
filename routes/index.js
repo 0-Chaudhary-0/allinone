@@ -37,6 +37,10 @@ router.get("/cart.ejs", (req, res)=>{
   res.render("cart.ejs")
 })
 
+router.get("/chemistryquiz.ejs", (req, res)=>{
+  res.render("chemistryquiz.ejs")
+})
+
 router.get("/shopping.ejs", async (req, res)=>{
   const products = await Product.find();
   res.render("shopping.ejs", {products})
