@@ -5,6 +5,7 @@ const ProductsSchema = new Schema({
   name: { type: String, required: true },
   slug: { type: String, unique: true, required: true }, // SEO-friendly URL identifier
   description: { type: String, required: true },
+  product_details: { type: String, required: true },
   category: { type: String, required: true },
   price: { type: Number, required: true },
   variants: [

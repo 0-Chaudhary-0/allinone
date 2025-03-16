@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -8,49 +8,78 @@
 <body class="bg-white text-black font-sans">
     <%- include('partials/header') %>
 
-    <h1 class="font-bold text-xl m-10">
-        Go Shopping For Books Notes & MCQS Papers
-    </h1>
+        <h1 class="font-bold text-xl m-10">
+            Go Shopping For Books Notes & MCQS Papers
+        </h1>
 
-    <div class="grid gap-6 p-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 auto-rows-auto">
-        <% if (products && products.length > 0) { %>
-            <% products.forEach(product => { %>
-                <div class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                    <a href="id=<%= product._id %>">
-                        <% 
-                            let productImage = (product.variants && product.variants.length > 0 && product.variants[0].images.length > 0)
+        <div class="grid gap-6 p-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 auto-rows-auto">
+            <% if (products && products.length> 0) { %>
+                <% products.forEach(product=> { %>
+                    <div
+                        class="bg-white shadow dark:bg-gray-800 dark:border-gray-700">
+                        <a href="id=<%= product._id %>">
+                            <% let productImage=(product.variants && product.variants.length> 0 &&
+                                product.variants[0].images.length > 0)
                                 ? product.variants[0].images[0]
                                 : 'default-image.jpg'; // Fallback image
-                        %>
-                        <img class="rounded-t-lg w-full object-cover h-52" src="<%= productImage %>" alt="<%= product.name %>" />
-                    </a>
-                    <div class="p-5">
-                        <h5 class="text-lg font-semibold tracking-tight text-gray-900 dark:text-white">
-                            <%= product.name.slice(0, 10) + "..." %>
-                        </h5>
-                        <p class="mt-2 text-sm text-gray-700 dark:text-gray-400">
-                            <%= product.description.slice(0, 18) + "..." %>
-                        </p>
-                        <p class="my-3 text-xl font-bold text-gray-900 dark:text-white">Rs <%= product.price %></p>
-                        <div class="flex items-center justify-between mt-4">
-                            <button
-                                class="free btn-xs text-white border-white bg-black hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-800 add-in-bag"
-                                data-product="<%= JSON.stringify(product) %>">
-                                Add to Bag
-                            </button>
+                                %>
+                                <img class="rounded-t-lg w-full object-cover h-52" src="<%= productImage %>"
+                                    alt="<%= product.name %>" />
+                        </a>
+                        <div class="p-5">
+                            <h5 class="text-lg font-semibold tracking-tight text-gray-900 dark:text-white">
+                                <%= product.name.slice(0, 10) + "..." %>
+                            </h5>
+                            <p class="mt-2 text-sm text-gray-700 dark:text-gray-400">
+                                <%= product.description.slice(0, 18) + "..." %>
+                            </p>
+                            <p class="my-3 text-xl font-bold text-gray-900 dark:text-white">Rs <%= product.price %>
+                            </p>
+
+
+                            <div class="free flex items-center">
+                                <svg class="free w-4 h-4 text-yellow-300 me-1" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                    <path class="free" 
+                                        d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                                </svg>
+                                <svg class="free w-4 h-4 text-yellow-300 me-1" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                    <path class="free" 
+                                        d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                                </svg>
+                                <svg class="free w-4 h-4 text-yellow-300 me-1" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                    <path class="free" 
+                                        d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                                </svg>
+                                <svg class="free w-4 h-4 text-yellow-300 me-1" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                    <path class="free" 
+                                        d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                                </svg>
+                                <svg class="free w-4 h-4 text-gray-300 me-1 dark:text-gray-500" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                    <path class="free" 
+                                        d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                                </svg>
+                                <p class="ml-1 ms-1 text-sm font-medium text-gray-500 dark:text-gray-400">4.95</p>
+                                <p class="ml-1 ms-1 text-sm font-medium text-gray-500 dark:text-gray-400">out of</p>
+                                <p class="ml-1 ms-1 text-sm font-medium text-gray-500 dark:text-gray-400">5</p>
+                            </div>
+
                         </div>
                     </div>
-                </div>
-            <% }) %>
-        <% } else { %>
-            <p class="text-center text-gray-700 dark:text-gray-400">No products available.</p>
-        <% } %>
-    </div>
+                    <% }) %>
+                        <% } else { %>
+                            <p class="text-center text-gray-700 dark:text-gray-400">No products available.</p>
+                            <% } %>
+        </div>
 
-    <%- include('partials/footer') %>
+        <%- include('partials/footer') %>
 
-    <script src="script.js"></script>
-    <script src="shopping.js"></script>
+            <script src="script.js"></script>
+            <script src="shopping.js"></script>
 </body>
 
 </html>

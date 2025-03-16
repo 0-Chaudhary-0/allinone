@@ -3,13 +3,13 @@
 
 <head>
   <%- include('partials/head') %>
-  <style>
-    .selected {
-    border-width: 2px;
-    border-color: rgb(10, 170, 223);
-    box-shadow: 2px 2px 5px rgb(10, 170, 223);
-    }
-  </style>
+    <style>
+      .selected {
+        border-width: 1px;
+        border-color: gray;
+        box-shadow: 2px 2px 5px gray;
+      }
+    </style>
 </head>
 
 <body class="bg-gray-100 text-black font-sans">
@@ -33,7 +33,7 @@
             <div class="flex free">
               <span class="my-2 text-2xl free">Color : </span>
               <% if (product.variants && product.variants.length> 0) { %> <% product.variants.forEach((variant)=> { %>
-                  <button class="color-option border-gray-200 rounded-full w-8 h-8 mx-1 my-2 border-black border free"
+                  <button class="color-option border-gray-400 rounded-full w-8 h-8 mx-1 my-2 border free"
                     style='background-color: <%= variant.color.toLowerCase() %>' data-color="<%= variant.color %>"
                     data-images="<%= JSON.stringify(variant.images) %>"
                     data-sizes="<%= JSON.stringify(variant.sizes) %>"></button>
@@ -50,7 +50,7 @@
                   <div class="size-options hidden free" data-color="<%= variant.color %>">
                     <% variant.sizes.forEach((size)=> { %>
                       <button
-                        class="border-gray-200 size-option free rounded text-2xl font-semibold text-center px-2 pt-1 mx-1 my-2 border-black border"
+                        class="border-gray-200 size-option free rounded text-2xl font-semibold text-center px-2 pt-1 mx-1 my-2 border"
                         data-size="<%= size.size %>" data-stock="<%= size.stock %>">
                         <%= size.size %>
                       </button>
@@ -63,27 +63,94 @@
             </div>
 
             <!-- Price -->
-             <div class="flex items-center gap-2">
-            <p class="my-4 mx-2 text-3xl font-semibold italic">
-              Rs <%= product.price %>
-            </p>
-            <p class="text-base line-through text-red-400 free italic">Rs 4999</p>
-          </div>
+            <div class="flex items-center gap-2">
+              <p class="my-4 mx-2 text-3xl font-semibold italic">
+                Rs <%= product.price %>
+              </p>
+              <p class="text-base line-through text-red-400 free italic">Rs 4999</p>
+            </div>
 
             <!-- Buttons -->
             <div class="px-4 py-1">
               <button
-                class="mr-3 btn-xs text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 add-in-bag"
+                class="free mr-3 btn-xs text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 add-in-bag"
                 data-product="<%= JSON.stringify(product) %>">
-                Add In Bag 
+                Add In Bag
               </button>
               <button id="checkAuthorization"
-                class="btn-xs px-5 py-2.5 bg-blue-600 font-medium text-white rounded-lg hover:bg-blue-700 transition duration-300 text-sm"
+                class="free btn-xs px-5 py-2.5 bg-green-600 font-medium text-white rounded-lg hover:bg-green-700 transition duration-300 text-sm"
                 data-product-id="<%= product ? product._id : '' %>">
                 Checkout
               </button>
             </div>
+            <div class="my-5">
+              <h5 class="text-xl font-semibold italic">Product Details</h5>
+              <p class="mt-1 italic"> <span class="text-2xl">•</span>
+                <%= product.product_details%>
+              </p>
+            </div>
         </div>
+
+        <article class="p-6 border border-gray-200 rounded-2xl shadow-lg shadow-gray-500/50">
+          <h5 class="text-2xl my-4">Reviews</h5>
+          <div class="flex items-center mb-4">
+            <img class="w-10 h-10 me-4 rounded-full" src="/docs/images/people/profile-picture-5.jpg" alt="">
+            <div class="font-medium dark:text-white">
+              <p>Jese Leos <time datetime="2014-08-16 19:00"
+                  class="block text-sm text-gray-500 dark:text-gray-400">Joined on August 2014</time></p>
+            </div>
+          </div>
+          <div class="flex items-center mb-1 space-x-1 rtl:space-x-reverse">
+            <svg class="free w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor" viewBox="0 0 22 20">
+              <path
+                class="free" d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+            </svg>
+            <svg class="free w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor" viewBox="0 0 22 20">
+              <path
+                class="free" d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+            </svg>
+            <svg class="free w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor" viewBox="0 0 22 20">
+              <path
+                class="free" d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+            </svg>
+            <svg class="free w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor" viewBox="0 0 22 20">
+              <path
+                class="free" d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+            </svg>
+            <svg class="free w-4 h-4 text-gray-300 dark:text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor" viewBox="0 0 22 20">
+              <path
+                class="free" d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+            </svg>
+            <h3 class="ms-2 text-sm font-semibold text-gray-900 dark:text-white">Thinking to buy another one!</h3>
+          </div>
+          <footer class="mb-5 text-sm text-gray-500 dark:text-gray-400">
+            <p>Reviewed in the United Kingdom on <time datetime="2017-03-03 19:00">March 3, 2017</time></p>
+          </footer>
+          <p class="mb-2 text-gray-500 dark:text-gray-400">This is my third Invicta Pro Diver. They are just fantastic
+            value for money. This one arrived yesterday and the first thing I did was set the time, popped on an
+            identical strap from another Invicta and went in the shower with it to test the waterproofing.... No
+            problems.</p>
+          <p class="mb-3 text-gray-500 dark:text-gray-400">It is obviously not the same build quality as those very
+            expensive watches. But that is like comparing a Citroën to a Ferrari. This watch was well under £100! An
+            absolute bargain.</p>
+          <a href="#" class="block mb-5 text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">Read
+            more</a>
+          <aside>
+            <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">19 people found this helpful</p>
+            <div class="flex items-center mt-3">
+              <a href="#"
+                class="px-2 py-1.5 text-xs font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Helpful</a>
+              <a href="#"
+                class="ps-4 text-sm font-medium text-blue-600 hover:underline dark:text-blue-500 border-gray-200 ms-4 border-s md:mb-0 dark:border-gray-600">Report
+                abuse</a>
+            </div>
+          </aside>
+        </article>
       </div>
     </div>
 
