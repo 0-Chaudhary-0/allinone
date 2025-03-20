@@ -2,23 +2,37 @@ const jwt = require('jsonwebtoken');
 const jwtSecret = "#@abdulsattar";
 
 function authenticateToken(req, res, next) {
-    console.log("🔍 Request Headers:", req.headers); // ✅ Log all headers
+    // Extract token from cookie
+    const token = req.cookies.accessToken;
 
-    const authHeader = req.headers.authorization;
-
-    const token = authHeader.split(" ")[1]; // ✅ Extract token
-    console.log("Received Token:", token); // 🔍 Debugging log
+    if (!token) {
+        console.warn("⚠️ No token found in cookies.");
+        return res.status(401).render("message", {
+            title: "Unauthorized",
+            message: "You must be logged in to access this page.",
+            redirectUrl: "/login.ejs",
+            buttonText: "Login",
+            token: null
+        });
+    }
 
     try {
         const verified = jwt.verify(token, jwtSecret);
-        console.log("✅ User is verified:", verified); // ✅ If verification is successful
+        console.log("✅ User verified:", verified);
 
-        req.user = verified;
+        req.user = verified; // Set user info for use in routes
         next();
     } catch (err) {
         console.error("❌ Token verification error:", err.message);
-        return res.status(403).json({ message: "Invalid token." });
+        return res.status(403).render("message", {
+            title: "Invalid Token",
+            message: "Your session has expired or token is invalid.",
+            redirectUrl: "/login.ejs",
+            buttonText: "Login Again",
+            token: null
+        });
     }
 }
+
 
 module.exports = authenticateToken;

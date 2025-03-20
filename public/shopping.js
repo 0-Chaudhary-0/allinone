@@ -2,50 +2,59 @@
 const addButtons = document.querySelectorAll('.add-in-bag');
 
 addButtons.forEach(button => {
-    button.addEventListener("click", () => {
-        const product = JSON.parse(button.getAttribute('data-product'));
+  button.addEventListener("click", () => {
+    const product = JSON.parse(button.getAttribute('data-product'));
+    const action = button.getAttribute('data-action'); // 'add' or 'checkout'
 
-        // Get the selected color
-        const selectedColorButton = document.querySelector('.color-option.selected');
-        if (!selectedColorButton) {
-            alert("Please select a color before adding to the bag.");
-            return;
-        }
-        const selectedColor = selectedColorButton.dataset.color;
+    // Get selected color
+    const selectedColorButton = document.querySelector('.color-option.selected');
+    if (!selectedColorButton) {
+      alert("Please select a color before adding to the bag.");
+      return;
+    }
+    const selectedColor = selectedColorButton.dataset.color;
 
-        // Get the selected size
-        const selectedSizeButton = document.querySelector('.size-option.selected');
-        if (!selectedSizeButton) {
-            alert("Please select a size before adding to the bag.");
-            return;
-        }
-        const selectedSize = selectedSizeButton.dataset.size;
+    // Get selected size
+    const selectedSizeButton = document.querySelector('.size-option.selected');
+    if (!selectedSizeButton) {
+      alert("Please select a size before adding to the bag.");
+      return;
+    }
+    const selectedSize = selectedSizeButton.dataset.size;
 
-        // Prepare the final product object with variant details
-        const productToBag = {
-            _id: product._id,  // 🔹 Store _id for product navigation
-            id: product.slug + "-" + selectedColor + "-" + selectedSize, // Unique identifier
-            name: product.name,
-            color: selectedColor,
-            size: selectedSize,
-            price: product.price
-        };
+    // Prepare product object
+    const productToBag = {
+      _id: product._id,
+      id: product.slug + "-" + selectedColor + "-" + selectedSize,
+      name: product.name,
+      color: selectedColor,
+      size: selectedSize,
+      price: product.price
+    };
 
-        // Get current shopping bag from localStorage
-        const shoppingBag = JSON.parse(localStorage.getItem('shoppingBag')) || [];
+    // Retrieve shopping bag from localStorage
+    let shoppingBag = JSON.parse(localStorage.getItem('shoppingBag')) || [];
 
-        // Check if the item is already in the bag
-        const productExists = shoppingBag.find(item => item.id === productToBag.id);
+    // Remove existing product with same _id if exists
+    const existingIndex = shoppingBag.findIndex(item => item._id === productToBag._id);
+    if (existingIndex !== -1) {
+      shoppingBag.splice(existingIndex, 1);
+    }
 
-        if (productExists) {
-            alert(`${product.name} (${selectedColor}, ${selectedSize}) is already in your bag.`);
-        } else {
-            shoppingBag.push(productToBag);
-            localStorage.setItem('shoppingBag', JSON.stringify(shoppingBag));
-            alert(`${product.name} (${selectedColor}, ${selectedSize}) has been added to your bag.`);
-        }
-    });
+    // Add updated product
+    shoppingBag.push(productToBag);
+    localStorage.setItem('shoppingBag', JSON.stringify(shoppingBag));
+
+    alert(`${product.name} (${selectedColor}, ${selectedSize}) has been added to your bag.`);
+
+    // If action is checkout, redirect
+    if (action === 'checkout') {
+      window.location.href = `/checkout/${button.getAttribute("data-product-id")}`; // or '/checkout.ejs' depending on routing
+    }
+  });
 });
+
+
 
 document.addEventListener("DOMContentLoaded", function () {
   const colorButtons = document.querySelectorAll(".color-option");

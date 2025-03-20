@@ -2,61 +2,57 @@
 <html lang="en">
 
 <head>
-    <%- include('partials/head') %>
+  <%- include('partials/head') %>
 </head>
 
-<body class="font-sans leading-normal tracking-normal">
-    <%- include('partials/header') %>
-        <div class="min-h-screen flex items-center justify-center px-4">
-          <div class="bg-white max-w-3xl w-full p-8">
+<body class="bg-gray-100 font-sans leading-normal tracking-normal">
+  <%- include('partials/header') %>
 
-            <!-- Product Details -->
-            <div class="mb-6">
-              <h1 class="text-xl font-bold font-medium text-gray-700">Product Details</h2>
-              <div class="mt-4 p-4 border border-gray-300 rounded-lg">
-                <h3 class="text-gray-800 text-xl font-semibold"><%= product.title %></h3>
-                <p class="text-gray-600 mt-2"><%= product.desc %></p>
-                <p class="text-gray-800 font-medium mt-4">Price: $<%= product.price %></p>
-              </div>
-            </div>
-      
-            <!-- Billing Information -->
-            <div class="mb-6">
-              <h2 class="text-lg font-medium text-gray-700">Billing Information</h2>
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                <div>
-                  <label for="first_name" class="block text-gray-600 text-sm font-medium mb-2">First Name</label>
-                  <input id="first_name" type="text" class="w-full p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" placeholder="John">
-                </div>
-                <div>
-                  <label for="last_name" class="block text-gray-600 text-sm font-medium mb-2">Last Name</label>
-                  <input id="last_name" type="text" class="w-full p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" placeholder="Doe">
-                </div>
-              </div>
-            </div>
-      
-            <!-- Payment Details -->
-            <div class="mb-6">
-              <h2 class="text-lg font-medium text-gray-700">Payment Details</h2>
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                <div>
-                  <label for="card_number" class="block text-gray-600 text-sm font-medium mb-2">Card Number</label>
-                  <input id="card_number" type="text" class="w-full p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" placeholder="1234 5678 9012 3456">
-                </div>
-                <div>
-                  <label for="expiry_date" class="block text-gray-600 text-sm font-medium mb-2">Expiry Date</label>
-                  <input id="expiry_date" type="text" class="w-full p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" placeholder="MM/YY">
-                </div>
-              </div>
-            </div>
-      
-            <!-- Submit Button -->
-            <button class="w-full bg-indigo-600 text-white p-3 rounded-md hover:bg-indigo-700 transition-all duration-200">Complete Purchase</button>
+    <div class="min-h-screen flex justify-center px-4 py-2 my-10">
+      <div class="bg-white max-w-3xl w-full p-4 transition-transform transform hover:scale-[1.01] duration-300">
+
+        <!-- Product Details -->
+        <div id="product-details" class="space-y-4">
+          <h1 class="text-2xl font-bold text-gray-800 border-b pb-2">
+            🛍️ Product Details
+          </h1>
+          <!-- JS will populate product info here -->
+        </div>
+
+        <!-- Payment Method -->
+        <div>
+          <h2 class="text-xl font-semibold text-gray-800 mb-4">
+            💳 Select Payment Method
+          </h2>
+          <div class="flex flex-col md:flex-row gap-4">
+            <label
+              class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg shadow-sm cursor-pointer hover:bg-gray-100 transition">
+              <input type="radio" name="payment-method" value="card" class="form-radio text-blue-500 focus:ring-0"
+                checked />
+              <span class="text-gray-700">Credit/Debit Card</span>
+            </label>
+            <label
+              class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg shadow-sm cursor-pointer hover:bg-gray-100 transition">
+              <input type="radio" name="payment-method" value="cod" class="form-radio text-blue-500 focus:ring-0" />
+              <span class="text-gray-700">Cash on Delivery (COD)</span>
+            </label>
           </div>
         </div>
 
+        <!-- Next Button -->
+        <div class="text-right">
+          <button id="next-btn"
+            class="w-full my-4 bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-shadow shadow-md hover:shadow-lg">
+            Next →
+          </button>
+
+        </div>
+      </div>
+    </div>
+
     <%- include('partials/footer') %>
-    <script src="/script.js"></script>
+      <script src="/script.js"></script>
+      <script src="/checkout_product.js"></script>
 </body>
 
 </html>
