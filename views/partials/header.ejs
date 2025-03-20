@@ -21,7 +21,7 @@
         </section>
         <section class="flex gap-3">
             <%- include('dark-mode-toggle') %>
-            <a href="cart.ejs">
+            <a href="/cart.ejs">
                 <button>
                     <svg class="w-6 h-6 text-black block text-right" xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
@@ -32,7 +32,7 @@
             </a>
             <% if (user) { %>
                 <!-- User is logged in: Show 'My Account' button -->
-                <a href="account.ejs" id="user">
+                <a href="/account.ejs" id="user">
                     <button class="flex">
                         <svg class="w-6 h-6 text-black dark:text-black block text-right" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                             <path fill-rule="evenodd" d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z" clip-rule="evenodd"/>
@@ -41,7 +41,7 @@
                 </a>
             <% } else { %>
                 <!-- User is NOT logged in: Show 'Login' button -->
-                <a href="login.ejs" id="add-user">
+                <a href="/login.ejs" id="add-user">
                     <button>
                         <svg class="w-6 h-6 text-black dark:text-black block text-right" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                             <path fill-rule="evenodd" d="M9 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4H7Zm8-1a1 1 0 0 1 1-1h1v-1a1 1 0 1 1 2 0v1h1a1 1 0 1 1 0 2h-1v1a1 1 0 1 1-2 0v-1h-1a1 1 0 0 1-1-1Z" clip-rule="evenodd"/>
@@ -57,25 +57,25 @@
             <a class="text-black font-medium text-sm p-2 block" href="/">Home</a>
         </li>
         <li class="block mr-5">
-            <a class="text-black font-medium text-sm p-2 block" href="books.ejs">Books</a>
+            <a class="text-black font-medium text-sm p-2 block" href="/books.ejs">Books</a>
         </li>
         <li class="block mr-5">
-            <a class="text-black font-medium text-sm p-2 block" href="videos.ejs">Videos</a>
+            <a class="text-black font-medium text-sm p-2 block" href="/videos.ejs">Videos</a>
         </li>
         <li class="block mr-5">
-            <a href="chemistryquiz.ejs" class="cursor-pointer text-black font-medium text-sm p-2 block" id="access-protected">Quizzes</a>
+            <a href="/chemistryquiz.ejs" class="cursor-pointer text-black font-medium text-sm p-2 block">Quizzes</a>
         </li>
         <li class="block mr-5">
-            <a class="text-black font-medium text-sm p-2 block" href="shopping.ejs">Shopping</a>
+            <a class="text-black font-medium text-sm p-2 block" href="/shopping.ejs">Shopping</a>
         </li>
         <li class="block mr-5">
-            <a class="text-black font-medium text-sm p-2 block" href="about.ejs">About Us</a>
+            <a class="text-black font-medium text-sm p-2 block" href="/about.ejs">About Us</a>
         </li>
         <li class="block mr-5">
-            <a class="text-black font-medium text-sm p-2 block" href="account.ejs">My Account</a>
+            <a class="text-black font-medium text-sm p-2 block" href="/account.ejs">My Account</a>
         </li>
         <li class="block mr-5">
-            <a class="text-black font-medium text-sm p-2 block" href="cart.ejs">My Shopping Bag</a>
+            <a class="text-black font-medium text-sm p-2 block" href="/cart.ejs">My Shopping Bag</a>
         </li>
     </ul>
 </nav>
