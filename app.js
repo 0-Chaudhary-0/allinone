@@ -1,6 +1,5 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
 const connectDB = require("./lib/connect");
 const path = require('path');
 const cors = require('cors');
@@ -12,6 +11,7 @@ const loginRoute = require('./routes/login');
 const signupRoute = require('./routes/signup');
 const indexRoutes = require('./routes/index');
 const productRoute = require("./routes/products");
+const paymentRoute = require("./routes/payment");
 
 const app = express();
 const jwtSecret = "#@abdulsattar"; // Secret for JWT
@@ -50,6 +50,7 @@ app.use((req, res, next) => {
 app.use('/login', loginRoute);
 app.use('/signup', signupRoute);
 app.use('/products', productRoute);
+app.use('/payment', paymentRoute);
 app.use('/', indexRoutes);
 
 // Start server

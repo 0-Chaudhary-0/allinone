@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+  <script src="https://js.stripe.com/v3/"></script>
   <%- include('partials/head') %>
 </head>
 
@@ -21,39 +22,67 @@
 
         <!-- Payment Method -->
         <hr class="free h-1 bg-gray-400 mt-5 border-0 rounded">
-        <div class="my-8">
-          <h2 class="text-xl font-semibold text-gray-800 mb-4">
-             Select Payment Method
-          </h2>
-          <div class="flex flex-col md:flex-row gap-4">
-            <label
-              class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg shadow-sm cursor-pointer hover:bg-gray-100 transition">
-              <input type="radio" name="payment-method" value="card" class="free form-radio text-blue-500 focus:ring-0"
-                checked />
-              <span class="text-gray-700">💳 Credit/Debit Card</span>
-            </label>
-            <label
-              class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg shadow-sm cursor-pointer hover:bg-gray-100 transition">
-              <input type="radio" name="payment-method" value="cod" class="free form-radio text-blue-500 focus:ring-0" />
-              <span class="text-gray-700">💴 Cash on Delivery (COD)</span>
-            </label>
-          </div>
+
+        <!-- Payment Method Radio Buttons -->
+        <div class="flex flex-col md:flex-row gap-4">
+          <!-- Card Radio -->
+          <label
+            class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg shadow-sm cursor-pointer hover:bg-gray-100 transition">
+            <input type="radio" name="payment-method" value="card" id="card-radio"
+              class="free form-radio text-blue-500 focus:ring-0" checked />
+            <span class="text-gray-700">💳 Credit/Debit Card</span>
+          </label>
+
+          <!-- COD Radio -->
+          <label
+            class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg shadow-sm cursor-pointer hover:bg-gray-100 transition">
+            <input type="radio" name="payment-method" value="cod" id="cod-radio"
+              class="free form-radio text-blue-500 focus:ring-0" />
+            <span class="text-gray-700">💴 Cash on Delivery (COD)</span>
+          </label>
         </div>
 
-        <!-- Next Button -->
+        <!-- Card Details Section -->
+        <div id="card-details" class="mt-6">
+
+          <!-- Card Number Input -->
+          <div class="relative mb-3">
+            <input type="text" placeholder="Card Number"
+              class="w-full p-3 pr-10 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500">💳</span>
+          </div>
+
+          <!-- Expiry Date Input -->
+          <div class="relative mb-3">
+            <input type="text" placeholder="Expiry Date (MM/YY)"
+              class="w-full p-3 pr-10 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500">📅</span>
+          </div>
+
+          <!-- CVV Input -->
+          <div class="relative mb-3">
+            <input type="text" placeholder="CVV"
+              class="w-full p-3 pr-10 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500">🔒</span>
+          </div>
+
+        </div>
+
+        <!-- Place Order Button -->
         <div class="text-right">
           <button id="next-btn"
             class="free w-full my-4 bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-shadow shadow-md hover:shadow-lg">
-            Next →
+            Place Order ➤
           </button>
-
         </div>
+
       </div>
     </div>
 
     <%- include('partials/footer') %>
       <script src="/script.js"></script>
       <script src="/checkout_product.js"></script>
+      <script src="/payment.js"></script>
 </body>
 
 </html>

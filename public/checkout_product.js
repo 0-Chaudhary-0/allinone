@@ -20,9 +20,24 @@ if (selectedProduct) {
         <p class="text-gray-600 mt-2"><span class="font-medium">Color:</span> ${selectedProduct.color}</p>
         <p class="text-gray-600 mt-1"><span class="font-medium">Size:</span> ${selectedProduct.size}</p>
       </div>
-      <p class="text-gray-900 font-semibold mt-4 text-lg">Price: $${selectedProduct.price}</p>
+      <p class="text-right text-gray-600 mt-4"><span class="font-medium">Price :</span> ${selectedProduct.price}</p>
+      <p class="text-right text-gray-600 mt-1"><span class="font-medium">Delivery fee :</span> Rs 149 </p>
+      <p class="free text-right text-red-700 font-semibold text-lg">Total : Rs ${selectedProduct.price + 149}</p>
     </div>
   `;
 } else {
   productContainer.innerHTML = `<p class="text-red-500 font-semibold">Product not found.</p>`;
 }
+
+
+const cardRadio = document.getElementById('card-radio');
+const codRadio = document.getElementById('cod-radio');
+const cardDetails = document.getElementById('card-details');
+
+cardRadio.addEventListener('change', () => {
+  cardDetails.classList.remove('hidden');
+});
+
+codRadio.addEventListener('change', () => {
+  cardDetails.classList.add('hidden');
+});

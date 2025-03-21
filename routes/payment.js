@@ -1,33 +1,39 @@
 const express = require('express');
+const Stripe = require('stripe');
 const router = express.Router();
 
 // Replace with your secret key
 const stripe = Stripe('sk_test_51OU7fQGEbwT151fvOfyx9H3iTBfjqQswGR45DS4HTtskNpy3f6GLGmrTMasIdfUl0tlbWSimoJw6JB4LvQNAoDjq002NyKsvPC');
 
+function convertRsToUsd(totalRs) {
+  const exchangeRate = 278; // 1 USD = 278 Rs
+  const usdAmount = totalRs / exchangeRate;
+  const usdCents = Math.round(usdAmount * 100); // Convert to cents
+  return usdCents;
+}
+
 router.post('/create-payment-intent', async (req, res) => {
-  const { amountInPKR } = req.body;
-
-  // Convert PKR to USD (e.g., 1 USD = 280 PKR)
-  const exchangeRate = 280;
-  const amountInUSD = amountInPKR / exchangeRate;
-
-  // Stripe needs amount in cents
-  const amountInCents = Math.round(amountInUSD * 100);
-
-  // Ensure at least $0.50
-  if (amountInCents < 50) {
-    return res.status(400).json({ error: 'Minimum amount is $0.50 USD (~140 PKR).' });
-  }
-
   try {
+    const { cartItems, totalAmountRs } = req.body;
+
+    // ✅ Rs ➜ USD cents
+    const amountInCents = convertRsToUsd(totalAmountRs);
+
     const paymentIntent = await stripe.paymentIntents.create({
       amount: amountInCents,
       currency: 'usd',
       payment_method_types: ['card'],
+      metadata: {
+        cart: JSON.stringify(cartItems), // optional, for logs
+      },
     });
 
-    res.send({ clientSecret: paymentIntent.client_secret });
+    res.status(200).json({
+      clientSecret: paymentIntent.client_secret,
+    });
+
   } catch (error) {
+    console.error('Payment Intent Error:', error.message);
     res.status(500).json({ error: error.message });
   }
 });

@@ -8,14 +8,22 @@ addButtons.forEach(button => {
 
     const selectedColorButton = document.querySelector('.color-option.selected');
     if (!selectedColorButton) {
-      alert("Please select a color before adding to the bag.");
+      showModal({
+        title: "⚠️ Select Color",
+        message: "Please select a color before adding to the bag.",
+        showCancel: false
+      });      
       return;
     }
     const selectedColor = selectedColorButton.dataset.color;
 
     const selectedSizeButton = document.querySelector('.size-option.selected');
     if (!selectedSizeButton) {
-      alert("Please select a size before adding to the bag.");
+      showModal({
+        title: "⚠️ Select Size",
+        message: "Please select a size before adding to the bag.",
+        showCancel: false
+      });      
       return;
     }
     const selectedSize = selectedSizeButton.dataset.size;
@@ -39,8 +47,12 @@ addButtons.forEach(button => {
     shoppingBag.push(productToBag);
     localStorage.setItem('shoppingBag', JSON.stringify(shoppingBag));
 
-    alert(`${product.name} (${selectedColor}, ${selectedSize}) has been added to your bag.`);
-
+    showModal({
+      title: "🛍️ Added to Bag",
+      message: `${product.name} (${selectedColor}, ${selectedSize}) has been added to your bag.`,
+      showCancel: false
+    });
+    
     if (action === 'checkout') {
       window.location.href = `/checkout/${button.getAttribute("data-product-id")}`;
     }
@@ -189,4 +201,9 @@ document.addEventListener("DOMContentLoaded", () => {
       if (selectedSizeInput) selectedSizeInput.value = selectedSize;
     });
   });
+});
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  initCarousel();  // This sets up the carousel and exposes updateCarousel globally
 });

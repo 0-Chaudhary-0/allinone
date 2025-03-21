@@ -45,7 +45,11 @@ document.getElementById("submitComment").addEventListener("click", async functio
   console.log(email, comment)
   // Validation
   if (!email || !comment) {
-    alert("Please fill in all fields.");
+    showModal({
+      title: "⚠️ Missing Fields",
+      message: "Please fill in all fields.",
+      showCancel: false
+    });    
     return;
   }
 
@@ -62,9 +66,17 @@ document.getElementById("submitComment").addEventListener("click", async functio
     console.log(result)
     if (response.ok) {
       document.getElementById("commentForm").reset();
-      alert(result.message)
+      showModal({
+        title: "ℹ️ Info",
+        message: result.message,
+        showCancel: false
+      });      
     }
   } catch (error) {
-    alert("Something went wrong. Please try again.");
+    showModal({
+      title: "❌ Error",
+      message: "Something went wrong. Please try again.",
+      showCancel: false
+    });    
   }
 });
