@@ -5,9 +5,9 @@
   <%- include('partials/head') %>
     <style>
       .selected {
-        border-width: 1px;
-        border-color: gray;
-        box-shadow: 2px 2px 5px gray;
+        border-width: 2px;
+        border-color: blue;
+        box-shadow: 3px 3px 5px skyblue;
       }
     </style>
 </head>
@@ -29,38 +29,44 @@
               <%= product.description %>
             </p>
 
-            <!-- Colors -->
+            <!-- Color Buttons -->
             <div class="flex free">
-              <span class="my-2 text-2xl free">Color : </span>
-              <% if (product.variants && product.variants.length> 0) { %> <% product.variants.forEach((variant)=> { %>
+              <span class="my-2 text-2xl free">Color: </span>
+              <% if (product.variants && product.variants.length> 0) { %>
+                <% product.variants.forEach((variant)=> { %>
                   <button class="color-option border-gray-400 rounded-full w-8 h-8 mx-1 my-2 border free"
-                    style='background-color: <%= variant.color.toLowerCase() %>' data-color="<%= variant.color %>"
-                    data-images="<%= JSON.stringify(variant.images) %>"
-                    data-sizes="<%= JSON.stringify(variant.sizes) %>"></button>
-                  <% }) %>
+                    style="background-color: <%= variant.color.toLowerCase() %>;" data-color="<%= variant.color %>"
+                    data-images="<%= JSON.stringify(variant.images).replace(/" /g, '&quot;' ) %>"
+                    data-sizes="<%= JSON.stringify(variant.sizes).replace(/"/g, '&quot;' ) %>">
+                  </button>
+                  <% }); %>
                     <% } else { %>
                       <span> - - - - - </span>
                       <% } %>
             </div>
 
-            <!-- Sizes (Initially showing first variant's sizes) -->
-            <!-- Sizes -->
+            <!-- Sizes Section -->
             <div class="flex free" id="size-container">
-              <% if (product.variants && product.variants.length> 0) { %> <% product.variants.forEach((variant)=> { %>
+              <% if (product.variants && product.variants.length> 0) { %>
+                <% product.variants.forEach((variant)=> { %>
                   <div class="size-options hidden free" data-color="<%= variant.color %>">
                     <% variant.sizes.forEach((size)=> { %>
                       <button
-                        class="border-gray-200 size-option free rounded text-2xl font-semibold text-center px-2 pt-1 mx-1 my-2 border"
+                        class="size-option free rounded text-2xl font-semibold text-center px-2 pt-1 mx-1 my-2 border"
                         data-size="<%= size.size %>" data-stock="<%= size.stock %>">
                         <%= size.size %>
                       </button>
-                      <% }) %>
+                      <% }); %>
                   </div>
-                  <% }) %>
+                  <% }); %>
                     <% } else { %>
                       <span> - - - - - </span>
                       <% } %>
             </div>
+
+            <!-- Hidden Inputs -->
+            <input type="hidden" id="selectedColorInput" name="selectedColor" value="">
+            <input type="hidden" id="selectedSizeInput" name="selectedSize" value="">
 
             <!-- Price -->
             <div class="flex items-center gap-2">
