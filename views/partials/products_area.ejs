@@ -1,0 +1,65 @@
+<div class="relative w-full">
+    <!-- Scroll Buttons -->
+    <button id="scrollLeft"
+        class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white shadow p-2 rounded-full z-10">
+        &#8592;
+    </button>
+    <button id="scrollRight"
+        class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white shadow p-2 rounded-full z-10">
+        &#8594;
+    </button>
+
+    <!-- Scrollable Product Row -->
+    <div id="productScroll" class="w-full flex flex-row p-2 overflow-x-scroll scroll-smooth space-x-4 scrollbar-hide">
+        <% products.forEach((product, index)=> { %>
+            <a href="/id=<%=product._id%>">
+                <div class="border border-gray-200 rounded w-48 px-1 flex-shrink-0 relative">
+                    <!-- Badge -->
+                    <span class="free absolute top-1 right-1 bg-red-500 text-white text-xs font-semibold px-2 py-0.5 rounded-full">
+                        New
+                    </span>
+
+                    <!-- Product Image -->
+                    <img class="w-48 h-48 object-cover rounded" src="<%= products[0].variants[index].images[0] %>"
+                        alt="">
+
+                    <!-- Product Details -->
+                    <h2 class="font-medium my-2 px-1">
+                        <%= product.name %>
+                    </h2>
+                    <h3 class="font-medium my-2 px-1">
+                        Price: <%= product.price %>
+                    </h3>
+                </div>
+
+            </a>
+            <% }) %>
+    </div>
+</div>
+
+<!-- Tailwind Custom Scrollbar Hide -->
+<style>
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+    }
+
+    .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+</style>
+
+<!-- Scroll Buttons Script -->
+<script>
+    const scrollContainer = document.getElementById('productScroll');
+    const scrollLeftBtn = document.getElementById('scrollLeft');
+    const scrollRightBtn = document.getElementById('scrollRight');
+
+    scrollLeftBtn.addEventListener('click', () => {
+        scrollContainer.scrollBy({ left: -300, behavior: 'smooth' });
+    });
+
+    scrollRightBtn.addEventListener('click', () => {
+        scrollContainer.scrollBy({ left: 300, behavior: 'smooth' });
+    });
+</script>

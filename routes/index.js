@@ -9,8 +9,9 @@ const Comment = require('../models/Comment');
 router.use(checkLoginStatus);
 
 // Public pages
-router.get("/", (req, res) => {
-  res.render("index.ejs", { user: req.user });
+router.get("/", async (req, res) => {
+  const products = await Product.find();
+  res.render("index.ejs", { products, user: req.user });
 });
 
 router.get("/books.ejs", (req, res) => {
