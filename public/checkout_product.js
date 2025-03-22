@@ -21,8 +21,8 @@ if (selectedProduct) {
         <p class="text-gray-600 mt-1"><span class="font-medium">Size:</span> ${selectedProduct.size}</p>
       </div>
       <p class="text-right text-gray-600 mt-4"><span class="font-medium">Price :</span> ${selectedProduct.price}</p>
-      <p class="text-right text-gray-600 mt-1"><span class="font-medium">Delivery fee :</span> Rs 149 </p>
-      <p class="free text-right text-red-700 font-semibold text-lg">Total : Rs ${selectedProduct.price + 149}</p>
+      <p class="free text-right text-green-600 mt-1 font-semibold"><span class="font-medium text-green-600 free">Delivery fee :</span> Rs 0 </p>
+      <p class="free text-right text-red-700 font-semibold text-lg">Total : ${selectedProduct.price}</p>
     </div>
   `;
 } else {

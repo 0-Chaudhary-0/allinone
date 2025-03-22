@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const exp_year = 2000 + parseInt(exp_yearStr); // Convert YY to YYYY
 
       // 3️⃣ Get Cart Info
-      const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+      const cartItems = JSON.parse(localStorage.getItem("shoppingBag")) || [];
       if (cartItems.length === 0) {
         showModal({
           title: "Empty Cart",
