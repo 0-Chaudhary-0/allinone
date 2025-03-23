@@ -4,6 +4,8 @@ const authenticateToken = require("../middleware/auth");
 const checkLoginStatus = require("../middleware/checkLoginStatus");
 const Product = require('../models/Product');
 const Comment = require('../models/Comment');
+const Rating = require("../models/Rating"); // Import your Rating schema
+
 
 // Apply checkLoginStatus to all GET routes
 router.use(checkLoginStatus);
@@ -65,6 +67,7 @@ router.get("/checkout/:id", authenticateToken, async (req, res) => {
 router.get("/id=:id", async (req, res) => {
   try {
     const productId = req.params.id;
+
     const products = await Product.find();
     const product = products.find(p => p._id.toString() === productId);
 
@@ -72,12 +75,16 @@ router.get("/id=:id", async (req, res) => {
       return res.status(404).render("404", { message: "Product not found" });
     }
 
-    res.render("productDetails.ejs", { product, user: req.user });
+    // Fetch related reviews from Rating model
+    const reviews = await Rating.find({ productId }).sort({ createdAt: -1 }); // Newest first
+
+    res.render("productDetails.ejs", { product, user: req.user, reviews });
   } catch (error) {
     console.error("Error fetching product:", error);
     res.status(500).send("Server error");
   }
 });
+
 
 // Refresh token endpoint
 router.post("/refresh", (req, res) => {

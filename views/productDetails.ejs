@@ -16,8 +16,8 @@
   <%- include('partials/header') %>
 
     <div class="container mx-auto">
-      <div class="max-w-4xl mx-auto mt-6 mx-3">
-        <div class="-mx-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="mx-3">
           <p class="mt-6 text-3xl font-bold text-gray-900">
             <%= product.name %>
           </p>
@@ -105,28 +105,68 @@
         <h5 class="text-2xl mt-6 font-semibold">Reviews</h5>
         <hr class="free h-1 bg-gray-400 border-0 rounded">
 
-        <article class="p-6 rounded-2xl">
-          <div
-            class="border border-blue-400 rounded-full py-1 shadow-md free cursor-pointer text-center float-right relative flex justify-center items-center">
-            <i class="text-blue-600 w-24 fas fa-plus free" title="add review"> </i></div>
-          <div class="flex items-center mb-4">
-            <img class="w-10 h-10 me-4 rounded-full" src="/docs/images/people/profile-picture-5.jpg" alt="">
-            <div class="font-medium dark:text-white">
-              <p>Jese Leos <time datetime="2014-08-16 19:00"
-                  class="block text-sm text-gray-500 dark:text-gray-400">Joined on August 2014</time></p>
-            </div>
-          </div>
-          <p class="mb-2 text-gray-500 dark:text-gray-400">This is my third Invicta Pro Diver. They are just fantastic
-            value for money. This one arrived yesterday and the first thing I did was set the time, popped on an
-            identical strap from another Invicta and went in the shower with it to test the waterproofing.... No
-            problems.</p>
-          <p class="mb-3 text-gray-500 dark:text-gray-400">It is obviously not the same build quality as those very
-            expensive watches. But that is like comparing a Citroën to a Ferrari. This watch was well under £100! An
-            absolute bargain.</p>
-          <a href="#"
-            class="free underline block mb-5 text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">Read
-            more</a>
-        </article>
+        <!-- Add Review Button -->
+        <div id="toggleReviewForm"
+          class="mt-2 border border-blue-400 rounded-full py-1 shadow-md free cursor-pointer text-center float-right flex justify-center items-center">
+          <i class="text-blue-600 w-24 fas fa-plus free" title="Add Review"></i>
+        </div>
+
+        <!-- Review Form (Hidden Initially) -->
+        <form id="reviewForm" action="/products/submit-review/<%= product._id %>" method="POST"
+          class="hidden mt-4 p-4 border rounded-lg">
+          <label class="block mb-2 text-sm font-medium text-gray-700">Your Review</label>
+          <textarea name="reviewText" required class="w-full p-2 border rounded mb-3" rows="3"></textarea>
+
+          <label class="block mb-2 text-sm font-medium text-gray-700">Rating (1-5)</label>
+          <select name="rating" required class="w-full p-2 border rounded mb-3">
+            <option value="">Select Rating</option>
+            <% for(let i=1; i<=5; i++) { %>
+              <option value="<%= i %>">
+                <%= i %> Star<%= i> 1 ? 's' : '' %>
+              </option>
+              <% } %>
+          </select>
+
+          <button type="submit" class="free w-48 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Submit</button>
+        </form>
+
+        <!-- Display Existing Reviews -->
+        <% if (reviews.length===0) { %>
+          <p class="text-gray-500 mt-4">No reviews yet. Be the first to review!</p>
+          <% } %>
+
+            <% reviews.forEach(review=> { %>
+              <article class="p-6 rounded-2xl mb-4">
+                <div class="flex items-center mb-4 gap-2">
+                  <img class="w-10 h-10 me-4 rounded-full" src="images/user.png" alt="User">
+                  <div class="font-medium">
+                    <p>
+                      <%= review.userName || "Anonymous" %>
+                        <time datetime="<%= review.createdAt.toISOString() %>" class="block text-sm text-gray-500">
+                          <%= review.createdAt.toDateString() %>
+                        </time>
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Star Rating Display -->
+                <div class="mb-2 text-yellow-500">
+                  <% for(let i=1; i<=5; i++) { %>
+                    <% if(i <= review.rating) { %>
+                      <i class="free text-yellow-500 fas fa-star"></i>
+                      <% } else { %>
+                        <i class="free text-yellow-500far fa-star"></i>
+                        <% } %>
+                          <% } %>
+                </div>
+
+                <!-- Review Text -->
+                <p class="text-gray-700">
+                  <%= review.review %>
+                </p>
+              </article>
+              <% }) %>
+
       </div>
     </div>
 
@@ -134,6 +174,14 @@
 
       <script src="script.js"></script>
       <script src="shopping.js"></script>
+
+      <!-- JS to Toggle Review Form -->
+      <script>
+        document.getElementById("toggleReviewForm").addEventListener("click", () => {
+          const form = document.getElementById("reviewForm");
+          form.classList.toggle("hidden");
+        });
+      </script>
 </body>
 
 </html>
