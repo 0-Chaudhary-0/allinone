@@ -5,185 +5,181 @@
     <%- include('partials/head') %>
         <style>
             .masked-image {
-  width: 300px;
-  height: 300px;
-  background: url('https://picsum.photos/400/400') center / cover no-repeat;
+                width: 300px;
+                height: 300px;
+                background: url("https://picsum.photos/400/400") center / cover no-repeat;
 
-  -webkit-mask-image: url('images/mask3.png');
-  -webkit-mask-size: cover;
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position: center;
+                -webkit-mask-image: url("images/mask3.png");
+                -webkit-mask-size: cover;
+                -webkit-mask-repeat: no-repeat;
+                -webkit-mask-position: center;
 
-  mask-image: url('images/mask3.png');
-  mask-size: cover;
-  mask-repeat: no-repeat;
-  mask-position: center;
-}
-
-
+                mask-image: url("images/mask3.png");
+                mask-size: cover;
+                mask-repeat: no-repeat;
+                mask-position: center;
+            }
         </style>
 </head>
 
-<body class="bg-white text-black font-sans">
-    <%- include('partials/header') %>
-        <%- include('partials/carousel') %>
-            <h1 class="ml-8 mt-8 mb-4 font-semibold text-2xl">Our Products</h1>
+<body class="dark:bg-gray-900 dark:text-whitebg-white text-black font-sans dark:bg-gray-900">
+    <%- include('partials/header') %> 
+    <%- include('partials/carousel') %>
+    <h1 class="sm:text-3xl text-2xl font-bold title-font mb-2 text-center my-4">COLLECTIONS</h1>
+    <div class="flex flex-wrap m-4 justify-center gap-4">
+    
+              <!-- Product Card Template -->
+               <a href="/shopping.ejs">
+      <div class="relative bg-white/10 rounded-xl overflow-hidden shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer" data-aos="fade-up">
+        <img src="https://codeswear.nyc3.cdn.digitaloceanspaces.com/constants/landing/collections/caps.webp" alt="CAPS" class="w-full h-60 object-cover">
+        <!-- <h3 class="text-xl absolute bottom-3 left-1/2 transform -translate-x-1/2 bg-black/60 px-4 py-1 rounded text-white text-sm font-semibold z-10">CAPS</h3> -->
+      </div>
+    </a>
+
+    <a href="/shopping.ejs">
+
+      <div class="relative bg-white/10 rounded-xl overflow-hidden shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer" data-aos="fade-up">
+        <img src="https://codeswear.nyc3.cdn.digitaloceanspaces.com/constants/landing/collections/hoodie.webp" alt="HOODIES" class="w-full h-60 object-cover">
+        <!-- <h3 class="text-xl absolute bottom-3 left-1/2 transform -translate-x-1/2 bg-black/60 px-4 py-1 rounded text-white text-sm font-semibold z-10">HOODIES</h3> -->
+      </div>
+      </a>
+
+      <a href="/shopping.ejs">
+      <div class="relative bg-white/10 rounded-xl overflow-hidden shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer" data-aos="fade-up">
+        <img src="https://codeswear.nyc3.cdn.digitaloceanspaces.com/constants/landing/collections/mousepad.webp" alt="MOUSE PAD" class="w-full h-60 object-cover">
+        <!-- <h3 class="text-xl absolute bottom-3 left-1/2 transform -translate-x-1/2 bg-black/60 px-4 py-1 rounded text-white text-sm font-semibold z-10">MOUSE PAD</h3> -->
+      </div>
+      </a>
+
+      <a href="/shopping.ejs">
+      <div class="relative bg-white/10 rounded-xl overflow-hidden shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer" data-aos="fade-up">
+        <img src="https://codeswear.nyc3.cdn.digitaloceanspaces.com/constants/landing/collections/mugs.webp" alt="MUGS" class="w-full h-60 object-cover">
+        <!-- <h3 class="text-xl absolute bottom-3 left-1/2 transform -translate-x-1/2 bg-black/60 px-4 py-1 rounded text-white text-sm font-semibold z-10">MUGS</h3> -->
+      </div>
+      </a>
+
+      <a href="/shopping.ejs">
+      <div class="relative bg-white/10 rounded-xl overflow-hidden shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer" data-aos="fade-up">
+        <img src="https://codeswear.nyc3.cdn.digitaloceanspaces.com/constants/landing/collections/oversizedtshirt.webp" alt="OVERSIZED T-SHIRTS" class="w-full h-60 object-cover">
+        <!-- <h3 class="text-xl absolute bottom-3 left-1/2 transform -translate-x-1/2 bg-black/60 px-4 py-1 rounded text-white text-sm font-semibold z-10">OVERSIZED T-SHIRTS</h3> -->
+      </div>
+      </a>
+
+      <a href="/shopping.ejs">
+      <div class="relative bg-white/10 rounded-xl overflow-hidden shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer" data-aos="fade-up">
+        <img src="https://codeswear.nyc3.cdn.digitaloceanspaces.com/constants/landing/collections/polotshirts.webp" alt="POLO T-SHIRTS" class="w-full h-60 object-cover">
+        <!-- <h3 class="text-xl absolute bottom-3 left-1/2 transform -translate-x-1/2 bg-black/60 px-4 py-1 rounded text-white text-sm font-semibold z-10">POLO T-SHIRTS</h3> -->
+      </div></a>
+
+      <a href="/shopping.ejs">
+      <div class="relative bg-white/10 rounded-xl overflow-hidden shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer" data-aos="fade-up">
+        <img src="https://codeswear.nyc3.cdn.digitaloceanspaces.com/constants/landing/collections/sweatshirt.webp" alt="SWEATSHIRTS" class="w-full h-60 object-cover">
+        <!-- <h3 class="text-xl absolute bottom-3 left-1/2 transform -translate-x-1/2 bg-black/60 px-4 py-1 rounded text-white text-sm font-semibold z-10">SWEATSHIRTS</h3> -->
+      </div>
+      </a>
+
+      <a href="/shopping.ejs">
+      <div class="relative bg-white/10 rounded-xl overflow-hidden shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer" data-aos="fade-up">
+        <img src="https://codeswear.nyc3.cdn.digitaloceanspaces.com/constants/landing/collections/tshirt.webp" alt="T-SHIRTS" class="w-full h-60 object-cover">
+        <!-- <h3 class="text-xl absolute bottom-3 left-1/2 transform -translate-x-1/2 bg-black/60 px-4 py-1 rounded text-white text-sm font-semibold z-10">T-SHIRTS</h3> -->
+      </div>
+      </a>
+    
+      </div>
+    
+            <h1 class="text-left ml-4 dark:bg-black dark:text-white mt-8 mb-4 font-semibold text-2xl">
+                Bestselling Products
+            </h1>
 
             <%- include('partials/products_area', { products: products }) %>
 
-
-                <div id="informational-banner" tabindex="-1"
-                    class="fixed opacity-90 bottom-0 start-0 z-50 flex flex-col justify-between w-full p-4 border-b border-gray-200 md:flex-row bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
-                    <div class="mb-4 md:mb-0 md:me-4">
-                        <h2 class="mb-1 text-base font-semibold text-gray-900 dark:text-white">Checkout Our Products
-                        </h2>
-                        <p class="flex items-center text-sm font-normal text-gray-500 dark:text-gray-400">We're
-                            providing
-                            Notes, Books, Reasoning Questions and many more</p>
-                    </div>
-                    <div class="flex gap-2 items-center flex-shrink-0">
-                        <a href="about.ejs"
-                            class="inline-flex items-center justify-center px-3 py-2 me-3 text-xs font-medium text-gray-900 bg-white border border-gray-200 rounded-lg focus:outline-none hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"><svg
-                                class="w-3 h-3 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                fill="currentColor" viewBox="0 0 20 18">
-                                <path
-                                    d="M9 1.334C7.06.594 1.646-.84.293.653a1.158 1.158 0 0 0-.293.77v13.973c0 .193.046.383.134.55.088.167.214.306.366.403a.932.932 0 0 0 .5.147c.176 0 .348-.05.5-.147 1.059-.32 6.265.851 7.5 1.65V1.334ZM19.707.653C18.353-.84 12.94.593 11 1.333V18c1.234-.799 6.436-1.968 7.5-1.65a.931.931 0 0 0 .5.147.931.931 0 0 0 .5-.148c.152-.096.279-.235.366-.403.088-.167.134-.357.134-.55V1.423a1.158 1.158 0 0 0-.293-.77Z" />
-                            </svg> &nbsp; Learn more</a>
-                        <a href="shopping.ejs"
-                            class="inline-flex items-center justify-center px-3 py-2 me-2 text-xs font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Shopping
-                            &nbsp; <svg class="w-3 h-3 ms-2 rtl:rotate-180" aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
-                            </svg></a>
-                        <button data-dismiss-target="#informational-banner" type="button"
-                            class="free flex-shrink-0 inline-flex justify-center w-7 h-7 items-center text-gray-400 hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 dark:hover:bg-gray-600 dark:hover:text-white">
-                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 14 14">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                            </svg>
-                            <span class="sr-only">Close banner</span>
-                        </button>
-                    </div>
+                <h1 class="dark:bg-black dark:text-white ml-10 mt-8 mb-4 font-semibold text-xl">
+                    About Me
+                </h1>
+                <div class="dark:bg-black dark:text-white mt-8 mb-4 flex flex-col items-center w-[90vw] mx-auto">
+                    <div class="dark:bg-black dark:text-white masked-image free"></div>
+                    <p class="dark:bg-black dark:text-white mx-4 my-1 mt-5 font-semibold text-xl text-center">
+                        I am an experienced educator with a passion for chemistry. I have over
+                        10 years of teaching experience and am dedicated to making chemistry
+                        accessible and enjoyable for students of all ages.
+                    </p>
+                    <p class="dark:bg-black dark:text-white mx-4 my-1 font-semibold text-xl text-center">
+                        I have authored several books and developed numerous online resources to
+                        help students excel in my studies.
+                    </p>
                 </div>
-
-                <h1 class="ml-10 mt-8 mb-4 font-semibold text-xl">About Me</h1>
-                <div class="mt-8 mb-4 flex flex-col items-center w-[90vw] mx-auto">
-                    <div class="masked-image free"></div>
-                    <p class="mx-4 my-1 mt-5 font-semibold text-xl text-center">I am an experienced educator with a
-                        passion
-                        for chemistry. I have over 10 years of teaching experience and am dedicated to making chemistry
-                        accessible and enjoyable for students of all ages.</p>
-                    <p class="mx-4 my-1 font-semibold text-xl text-center">I have authored several books and developed
-                        numerous online resources to help students excel in my studies.</p>
-                </div>
-
 
                 <div id="handleMode"
-                    class="container mx-auto flex flex-col md:flex-row py-8 px-4 space-y-4 md:space-y-0 md:space-x-4">
-                    <div class="border dark:border-gray-700 w-full md:w-1/4 p-6 bg-blue-50 rounded-2xl shadow-lg">
-                        <p class="text-blue-900 font-bold text-lg mb-2">Services</p>
-                        <p class="text-gray-700 mb-4">We offer a variety of chemistry resources including books, notes,
-                            and
-                            online quizzes.</p>
-                        <p class="text-blue-900 font-bold text-lg mb-2">Highlights</p>
-                        <p class="text-gray-700 mb-4">Check out our latest chemistry books and video lectures.</p>
-                        <p class="text-blue-900 font-bold text-lg mb-2">News Updates</p>
-                        <p class="text-gray-700 mb-4">Stay updated with the latest news in the field of chemistry.</p>
-                        <p class="text-blue-900 font-bold text-lg mb-2">Alerts</p>
-                        <p class="text-gray-700">Important alerts and notifications will be displayed here.</p>
+                    class="dark:bg-black dark:text-white container mx-auto flex flex-col md:flex-row py-8 px-4 space-y-4 md:space-y-0 md:space-x-4">
+                    <div class="dark:bg-black dark:text-white border w-full md:w-1/4 p-6 rounded-2xl shadow-lg">
+                        <p class="dark:bg-black dark:text-white text-blue-900 font-bold text-lg mb-2">
+                            Services
+                        </p>
+                        <p class="dark:bg-black dark:text-white text-gray-700 mb-4">
+                            We offer a variety of chemistry resources including books, notes, and
+                            online quizzes.
+                        </p>
+                        <p class="dark:bg-black dark:text-white text-blue-900 font-bold text-lg mb-2">
+                            Highlights
+                        </p>
+                        <p class="dark:bg-black dark:text-white text-gray-700 mb-4">
+                            Check out our latest chemistry books and video lectures.
+                        </p>
+                        <p class="dark:bg-black dark:text-white text-blue-900 font-bold text-lg mb-2">
+                            News Updates
+                        </p>
+                        <p class="dark:bg-black dark:text-white text-gray-700 mb-4">
+                            Stay updated with the latest news in the field of chemistry.
+                        </p>
+                        <p class="dark:bg-black dark:text-white text-blue-900 font-bold text-lg mb-2">
+                            Alerts
+                        </p>
+                        <p class="dark:bg-black dark:text-white text-gray-700">
+                            Important alerts and notifications will be displayed here.
+                        </p>
                     </div>
                     <div
-                        class="border dark:border-gray-700 w-full md:w-3/4 flex flex-col md:flex-row p-6 bg-white rounded-2xl shadow-lg space-y-4 md:space-y-0 md:space-x-4">
-                        <div class="w-full md:w-1/2">
-                            <p class="text-2xl font-bold text-gray-900 mb-4">Introduction</p>
-                            <p class="text-gray-700 mb-4"><strong>Kemistry Knots</strong> is a virtual platform
-                                specially
-                                designed for students of any age and grade.</p>
-                            <p class="text-gray-700 mb-4">This page includes the following features:</p>
-                            <div class="list-decimal ml-6 text-gray-700 mb-4">
-                                <li>Chemistry notes, books, video lectures & online chemistry quizzes.</li>
+                        class="dark:bg-black dark:text-white border w-full md:w-3/4 flex flex-col md:flex-row p-6 rounded-2xl shadow-lg space-y-4 md:space-y-0 md:space-x-4">
+                        <div class="dark:bg-black dark:text-white w-full md:w-1/2">
+                            <p class="dark:bg-black dark:text-white text-2xl font-bold text-gray-900 mb-4">
+                                Introduction
+                            </p>
+                            <p class="dark:bg-black dark:text-white text-gray-700 mb-4">
+                                <strong>Kemistry Knots</strong> is a virtual platform specially
+                                designed for students of any age and grade.
+                            </p>
+                            <p class="dark:bg-black dark:text-white text-gray-700 mb-4">
+                                This page includes the following features:
+                            </p>
+                            <div class="dark:bg-black dark:text-white list-decimal ml-6 text-gray-700 mb-4">
+                                <li>
+                                    Chemistry notes, books, video lectures & online chemistry quizzes.
+                                </li>
                                 <li>Computer languages (HTML, CSS & JAVASCRIPT).</li>
                                 <li>Online Shopping.</li>
                             </div>
-                            <p class="text-gray-700 mb-4"><i>Did you get it?</i></p>
-                            <p class="text-gray-700 mb-4">Yes. This is an <strong>All-in-One</strong> web page where you
-                                can
-                                study, entertain and enjoy shopping.</p>
+                            <p class="dark:bg-black dark:text-white text-gray-700 mb-4">
+                                <i>Did you get it?</i>
+                            </p>
+                            <p class="dark:bg-black dark:text-white text-gray-700 mb-4">
+                                Yes. This is an <strong>All-in-One</strong> web page where you can
+                                study, entertain and enjoy shopping.
+                            </p>
                         </div>
-                    </div>
-                </div>
-
-                <h1 class="ml-6 font-bold text-2xl my-4">Our Facilities</h1>
-                <div class="flex md:flex-row flex-col justify-center mx-4 my-6">
-                    <div
-                        class="mr-4 mb-4 max-w-sm p-6 border border-gray-200 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700">
-                        <svg class="w-9 h-9 text-gray-800 dark:text-white mb-2" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
-                            <path
-                                d="M9 1.334C7.06.594 1.646-.84.293.653a1.158 1.158 0 0 0-.293.77v13.973c0 .193.046.383.134.55.088.167.214.306.366.403a.932.932 0 0 0 .5.147c.176 0 .348-.05.5-.147 1.059-.32 6.265.851 7.5 1.65V1.334ZM19.707.653C18.353-.84 12.94.593 11 1.333V18c1.234-.799 6.436-1.968 7.5-1.65a.931.931 0 0 0 .5.147.931.931 0 0 0 .5-.148c.152-.096.279-.235.366-.403.088-.167.134-.357.134-.55V1.423a1.158 1.158 0 0 0-.293-.77Z" />
-                        </svg>
-
-
-                        <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">We also
-                            sells
-                            the Books, Notes, Reasoning Question Papers</h5>
-                        <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">Books are crucial in every
-                            student's
-                            life because they introduce children to a world of imagination, provide information of the
-                            outside world, improve their reading, writing, and speaking abilities, and improve memory
-                            and
-                            intellect. Students benefit much from books, and they learn a great deal from them.</p>
-                        <a href="shopping.ejs"
-                            class="inline-flex font-medium items-center text-blue-600 hover:underline">
-                            Visit Shop
-                            <svg class="ml-2 w-3 h-3 ms-2.5 rtl:rotate-[270deg]" aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M15 11v4.833A1.166 1.166 0 0 1 13.833 17H2.167A1.167 1.167 0 0 1 1 15.833V4.167A1.166 1.166 0 0 1 2.167 3h4.618m4.447-2H17v5.768M9.111 8.889l7.778-7.778" />
-                            </svg>
-                        </a>
-                    </div>
-                    <div
-                        class="mr-4 mb-4 max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700">
-                        <svg class="w-9 h-9 text-gray-800 dark:text-white" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                            viewBox="0 0 24 24">
-                            <path
-                                d="M12.268 6A2 2 0 0 0 14 9h1v1a2 2 0 0 0 3.04 1.708l-.311 1.496a1 1 0 0 1-.979.796H8.605l.208 1H16a3 3 0 1 1-2.83 2h-2.34a3 3 0 1 1-4.009-1.76L4.686 5H4a1 1 0 0 1 0-2h1.5a1 1 0 0 1 .979.796L6.939 6h5.329Z" />
-                            <path
-                                d="M18 4a1 1 0 1 0-2 0v2h-2a1 1 0 1 0 0 2h2v2a1 1 0 1 0 2 0V8h2a1 1 0 1 0 0-2h-2V4Z" />
-                        </svg>
-
-
-                        <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Quiz are
-                            too
-                            important for our education as well as life :)</h5>
-                        <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">One of the truest tests of
-                            integrity is
-                            its blunt refusal to be compromised. One of the tests of leadership is the ability to
-                            recognize
-                            a problem before it becomes an emergency. God tests and proves us by the common occurrences
-                            of
-                            life
-                            <a href="chemistryquiz.ejs"
-                                class="inline-flex font-medium items-center text-blue-600 hover:underline">
-                                Solve Quizzes
-                                <svg class="ml-2 w-3 h-3 ms-2.5 rtl:rotate-[270deg]" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M15 11v4.833A1.166 1.166 0 0 1 13.833 17H2.167A1.167 1.167 0 0 1 1 15.833V4.167A1.166 1.166 0 0 1 2.167 3h4.618m4.447-2H17v5.768M9.111 8.889l7.778-7.778" />
-                                </svg>
-                            </a>
                     </div>
                 </div>
 
                 <%- include('partials/footer') %>
                     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>
                     <script src="script.js"></script>
+                    <!-- AOS JS -->
+                    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+                    <script>
+                        AOS.init({
+                            duration: 800,
+                            once: true,
+                        });
+                    </script>
 </body>
 
 </html>

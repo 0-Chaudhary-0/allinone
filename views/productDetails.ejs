@@ -6,22 +6,22 @@
     <style>
       .selected {
         border-width: 2px;
-        border-color: blue;
+        border-color: skyblue;
         box-shadow: 3px 3px 5px skyblue;
       }
     </style>
 </head>
 
-<body class="bg-gray-100 text-black font-sans">
+<body class="dark:bg-black dark:text-white bg-gray-100 text-black font-sans">
   <%- include('partials/header') %>
 
-    <div class="container mx-auto">
-      <div class="max-w-4xl mx-auto">
-        <div class="mx-3">
-          <p class="mt-6 text-3xl font-bold text-gray-900">
+    <div class="dark:bg-black dark:text-white container mx-auto">
+      <div class="dark:bg-black dark:text-white max-w-4xl mx-auto">
+        <div class="dark:bg-black dark:text-white mx-3">
+          <p class="dark:bg-black dark:text-white mt-6 text-3xl font-bold text-gray-900">
             <%= product.name %>
           </p>
-          <p class="text-gray-700 my-4">
+          <p class="dark:bg-black dark:text-white text-gray-700 my-4">
             <%= product.description %>
           </p>
 
@@ -29,11 +29,11 @@
           <%- include('partials/productsCarousel', { product: product }) %>
 
             <!-- Color Buttons -->
-            <div class="flex free">
-              <span class="my-2 text-2xl free">Color : </span>
+            <div class="dark:bg-black dark:text-white flex free">
+              <span class="dark:bg-black dark:text-white my-2 text-2xl free">Color : </span>
               <% if (product.variants && product.variants.length> 0) { %>
                 <% product.variants.forEach((variant)=> { %>
-                  <button class="color-option border-gray-400 rounded-full w-8 h-8 mx-1 my-2 border free"
+                  <button class="dark:bg-black dark:text-white color-option border-gray-400 rounded-full w-8 h-8 mx-1 my-2 border free"
                     style="background-color: <%= variant.color.toLowerCase() %>;" data-color="<%= variant.color %>"
                     data-images="<%= JSON.stringify(variant.images).replace(/" /g, '&quot;' ) %>"
                     data-sizes="<%= JSON.stringify(variant.sizes).replace(/"/g, '&quot;' ) %>">
@@ -45,14 +45,14 @@
             </div>
 
             <!-- Sizes Section -->
-            <div class="flex free" id="size-container">
-              <span class="my-2 text-2xl free">Size : </span>
+            <div class="dark:bg-black dark:text-white flex free" id="size-container">
+              <span class="dark:bg-black dark:text-white my-2 text-2xl free">Size : </span>
               <% if (product.variants && product.variants.length> 0) { %>
                 <% product.variants.forEach((variant)=> { %>
-                  <div class="size-options hidden free" data-color="<%= variant.color %>">
+                  <div class="dark:bg-black dark:text-white size-options hidden free" data-color="<%= variant.color %>">
                     <% variant.sizes.forEach((size)=> { %>
                       <button
-                        class="size-option free rounded text-2xl font-semibold text-center px-2 pt-1 mx-1 my-2 border"
+                        class="dark:bg-black dark:text-white size-option free rounded text-xl font-semibold text-center px-5 pt-1 mx-1 my-2 border"
                         data-size="<%= size.size %>" data-stock="<%= size.stock %>">
                         <%= size.size %>
                       </button>
@@ -69,56 +69,56 @@
             <input type="hidden" id="selectedSizeInput" name="selectedSize" value="">
 
             <!-- Price -->
-            <div class="flex items-center gap-2">
-              <p class="my-4 mx-2 text-3xl font-semibold italic">
+            <div class="dark:bg-black dark:text-white flex items-center gap-2">
+              <p class="dark:bg-black dark:text-white my-4 mx-2 text-3xl font-semibold italic">
                 Rs <%= product.price %>
               </p>
-              <p class="text-base line-through text-red-400 free italic">Rs 4999</p>
+              <p class="dark:bg-black dark:text-white text-base line-through text-red-400 free italic">Rs 4999</p>
             </div>
 
             <!-- Buttons -->
-            <div class="px-4 py-1 flex flex-wrap">
+            <div class="dark:bg-black dark:text-white px-4 py-1 flex flex-row">
               <!-- Add In Bag Button -->
               <button
-                class="mt-3 mr-3 w-80 free btn-xs text-white bg-yellow-400 hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800 add-in-bag"
+                class="dark:bg-black dark:text-white mt-3 mr-3 w-80 free btn-xs text-white bg-yellow-400 hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800 add-in-bag"
                 data-product="<%= JSON.stringify(product) %>" data-action="add">
                 Add In Bag
               </button>
-
+            
               <!-- Checkout Button -->
               <button
-                class="mt-3 w-80 free btn-xs text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 add-in-bag"
+                class="dark:bg-black dark:text-white mt-3 w-80 free btn-xs text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 add-in-bag"
                 data-product="<%= JSON.stringify(product) %>" data-product-id="<%= product ? product._id : '' %>"
                 data-action="checkout">
                 Checkout
               </button>
             </div>
 
-            <div class="my-5">
-              <h5 class="text-xl font-semibold italic">Product Details</h5>
-              <p class="mt-1 italic"> <span class="text-2xl">•</span>
+            <div class="dark:bg-black dark:text-white my-5">
+              <h5 class="dark:bg-black dark:text-white text-xl font-semibold italic">Product Details</h5>
+              <p class="dark:bg-black dark:text-white mt-1 italic"> <span class="dark:bg-black dark:text-white text-2xl">•</span>
                 <%= product.product_details%>
               </p>
             </div>
         </div>
 
-        <h5 class="text-2xl mt-6 font-semibold">Reviews</h5>
-        <hr class="free h-1 bg-gray-400 border-0 rounded">
+        <h5 class="dark:bg-black dark:text-white text-2xl mt-6 font-semibold">Reviews</h5>
+        <hr class="dark:bg-black dark:text-white free h-1 bg-gray-400 border-0 rounded">
 
         <!-- Add Review Button -->
         <div id="toggleReviewForm"
-          class="mt-2 border border-blue-400 rounded-full py-1 shadow-md free cursor-pointer text-center float-right flex justify-center items-center">
-          <i class="text-blue-600 w-24 fas fa-plus free" title="Add Review"></i>
+          class="dark:bg-black dark:text-white mt-2 border border-blue-400 rounded-full py-1 shadow-md free cursor-pointer text-center float-right flex justify-center items-center">
+          <i class="dark:bg-black dark:text-white text-blue-600 w-24 fas fa-plus free" title="Add Review"></i>
         </div>
 
         <!-- Review Form (Hidden Initially) -->
         <form id="reviewForm" action="/products/submit-review/<%= product._id %>" method="POST"
-          class="hidden mt-4 p-4 border rounded-lg">
-          <label class="block mb-2 text-sm font-medium text-gray-700">Your Review</label>
-          <textarea name="reviewText" required class="w-full p-2 border rounded mb-3" rows="3"></textarea>
+          class="dark:bg-black dark:text-white hidden mt-4 p-4 rounded-lg">
+          <label class="dark:bg-black dark:text-white block mb-2 text-sm font-medium text-gray-700">Your Review</label>
+          <textarea name="reviewText" required class="dark:bg-black dark:text-white w-full p-2 border rounded mb-3" rows="3"></textarea>
 
-          <label class="block mb-2 text-sm font-medium text-gray-700">Rating (1-5)</label>
-          <select name="rating" required class="w-full p-2 border rounded mb-3">
+          <label class="dark:bg-black dark:text-white block mb-2 text-sm font-medium text-gray-700">Rating (1-5)</label>
+          <select name="rating" required class="dark:bg-black dark:text-white w-full p-2 border rounded mb-3">
             <option value="">Select Rating</option>
             <% for(let i=1; i<=5; i++) { %>
               <option value="<%= i %>">
@@ -127,22 +127,22 @@
               <% } %>
           </select>
 
-          <button type="submit" class="free w-48 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Submit</button>
+          <button type="submit" class="dark:bg-black dark:text-white free w-48 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Submit</button>
         </form>
 
         <!-- Display Existing Reviews -->
         <% if (reviews.length===0) { %>
-          <p class="text-gray-500 mt-4">No reviews yet. Be the first to review!</p>
+          <p class="dark:bg-black dark:text-white text-gray-500 mt-4">No reviews yet. Be the first to review!</p>
           <% } %>
 
             <% reviews.forEach(review=> { %>
-              <article class="p-6 rounded-2xl mb-4">
-                <div class="flex items-center mb-4 gap-2">
-                  <img class="w-10 h-10 me-4 rounded-full" src="images/user.png" alt="User">
-                  <div class="font-medium">
+              <article class="dark:bg-black dark:text-white p-6 rounded-2xl mb-4">
+                <div class="dark:bg-black dark:text-white flex items-center mb-4 gap-2">
+                  <img class="dark:bg-black dark:text-white w-10 h-10 me-4 rounded-full" src="images/user.png" alt="User">
+                  <div class="dark:bg-black dark:text-white font-medium">
                     <p>
                       <%= review.userName || "Anonymous" %>
-                        <time datetime="<%= review.createdAt.toISOString() %>" class="block text-sm text-gray-500">
+                        <time datetime="<%= review.createdAt.toISOString() %>" class="dark:bg-black dark:text-white block text-sm text-gray-500">
                           <%= review.createdAt.toDateString() %>
                         </time>
                     </p>
@@ -150,18 +150,18 @@
                 </div>
 
                 <!-- Star Rating Display -->
-                <div class="mb-2 text-yellow-500">
+                <div class="dark:bg-black dark:text-white mb-2 text-yellow-500">
                   <% for(let i=1; i<=5; i++) { %>
                     <% if(i <= review.rating) { %>
-                      <i class="free text-yellow-500 fas fa-star"></i>
+                      <i class="dark:bg-black dark:text-white free text-yellow-500 fas fa-star"></i>
                       <% } else { %>
-                        <i class="free text-yellow-500far fa-star"></i>
+                        <i class="dark:bg-black dark:text-white free text-yellow-500far fa-star"></i>
                         <% } %>
                           <% } %>
                 </div>
 
                 <!-- Review Text -->
-                <p class="text-gray-700">
+                <p class="dark:bg-black dark:text-white text-gray-700">
                   <%= review.review %>
                 </p>
               </article>

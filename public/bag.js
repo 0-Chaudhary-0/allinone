@@ -43,14 +43,13 @@ document.addEventListener("DOMContentLoaded", () => {
     <!-- Buttons on the right side -->
     <div class="flex gap-4">
         <!-- View Item Button -->
-        <a href="id=${product._id}" class="flex items-center text-xl italic gap-2 text-green-600 font-semibold rounded-md hover:text-green-800">
-            <span>View Item</span>
-            <i class="fa-solid fa-cart-arrow-down text-xl"></i>
+        <a href="id=${product._id}">
+            <i class="text-green-600 free fa-solid fa-cart-arrow-down text-2xl"></i>
         </a>
             
         <!-- Remove Button (Trash Icon) -->
-        <button class="remove-item text-red-600 hover:text-red-800 focus:outline-none">
-            <i class="fas fa-trash text-2xl"></i> <!-- Trash Bin Icon -->
+        <button class="remove-item free">
+            <i class="fas fa-trash text-2xl free text-red-400"></i> <!-- Trash Bin Icon -->
         </button>
     </div>
 </div>

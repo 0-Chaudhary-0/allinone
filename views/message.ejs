@@ -3,20 +3,20 @@
 <head>
     <%- include('partials/head') %>
 </head>
-<body class="bg-white text-black font-sans">
+<body class="dark:bg-black dark:text-white bg-white text-black font-sans">
     <%- include('partials/header') %>
 
-    <div class="min-h-screen text-gray-900 flex justify-center">
-        <div class="max-w-screen-lg m-0 sm:m-10 sm:rounded-lg flex items-center justify-center">
-            <div class="p-6 sm:p-12">
-                <h1 class="text-2xl xl:text-3xl font-extrabold">
+    <div class="dark:bg-black dark:text-white min-h-screen text-gray-900 flex justify-center">
+        <div class="dark:bg-black dark:text-white max-w-screen-lg m-0 sm:m-10 sm:rounded-lg flex items-center justify-center">
+            <div class="dark:bg-black dark:text-white p-6 sm:p-12">
+                <h1 class="dark:bg-black dark:text-white text-2xl xl:text-3xl font-extrabold">
                     <%= title %>
                 </h1>
-                <p class="mt-4 text-lg">
+                <p class="dark:bg-black dark:text-white mt-4 text-lg">
                     <%= message %>
                 </p>
                 <% if(redirectUrl){ %>
-                <a href="<%= redirectUrl %>" class="mt-6 text-blue-500 underline">
+                <a href="<%= redirectUrl %>" class="dark:bg-black dark:text-white mt-6 text-blue-500 underline">
                     <%= buttonText %>
                 </a>
                 <% }%>
@@ -26,5 +26,6 @@
 
     <%- include('partials/footer') %>
     <script src="message.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

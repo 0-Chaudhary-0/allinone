@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('partials/head') %>
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+
+<body class="dark:bg-black dark:text-white flex items-center justify-center min-h-screen bg-gray-100">
+  <%- include('partials/header') %>
+  <div class="dark:bg-black dark:text-white bg-white p-8 rounded-lg shadow-md text-center">
+    <h1 class="dark:bg-black dark:text-white text-green-600 text-3xl font-bold">🎉 Order Placed Successfully!</h1>
+    <p class="dark:bg-black dark:text-white text-gray-700 mt-2">Thank you for shopping with us. Your order has been confirmed.</p>
+    <a href="/" class="dark:bg-black dark:text-white mt-4 inline-block bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700">Go to Homepage</a>
+</div>
+
+    <%- include('partials/footer') %>
+      <script src="script.js"></script>
+</body>
+
+</html>

@@ -80,3 +80,19 @@ document.getElementById("submitComment").addEventListener("click", async functio
     });    
   }
 });
+
+let user = document.getElementById("user");
+let handleUserToggle = document.querySelector(".handleUserToggle");
+let toggleIcon = user.querySelector("p"); // Select the icon
+
+user.addEventListener("click", () => {
+    // Toggle the hidden class
+    handleUserToggle.classList.toggle("hidden");
+
+    // Change the icon direction based on visibility
+    if (handleUserToggle.classList.contains("hidden")) {
+        toggleIcon.innerHTML = "&gt;"; // '>' pointing right
+    } else {
+        toggleIcon.innerHTML = "&lt;"; // '<' pointing left
+    }
+});

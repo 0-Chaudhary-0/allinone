@@ -6,72 +6,82 @@
   <%- include('partials/head') %>
 </head>
 
-<body class="bg-gray-100 font-sans leading-normal tracking-normal">
+<body class="dark:bg-black dark:text-white bg-gray-100 font-sans leading-normal tracking-normal">
   <%- include('partials/header') %>
 
-    <div class="min-h-screen flex justify-center px-4 py-2 my-10">
-      <div class="bg-white max-w-3xl w-full p-4 transition-transform transform hover:scale-[1.01] duration-300">
+    <div class="dark:bg-black dark:text-white min-h-screen flex justify-center px-4 py-2 my-10">
+      <div class="dark:bg-black dark:text-white bg-white max-w-3xl w-full p-4 transition-transform transform hover:scale-[1.01] duration-300">
 
         <!-- Product Details -->
-        <div id="product-details" class="space-y-4">
-          <h1 class="text-2xl font-bold text-gray-800 border-b pb-2">
+        <div id="product-details" class="dark:bg-black dark:text-white space-y-4">
+          <h1 class="dark:bg-black dark:text-white text-2xl font-bold text-gray-800 border-b pb-2">
             🛍️ Product Details
           </h1>
           <!-- JS will populate product info here -->
         </div>
 
-        <!-- Payment Method -->
-        <hr class="free h-1 bg-gray-400 mt-5 border-0 rounded">
+        <!-- Address Section -->
+        
+      <!-- Address Form -->
+      <div class="dark:bg-black dark:text-white mt-4">
+        <h2 class="dark:bg-black dark:text-white text-lg font-semibold text-gray-700">Shipping Address</h2>
+        
+        <input id="name" type="text" placeholder="Full Name" 
+          class="dark:bg-black dark:text-white w-full p-3 mt-2 border rounded focus:ring-2 focus:ring-blue-500" required />
+        
+        <input id="email" type="email" placeholder="Email Address" 
+          class="dark:bg-black dark:text-white w-full p-3 mt-2 border rounded focus:ring-2 focus:ring-blue-500" required />
+        
+        <input id="phone" type="tel" placeholder="Phone Number (PK: 03XXXXXXXXX)" pattern="03[0-9]{9}" 
+          class="dark:bg-black dark:text-white w-full p-3 mt-2 border rounded focus:ring-2 focus:ring-blue-500" required />
 
-        <!-- Payment Method Radio Buttons -->
-        <div class="flex flex-col md:flex-row gap-4">
-          <!-- Card Radio -->
+        <input id="province" type="text" placeholder="Country"
+          class="dark:bg-black dark:text-white w-full p-3 mt-2 border rounded focus:ring-2 focus:ring-blue-500" required />
+        
+        <input id="city" type="text" placeholder="City" 
+          class="dark:bg-black dark:text-white w-full p-3 mt-2 border rounded focus:ring-2 focus:ring-blue-500" required />
+
+        <input id="postalCode" type="text" placeholder="Postal Code" 
+          class="dark:bg-black dark:text-white w-full p-3 mt-2 border rounded focus:ring-2 focus:ring-blue-500" required />
+
+        <input id="street" type="text" placeholder="Street Address" 
+          class="dark:bg-black dark:text-white w-full p-3 mt-2 border rounded focus:ring-2 focus:ring-blue-500" required />
+      </div>
+
+
+        <!-- Payment Method -->
+        <hr class="dark:bg-black dark:text-white h-1 bg-gray-400 mt-5 border-0 rounded">
+
+        <div class="dark:bg-black dark:text-white flex flex-col md:flex-row gap-4">
           <label
-            class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg shadow-sm cursor-pointer hover:bg-gray-100 transition">
-            <input type="radio" name="payment-method" value="card" id="card-radio"
-              class="free form-radio text-blue-500 focus:ring-0" checked />
-            <span class="text-gray-700">💳 Credit/Debit Card</span>
+            class="dark:bg-black dark:text-white flex items-center gap-2 p-3 bg-gray-50 rounded-lg shadow-sm cursor-pointer hover:bg-gray-100 transition">
+            <input type="radio" name="payment-method" value="card" id="card-radio" checked
+              class="dark:bg-black dark:text-white free form-radio text-blue-500 focus:ring-0" />
+            <span class="dark:bg-black dark:text-white text-gray-700">💳 Credit/Debit Card</span>
           </label>
 
-          <!-- COD Radio -->
           <label
-            class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg shadow-sm cursor-pointer hover:bg-gray-100 transition">
+            class="dark:bg-black dark:text-white flex items-center gap-2 p-3 bg-gray-50 rounded-lg shadow-sm cursor-pointer hover:bg-gray-100 transition">
             <input type="radio" name="payment-method" value="cod" id="cod-radio"
-              class="free form-radio text-blue-500 focus:ring-0" />
-            <span class="text-gray-700">💴 Cash on Delivery (COD)</span>
+              class="dark:bg-black dark:text-white free form-radio text-blue-500 focus:ring-0" />
+            <span class="dark:bg-black dark:text-white text-gray-700">💴 Cash on Delivery (COD)</span>
           </label>
         </div>
 
-        <!-- Card Details Section -->
-        <div id="card-details" class="mt-6">
-
-          <!-- Card Number Input -->
-          <div class="relative mb-3">
-            <input type="text" placeholder="Card Number"
-              class="w-full p-3 pr-10 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
-            <span class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500">💳</span>
-          </div>
-
-          <!-- Expiry Date Input -->
-          <div class="relative mb-3">
-            <input type="text" placeholder="Expiry Date (MM/YY)"
-              class="w-full p-3 pr-10 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
-            <span class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500">📅</span>
-          </div>
-
-          <!-- CVV Input -->
-          <div class="relative mb-3">
-            <input type="text" placeholder="CVV"
-              class="w-full p-3 pr-10 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
-            <span class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500">🔒</span>
-          </div>
-
+        <!-- Card Details Section (Hidden for COD) -->
+        <div id="card-details" class="dark:bg-black dark:text-white mt-6">
+          <input type="text" placeholder="Card Number" id="card-number"
+            class="dark:bg-black dark:text-white w-full p-3 border rounded focus:ring-2 focus:ring-blue-500" />
+          <input type="text" placeholder="Expiry Date (MM/YY)" id="expiry-date"
+            class="dark:bg-black dark:text-white w-full p-3 mt-2 border rounded focus:ring-2 focus:ring-blue-500" />
+          <input type="text" placeholder="CVV" id="cvv"
+            class="dark:bg-black dark:text-white w-full p-3 mt-2 border rounded focus:ring-2 focus:ring-blue-500" />
         </div>
 
         <!-- Place Order Button -->
-        <div class="text-right">
+        <div class="dark:bg-black dark:text-white text-right">
           <button id="next-btn"
-            class="free w-full my-4 bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-shadow shadow-md hover:shadow-lg">
+            class="dark:bg-black dark:text-white free w-full my-4 bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-shadow shadow-md hover:shadow-lg">
             Place Order ➤
           </button>
         </div>
@@ -80,9 +90,11 @@
     </div>
 
     <%- include('partials/footer') %>
-      <script src="/script.js"></script>
-      <script src="/checkout_product.js"></script>
       <script src="/payment.js"></script>
+      <script src="/checkout_product.js"></script>
+      <script>
+        window.userId = "<%= userId %>";
+      </script>
 </body>
 
 </html>

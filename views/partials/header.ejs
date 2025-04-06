@@ -1,16 +1,16 @@
-<header class="text-black py-4 text-center">
+<header class="text-black bg-green-400 py-4 text-center dark:bg-green-400 ">
     <div class="flex justify-start items-center mx-2 px-2">
         <img class="h-20 rounded-full p-4" src="/images/azeem.jpg" alt="logo" />
         <a href="/"
-            class="text-xls relative inline-block py-3 px-12 font-semibold text-lg text-transparent bg-clip-text bg-gradient-to-r from-black via-gray-600 to-gray-800 animate-shine">
+            class="text-gray-600 text-xls relative inline-block py-3 px-12 font-semibold text-lg text-transparent bg-clip-text bg-gradient-to-r from-black via-gray-600 to-gray-800 animate-shine">
             Welcome To My Site
         </a>
     </div>
-    <p>Your all-in-one platform for everything you need.</p>
+    <p class="text-gray-600">Your all-in-one platform for everything you need.</p>
 </header>
 
-<nav class="border-b border-gray-300">
-    <section class="flex items-center justify-between px-4 py-2">
+<nav class="border-b border-gray-300 bg-green-500 dark:bg-green-500">
+    <section class="flex items-center justify-between px-4 py-2 free">
         <section>
             <button id="nav-toggle" class="text-black focus:outline-none">
                 <svg class="w-6 h-6 dark:text-black" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
@@ -21,24 +21,22 @@
         </section>
         <section class="flex gap-3">
             <%- include('dark-mode-toggle') %>
-            <a href="/cart.ejs">
                 <button>
-                    <svg class="w-6 h-6 text-black block text-right" xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
-                        <path
-                            d="M12 2C9.79 2 8 3.79 8 6v2H6c-1.1 0-2 .9-2 2v10c0 2.21 1.79 4 4 4h8c2.21 0 4-1.79 4-4V10c0-1.1-.9-2-2-2h-2V6c0-2.21-1.79-4-4-4zm-2 6V6c0-1.1.9-2 2-2s2 .9 2 2v2h-4zm8 2v10c0 1.1-.9 2-2 2H8c-1.1 0-2-.9-2-2V10h12z" />
-                    </svg>
+                    <i class="fas fa-search w-6 h-6"></i>
                 </button>
-            </a>
             <% if (user) { %>
-                <!-- User is logged in: Show 'My Account' button -->
-                <a href="/account.ejs" id="user">
-                    <button class="flex">
-                        <svg class="w-6 h-6 text-black dark:text-black block text-right" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                            <path fill-rule="evenodd" d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z" clip-rule="evenodd"/>
-                        </svg>
-                    </button>
-                </a>
+                <div id="user" class="relative cursor-pointer">
+                    <!-- User is logged in: Show 'My Account' button -->
+                        <button  class="flex mr-2">
+                            <svg class="w-6 h-6 text-black dark:text-black block text-right" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                <path fill-rule="evenodd" d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z" clip-rule="evenodd"/>
+                            </svg>
+                        </button>
+                    <p class="text-sm rotate-90 absolute bottom-0 right-0 rounded-full">&gt;</p>
+                    <div class="handleUserToggle hidden absolute top-8 right-0 z-100 bg-green-500 free rounded-lg p-1">
+                        Logout <i class="fa fa-sign-out" aria-hidden="true"></i>
+                    </div>
+                </div>
             <% } else { %>
                 <!-- User is NOT logged in: Show 'Login' button -->
                 <a href="/login.ejs" id="add-user">
@@ -72,7 +70,7 @@
             <a class="text-black font-medium text-sm p-2 block" href="/about.ejs">About Us</a>
         </li>
         <li class="block mr-5">
-            <a class="text-black font-medium text-sm p-2 block" href="/account.ejs">My Account</a>
+            <a class="text-black font-medium text-sm p-2 block" href="/orders">My Orders</a>
         </li>
         <li class="block mr-5">
             <a class="text-black font-medium text-sm p-2 block" href="/cart.ejs">My Shopping Bag</a>

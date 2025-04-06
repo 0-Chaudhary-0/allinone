@@ -1,93 +1,123 @@
-// Replace with your Stripe publishable key
-
 document.addEventListener("DOMContentLoaded", async () => {
   const stripe = Stripe('pk_test_51OU7fQGEbwT151fvpdaeWbpnMrr5OyM4g3TvzQQnSHPuFxysYXaaEwDjMT3Om0bVtVJNZRWWsSISUUQ7eDZJd00800YpegB5mj');
-  
+
   const placeOrderBtn = document.getElementById("next-btn");
   placeOrderBtn.addEventListener("click", async () => {
-    const paymentMethod = document.querySelector('input[name="payment-method"]:checked').value;
+    const userId = window.userId;
 
-    if (paymentMethod === 'card') {
-      // 1️⃣ Get Input Values
-      const cardNumber = document.querySelector('input[placeholder="Card Number"]').value.trim();
-      const expiryDate = document.querySelector('input[placeholder="Expiry Date (MM/YY)"]').value.trim();
-      const cvv = document.querySelector('input[placeholder="CVV"]').value.trim();
+    if (!userId) {
+      alert("Error: User not logged in!");
+      return;
+    }
 
-      // 2️⃣ Validate Inputs
-      if (!cardNumber || !expiryDate || !cvv) {
-        showModal({
-          title: "Incomplete Details",
-          message: "Please fill all card details.",
-          showCancel: false
-        });        
-        return;
-      }
+    const paymentMethodElement = document.querySelector('input[name="payment-method"]:checked');
+    if (!paymentMethodElement) {
+      alert("Please select a payment method.");
+      return;
+    }
+    const paymentMethod = paymentMethodElement.value;
 
-      const [exp_monthStr, exp_yearStr] = expiryDate.split('/');
-      const exp_month = parseInt(exp_monthStr);
-      const exp_year = 2000 + parseInt(exp_yearStr); // Convert YY to YYYY
+    // Get Address Info
+    const address = {
+      fullName: document.getElementById("name").value,
+      phone: document.getElementById("phone").value,
+      street: document.getElementById("street").value,
+      city: document.getElementById("city").value,
+      postalCode: document.getElementById("postalCode").value,
+      country: "Pakistan"
+    };
 
-      // 3️⃣ Get Cart Info
-      const cartItems = JSON.parse(localStorage.getItem("shoppingBag")) || [];
-      if (cartItems.length === 0) {
-        showModal({
-          title: "Empty Cart",
-          message: "Your cart is empty.",
-          showCancel: false
-        });        
-        return;
-      }
+    if (Object.values(address).some(val => val === "")) {
+      alert("Please fill in all address fields.");
+      return;
+    }
 
-      const totalAmountRs = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    const productId = window.location.pathname.split("/").pop(); // Get product ID from URL
+    const cartItems = JSON.parse(localStorage.getItem("shoppingBag")) || [];
+    const selectedProduct = cartItems.find((p) => p._id === productId);
 
+    if (!selectedProduct) {
+      alert("Error: Product not found in cart!");
+      return;
+    }
+
+    const totalAmountRs = selectedProduct.price;
+    const quantity = selectedProduct.quantity || 1; // Default to 1 if not provided
+
+    if (paymentMethod === "cod") {
       try {
-        // 4️⃣ Create PaymentIntent from Backend
-        const response = await fetch('/payment/create-payment-intent', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ cartItems, totalAmountRs })
+        const response = await fetch(`/order/create/${productId}`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ address, userId, quantity })
         });
 
-        const { clientSecret } = await response.json();
+        const result = await response.json();
+        if (result.success) {
+          alert("✅ Order Placed Successfully (Cash on Delivery)!");
+          localStorage.removeItem("shoppingBag");
+          window.location.href = "/order-success.ejs";
+        } else {
+          alert("⚠️ Order Failed: " + result.error);
+        }
+      } catch (err) {
+        alert("⚠️ Order Error: " + err.message);
+      }
 
-        // 5️⃣ Confirm Payment with Stripe
+    } else {
+      try {
+        try {
+          const response = await fetch('/payment/create-payment-intent', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ productId, totalAmountRs, address, userId, quantity })
+          });
+        
+          const { clientSecret, orderId } = await response.json();
+        
+          const result = await stripe.confirmCardPayment(clientSecret, {
+            payment_method: {
+              card: elements.getElement(CardElement),
+            },
+          });
+        
+          if (result.error) {
+            alert("❌ Payment Failed: " + result.error.message);
+          } else {
+            // Mark payment as completed
+            await fetch('/payment/confirm', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ paymentIntentId: clientSecret, orderId })
+            });
+        
+            alert("✅ Payment Successful!");
+            localStorage.removeItem("shoppingBag");
+            window.location.href = "/order-success";
+          }
+        } catch (err) {
+          alert("⚠️ Payment Error: " + err.message);
+        }
+        
+
+        const { clientSecret, orderId } = await response.json();
+
         const result = await stripe.confirmCardPayment(clientSecret, {
           payment_method: {
-            card: {
-              number: cardNumber,
-              exp_month,
-              exp_year,
-              cvc: cvv,
-            },
+            card: elements.getElement(CardElement),
           },
         });
 
         if (result.error) {
-          showModal({
-            title: "❌ Payment Failed",
-            message: result.error.message,
-            showCancel: false
-          });          
-        } else if (result.paymentIntent.status === 'succeeded') {
+          alert("❌ Payment Failed: " + result.error.message);
+        } else {
           alert("✅ Payment Successful!");
-          localStorage.removeItem("cartItems");
-          window.location.href = "/payment-success"; // Or any success page
+          localStorage.removeItem("shoppingBag");
+          window.location.href = "/order-success";
         }
-
       } catch (err) {
-        console.error("Payment Error:", err.message);
-        showModal({
-          title: "⚠️ Payment Failed",
-          message: "Payment processing failed.",
-          showCancel: false
-        });        
+        alert("⚠️ Payment Error: " + err.message);
       }
-    } else {
-      showModal({
-        title: "✅ COD Selected",
-        message: "Payment not required.",
-        showCancel: false
-      });      
     }
   });
 });

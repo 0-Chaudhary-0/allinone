@@ -4,7 +4,33 @@ const authenticateToken = require("../middleware/auth");
 const checkLoginStatus = require("../middleware/checkLoginStatus");
 const Product = require('../models/Product');
 const Comment = require('../models/Comment');
+const nodemailer = require("nodemailer");
+const Order = require('../models/Order');
 const Rating = require("../models/Rating"); // Import your Rating schema
+
+// Configure Nodemailer transporter
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "faheemshahid147@gmail.com", // Replace with your email
+    pass: "#PATLILULLI@", // Replace with your app password
+  },
+});
+
+// Function to send an email
+const sendEmail = async (to, subject, text) => {
+  try {
+    await transporter.sendMail({
+      from: "faheemshahid147@gmail.com",
+      to,
+      subject,
+      text,
+    });
+    console.log("Email sent successfully");
+  } catch (error) {
+    console.error("Error sending email:", error);
+  }
+};
 
 
 // Apply checkLoginStatus to all GET routes
@@ -32,12 +58,12 @@ router.get("/login.ejs", (req, res) => {
   res.render("login.ejs", { user: req.user });
 });
 
-router.get("/signup.ejs", (req, res) => {
-  res.render("signup.ejs", { user: req.user });
+router.get("/order-success", (req, res) => {
+  res.render("order-success.ejs", { user: req.user });
 });
 
-router.get("/account.ejs", (req, res) => {
-  res.render("account.ejs", { user: req.user });
+router.get("/signup.ejs", (req, res) => {
+  res.render("signup.ejs", { user: req.user });
 });
 
 router.get("/cart.ejs", (req, res) => {
@@ -53,14 +79,9 @@ router.get("/shopping.ejs", async (req, res) => {
   res.render("shopping.ejs", { products, user: req.user });
 });
 
-router.get("/payment.ejs", async (req, res) => {
-  const products = await Product.find();
-  res.render("payment.ejs", { products, user: req.user });
-});
-
 // Protected route: Checkout
 router.get("/checkout/:id", authenticateToken, async (req, res) => {
-    res.render("checkout.ejs", { user: req.user });
+    res.render("checkout.ejs", { user: req.user, userId: req.user.userId });
 });
 
 
@@ -82,6 +103,67 @@ router.get("/id=:id", async (req, res) => {
   } catch (error) {
     console.error("Error fetching product:", error);
     res.status(500).send("Server error");
+  }
+});
+
+// Create order for Cash on Delivery (COD)
+router.post('/order/create/:productId', authenticateToken, async (req, res) => {
+  try {
+    const { address, quantity } = req.body;
+    const userId = req.user?.userId || req.body.userId; // Get userId from authenticated request
+    const productId = req.params.productId; // Extract product ID from URL
+
+    // Validate required fields
+    if (!userId || !address || !address.fullName || !address.phone || !address.street || !address.city || !address.postalCode) {
+      return res.status(400).json({ error: 'Missing required fields in address or userId' });
+    }
+
+    // Fetch product from DB
+    const product = await Product.findById(productId);
+    if (!product) {
+      return res.status(400).json({ error: 'Invalid product' });
+    }
+
+    const verifiedTotal = product.price * quantity;
+
+    // Save Order in DB with 'Pending' payment status for COD
+    const newOrder = new Order({
+      userId,
+      cartItems: { productId, quantity, price: product.price }, // Single product order
+      totalAmount: verifiedTotal,
+      address,
+      paymentStatus: 'Pending', // COD orders remain pending until confirmed
+    });
+
+    await newOrder.save();
+    
+    await sendEmail(
+      user.email,
+      "Order Confirmation",
+      `Your order for product ID ${productId} has been placed successfully.`
+    );
+
+    res.status(200).json({ success: true, message: 'Order placed successfully!', orderId: newOrder._id });
+
+  } catch (error) {
+    console.error('Order Creation Error:', error.message);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+router.get('/orders', authenticateToken, async (req, res) => {
+  try {
+      const userId = req.user?.userId || req.query.userId;
+      if (!userId) {
+          return res.status(401).json({ error: "User not authenticated" });
+      }
+
+      const orders = await Order.find({ userId }).populate("cartItems.productId");
+
+      res.render("orders.ejs", { orders });
+  } catch (error) {
+      console.error("Error fetching orders:", error);
+      res.status(500).json({ error: "Internal Server Error" });
   }
 });
 
