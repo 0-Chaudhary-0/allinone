@@ -6,14 +6,15 @@ const Product = require('../models/Product');
 const Comment = require('../models/Comment');
 const nodemailer = require("nodemailer");
 const Order = require('../models/Order');
+const User = require('../models/User');
 const Rating = require("../models/Rating"); // Import your Rating schema
 
 // Configure Nodemailer transporter
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "faheemshahid147@gmail.com", // Replace with your email
-    pass: "#PATLILULLI@", // Replace with your app password
+    user: process.env.EMAIL_USER, // Replace with your email
+    pass: process.env.EMAIL_PASS, // Replace with your app password
   },
 });
 
@@ -21,7 +22,7 @@ const transporter = nodemailer.createTransport({
 const sendEmail = async (to, subject, text) => {
   try {
     await transporter.sendMail({
-      from: "faheemshahid147@gmail.com",
+      from: process.env.EMAIL_USER,
       to,
       subject,
       text,
@@ -58,7 +59,7 @@ router.get("/login.ejs", (req, res) => {
   res.render("login.ejs", { user: req.user });
 });
 
-router.get("/order-success", (req, res) => {
+router.get("/order-success.ejs", (req, res) => {
   res.render("order-success.ejs", { user: req.user });
 });
 
@@ -81,7 +82,7 @@ router.get("/shopping.ejs", async (req, res) => {
 
 // Protected route: Checkout
 router.get("/checkout/:id", authenticateToken, async (req, res) => {
-    res.render("checkout.ejs", { user: req.user, userId: req.user.userId });
+  res.render("checkout.ejs", { user: req.user, userId: req.user.userId });
 });
 
 
@@ -136,7 +137,13 @@ router.post('/order/create/:productId', authenticateToken, async (req, res) => {
     });
 
     await newOrder.save();
-    
+
+    // ✅ Fetch user before sending email
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
     await sendEmail(
       user.email,
       "Order Confirmation",
@@ -153,17 +160,17 @@ router.post('/order/create/:productId', authenticateToken, async (req, res) => {
 
 router.get('/orders', authenticateToken, async (req, res) => {
   try {
-      const userId = req.user?.userId || req.query.userId;
-      if (!userId) {
-          return res.status(401).json({ error: "User not authenticated" });
-      }
+    const userId = req.user?.userId || req.query.userId;
+    if (!userId) {
+      return res.status(401).json({ error: "User not authenticated" });
+    }
 
-      const orders = await Order.find({ userId }).populate("cartItems.productId");
+    const orders = await Order.find({ userId }).populate("cartItems.productId");
 
-      res.render("orders.ejs", { orders });
+    res.render("orders.ejs", { orders });
   } catch (error) {
-      console.error("Error fetching orders:", error);
-      res.status(500).json({ error: "Internal Server Error" });
+    console.error("Error fetching orders:", error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 });
 

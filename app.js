@@ -5,6 +5,9 @@ const path = require('path');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
+
+console.log(process.env.EMAIL_USER)
 
 // Routes
 const loginRoute = require('./routes/login');
@@ -14,7 +17,7 @@ const productRoute = require("./routes/products");
 const paymentRoute = require("./routes/payment");
 
 const app = express();
-const jwtSecret = "#@abdulsattar"; // Secret for JWT
+const jwtSecret = process.env.JWT_SECRET; // Secret for JWT
 
 // Connect to MongoDB
 connectDB();

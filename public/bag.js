@@ -22,10 +22,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 "w-full",
                 "max-w-screen",
                 "bg-white",
-                "dark:bg-gray-800",
+                "dark:bg-gray-900",
                 "dark:border-gray-700",
                 "p-4",
-                "rounded-lg",
                 "shadow",
                 "border-b",
                 "border-gray-100" // Added bottom border with gray-100

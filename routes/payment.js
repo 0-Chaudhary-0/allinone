@@ -1,15 +1,16 @@
-const Product = require('../models/Product'); // Adjust path if needed
-const Order = require('../models/Order'); // Adjust path if needed
+const Product = require('../models/Product');
+const Order = require('../models/Order');
+const User = require('../models/User');
 const express = require('express');
 const Stripe = require('stripe');
 const nodemailer = require("nodemailer");
 const router = express.Router();
 
 // Replace with your secret key
-const stripe = Stripe('sk_test_51OU7fQGEbwT151fvOfyx9H3iTBfjqQswGR45DS4HTtskNpy3f6GLGmrTMasIdfUl0tlbWSimoJw6JB4LvQNAoDjq002NyKsvPC');
+const stripe = Stripe(process.env.STRIPE_PRIVATE_KEY);
 
 function convertRsToUsd(totalRs) {
-  const exchangeRate = 278; // 1 USD = 278 Rs
+  const exchangeRate = 282; // 1 USD = 282 Rs
   const usdAmount = totalRs / exchangeRate;
   const usdCents = Math.round(usdAmount * 100); // Convert to cents
   return usdCents;
@@ -19,8 +20,8 @@ function convertRsToUsd(totalRs) {
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "faheemshahid147@gmail.com", // Replace with your email
-    pass: "#PATLILULLI@", // Replace with your app password
+    user: process.env.EMAIL_USER, // Replace with your email
+    pass: process.env.EMAIL_PASS, // Replace with your app password
   },
 });
 
@@ -28,7 +29,7 @@ const transporter = nodemailer.createTransport({
 const sendEmail = async (to, subject, text) => {
   try {
     await transporter.sendMail({
-      from: "faheemshahid147@gmail.com",
+      from: process.env.EMAIL_USER,
       to,
       subject,
       text,
@@ -41,7 +42,7 @@ const sendEmail = async (to, subject, text) => {
 
 
 // Create Payment Intent & Store Order
-router.post("/payment/create-payment-intent", async (req, res) => {
+router.post("/create-payment-intent", async (req, res) => {
   try {
     const { productId, totalAmountRs, address, userId, quantity } = req.body;
 
@@ -75,6 +76,13 @@ router.post("/payment/create-payment-intent", async (req, res) => {
 
     await newOrder.save();
 
+    // ✅ Fetch user before sending email
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    console.log(user.email)
+
     await sendEmail(
       user.email,
       "Order Confirmation",
@@ -89,7 +97,7 @@ router.post("/payment/create-payment-intent", async (req, res) => {
 });
 
 // Handle Payment Confirmation
-router.post("/payment/confirm", async (req, res) => {
+router.post("/confirm", async (req, res) => {
   try {
     const { paymentIntentId, orderId } = req.body;
 

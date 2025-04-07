@@ -1,23 +1,34 @@
 document.addEventListener("DOMContentLoaded", async () => {
   const stripe = Stripe('pk_test_51OU7fQGEbwT151fvpdaeWbpnMrr5OyM4g3TvzQQnSHPuFxysYXaaEwDjMT3Om0bVtVJNZRWWsSISUUQ7eDZJd00800YpegB5mj');
+  const elements = stripe.elements();
+  const cardElement = elements.create('card');
+  cardElement.mount('#card-number');
 
   const placeOrderBtn = document.getElementById("next-btn");
   placeOrderBtn.addEventListener("click", async () => {
     const userId = window.userId;
 
     if (!userId) {
-      alert("Error: User not logged in!");
+      showModal({
+        title: "❌ Error",
+        message: "User not logged in!",
+        showCancel: false
+      });      
       return;
     }
 
     const paymentMethodElement = document.querySelector('input[name="payment-method"]:checked');
     if (!paymentMethodElement) {
-      alert("Please select a payment method.");
+      showModal({
+        title: "⚠️ Warning",
+        message: "Please select a payment method.",
+        showCancel: false
+      });      
       return;
     }
+
     const paymentMethod = paymentMethodElement.value;
 
-    // Get Address Info
     const address = {
       fullName: document.getElementById("name").value,
       phone: document.getElementById("phone").value,
@@ -28,21 +39,29 @@ document.addEventListener("DOMContentLoaded", async () => {
     };
 
     if (Object.values(address).some(val => val === "")) {
-      alert("Please fill in all address fields.");
+      showModal({
+        title: "⚠️ Incomplete Address",
+        message: "Please fill in all address fields.",
+        showCancel: false
+      });      
       return;
     }
 
-    const productId = window.location.pathname.split("/").pop(); // Get product ID from URL
+    const productId = window.location.pathname.split("/").pop();
     const cartItems = JSON.parse(localStorage.getItem("shoppingBag")) || [];
     const selectedProduct = cartItems.find((p) => p._id === productId);
 
     if (!selectedProduct) {
-      alert("Error: Product not found in cart!");
+      showModal({
+        title: "❌ Error",
+        message: "Product not found in cart!",
+        showCancel: false
+      });      
       return;
     }
 
     const totalAmountRs = selectedProduct.price;
-    const quantity = selectedProduct.quantity || 1; // Default to 1 if not provided
+    const quantity = selectedProduct.quantity || 1;
 
     if (paymentMethod === "cod") {
       try {
@@ -54,69 +73,71 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         const result = await response.json();
         if (result.success) {
-          alert("✅ Order Placed Successfully (Cash on Delivery)!");
+          showModal({
+            title: "✅ Success",
+            message: "Order Placed Successfully (Cash on Delivery)!",
+            showCancel: false
+          });          
           localStorage.removeItem("shoppingBag");
           window.location.href = "/order-success.ejs";
         } else {
-          alert("⚠️ Order Failed: " + result.error);
+          showModal({
+            title: "⚠️ Order Failed",
+            message: "Error: " + result.error,
+            showCancel: false
+          });          
         }
       } catch (err) {
-        alert("⚠️ Order Error: " + err.message);
+        showModal({
+          title: "⚠️ Order Error",
+          message: "Error: " + result.error,
+          showCancel: false
+        });
+        
       }
-
     } else {
       try {
-        try {
-          const response = await fetch('/payment/create-payment-intent', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ productId, totalAmountRs, address, userId, quantity })
-          });
-        
-          const { clientSecret, orderId } = await response.json();
-        
-          const result = await stripe.confirmCardPayment(clientSecret, {
-            payment_method: {
-              card: elements.getElement(CardElement),
-            },
-          });
-        
-          if (result.error) {
-            alert("❌ Payment Failed: " + result.error.message);
-          } else {
-            // Mark payment as completed
-            await fetch('/payment/confirm', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ paymentIntentId: clientSecret, orderId })
-            });
-        
-            alert("✅ Payment Successful!");
-            localStorage.removeItem("shoppingBag");
-            window.location.href = "/order-success";
-          }
-        } catch (err) {
-          alert("⚠️ Payment Error: " + err.message);
-        }
-        
+        const res = await fetch('/payment/create-payment-intent', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ productId, totalAmountRs, address, userId, quantity })
+        });
 
-        const { clientSecret, orderId } = await response.json();
+        const { clientSecret, orderId } = await res.json();
 
         const result = await stripe.confirmCardPayment(clientSecret, {
           payment_method: {
-            card: elements.getElement(CardElement),
+            card: cardElement,
           },
         });
 
         if (result.error) {
-          alert("❌ Payment Failed: " + result.error.message);
+          showModal({
+            title: "❌ Payment Failed",
+            message: "Error: " + result.error.message,
+            showCancel: false
+          });          
         } else {
-          alert("✅ Payment Successful!");
+          await fetch('/payment/confirm', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ paymentIntentId: result.paymentIntent.id, orderId })
+          });
+
+          showModal({
+            title: "✅ Payment Successful!",
+            message: "Your payment has been completed successfully.",
+            showCancel: false
+          });          
           localStorage.removeItem("shoppingBag");
-          window.location.href = "/order-success";
+          window.location.href = "/order-success.ejs";
         }
       } catch (err) {
-        alert("⚠️ Payment Error: " + err.message);
+        showModal({
+          title: "⚠️ Payment Error",
+          message: "Error: " + err.message,
+          showCancel: false
+        });        
       }
     }
   });

@@ -5,32 +5,32 @@
     <%- include('partials/head') %>
 </head>
 
-<body class="dark:bg-black dark:text-white bg-white text-black font-sans">
+<body class="dark:bg-gray-900 dark:text-white  bg-white text-black font-sans">
     <%- include('partials/header') %>
 
-        <div class="dark:bg-black dark:text-white max-w-4xl mx-auto bg-white p-6">
-            <h1 class="dark:bg-black dark:text-white text-2xl font-bold mb-4">My Orders</h1>
+        <div class="dark:bg-gray-900 dark:text-white max-w-4xl mx-auto bg-white p-6">
+            <h1 class="dark:bg-gray-900 dark:text-white text-2xl font-bold mb-4">Orders</h1>
 
             <% if (orders.length===0) { %>
-                <p class="dark:bg-black dark:text-white text-gray-600">You have no orders yet.</p>
+                <p class="dark:bg-gray-900 dark:text-white text-gray-600">You have no orders yet.</p>
                 <% } else { %>
                     <% orders.forEach(order=> { %>
-                        <div class="dark:bg-black dark:text-white border p-4 mb-4 rounded shadow">
-                            <p class="dark:bg-black dark:text-white text-gray-800"><strong>Order ID:</strong>
+                        <div class="dark:bg-gray-900 dark:text-white border p-4 mb-4 rounded shadow">
+                            <p class="dark:bg-gray-900 dark:text-white text-gray-800"><strong>Order ID:</strong>
                                 <%= order._id %>
                             </p>
-                            <p class="dark:bg-black dark:text-white text-gray-800"><strong>Total Amount:</strong> Rs <%= order.totalAmount %>
+                            <p class="dark:bg-gray-900 dark:text-white text-gray-800"><strong>Total Amount:</strong> Rs <%= order.totalAmount %>
                             </p>
-                            <p class="dark:bg-black dark:text-white text-gray-800"><strong>Payment Status:</strong>
-                                <span class="dark:bg-black dark:text-white <%= order.paymentStatus === 'Paid' ? 'text-green-500' : 'text-red-500' %>">
+                            <p class="dark:bg-gray-900 dark:text-white text-gray-800"><strong>Payment Status:</strong>
+                                <span class="dark:bg-gray-900 <%= order.paymentStatus === 'Paid' ? 'dark:text-green-500' : 'dark:text-red-500' %> font-bold <%= order.paymentStatus === 'Paid' ? 'text-green-500' : 'text-red-500' %>">
                                     <%= order.paymentStatus %>
                                 </span>
                             </p>
 
-                            <h2 class="dark:bg-black dark:text-white font-semibold mt-3">Products:</h2>
-                            <ul class="dark:bg-black dark:text-white list-disc ml-4">
+                            <h2 class="dark:bg-gray-900 dark:text-whit font-semibold mt-3">Products:</h2>
+                            <ul class="dark:bg-gray-900 dark:text-whit list-disc ml-4">
                                 <li>
-                                    <span class="dark:bg-black dark:text-white font-semibold">
+                                    <span class="dark:bg-gray-900 dark:text-white  font-semibold">
                                         <%= order.cartItems.productId.name %>
                                     </span>
                                     (Qty: <%= order.cartItems.quantity %>) - Rs <%= order.cartItems.price %>

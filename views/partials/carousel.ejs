@@ -1,6 +1,6 @@
 <div id="default-carousel" class="relative w-full" data-carousel="slide">
     <!-- Carousel wrapper -->
-    <div class="relative h-52 -my-2 overflow-hidden md:h-96">
+    <div class="relative h-52 overflow-hidden md:h-96">
         <% const carouselItems = [
         { src: 'https://codeswear.nyc3.cdn.digitaloceanspaces.com/constants/landing/banner/1.webp', alt: '-' },
         { src: 'https://codeswear.nyc3.cdn.digitaloceanspaces.com/constants/landing/banner/2.webp', alt: '-' },
@@ -10,7 +10,7 @@
     ]; %>
         <% carouselItems.forEach((item, index) => { %>
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
-            <img src="<%= item.src %>" class="absolute block object-fill object-center -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="<%= item.alt %>">
+            <img src="<%= item.src %>" class="absolute block object-fill object-center -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 h-full w-full" alt="<%= item.alt %>">
         </div>
         <% }); %>
     </div>

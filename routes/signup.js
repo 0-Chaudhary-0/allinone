@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
 // Secret key for JWT
-const jwtSecret = "#@abdulsattar";
+const jwtSecret = process.env.JWT_SECRET;
 
 // POST /signup — Handle signup form submission
 router.post('/', async (req, res) => {

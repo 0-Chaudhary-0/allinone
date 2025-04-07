@@ -1,19 +1,19 @@
-<header class="text-black bg-green-400 py-4 text-center dark:bg-green-400 ">
+<header class="text-black dark:text-white  bg-gray-100 py-4 text-center dark:bg-gray-900 ">
     <div class="flex justify-start items-center mx-2 px-2">
         <img class="h-20 rounded-full p-4" src="/images/azeem.jpg" alt="logo" />
         <a href="/"
-            class="text-gray-600 text-xls relative inline-block py-3 px-12 font-semibold text-lg text-transparent bg-clip-text bg-gradient-to-r from-black via-gray-600 to-gray-800 animate-shine">
+            class="text-black dark:text-white text-xls relative inline-block py-3 px-12 font-semibold text-lg text-transparent bg-clip-text bg-gradient-to-r from-black via-gray-600 to-gray-800 animate-shine">
             Welcome To My Site
         </a>
     </div>
-    <p class="text-gray-600">Your all-in-one platform for everything you need.</p>
+    <p class="text-black dark:text-white">Your all-in-one platform for everything you need.</p>
 </header>
 
-<nav class="border-b border-gray-300 bg-green-500 dark:bg-green-500">
+<nav class="border-b border-gray-300 bg-gray-100 dark:bg-gray-900">
     <section class="flex items-center justify-between px-4 py-2 free">
         <section>
-            <button id="nav-toggle" class="text-black focus:outline-none">
-                <svg class="w-6 h-6 dark:text-black" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+            <button id="nav-toggle" class="text-black dark:text-white  focus:outline-none">
+                <svg class="w-6 h-6 dark:text-black dark:text-white " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
                     height="24" fill="none" viewBox="0 0 24 24">
                     <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h10" />
                 </svg>
@@ -22,18 +22,18 @@
         <section class="flex gap-3">
             <%- include('dark-mode-toggle') %>
                 <button>
-                    <i class="fas fa-search w-6 h-6"></i>
+                    <i class="fas fa-search w-6 h-6 text-black dark:text-white"></i>
                 </button>
             <% if (user) { %>
                 <div id="user" class="relative cursor-pointer">
                     <!-- User is logged in: Show 'My Account' button -->
                         <button  class="flex mr-2">
-                            <svg class="w-6 h-6 text-black dark:text-black block text-right" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-6 h-6 text-black dark:text-white  dark:text-black dark:text-white  block text-right" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                                 <path fill-rule="evenodd" d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z" clip-rule="evenodd"/>
                             </svg>
                         </button>
                     <p class="text-sm rotate-90 absolute bottom-0 right-0 rounded-full">&gt;</p>
-                    <div class="handleUserToggle hidden absolute top-8 right-0 z-100 bg-green-500 free rounded-lg p-1">
+                    <div class="handleUserToggle hidden absolute top-8 right-0 z-100 bg-green-600 free rounded-lg p-1">
                         Logout <i class="fa fa-sign-out" aria-hidden="true"></i>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                 <!-- User is NOT logged in: Show 'Login' button -->
                 <a href="/login.ejs" id="add-user">
                     <button>
-                        <svg class="w-6 h-6 text-black dark:text-black block text-right" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-6 h-6 text-black dark:text-white  dark:text-black dark:text-white  block text-right" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                             <path fill-rule="evenodd" d="M9 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4H7Zm8-1a1 1 0 0 1 1-1h1v-1a1 1 0 1 1 2 0v1h1a1 1 0 1 1 0 2h-1v1a1 1 0 1 1-2 0v-1h-1a1 1 0 0 1-1-1Z" clip-rule="evenodd"/>
                         </svg>
                     </button>
@@ -52,28 +52,28 @@
     <ul id="mobile-menu"
         class="hidden grid grid-cols-2 gap-2 text-center transition-height max-h-0 px-4 py-2 list-none p-0 m-0">
         <li class="block mr-5">
-            <a class="text-black font-medium text-sm p-2 block" href="/">Home</a>
+            <a class="text-black dark:text-white  font-medium text-sm p-2 block" href="/">Home</a>
         </li>
         <li class="block mr-5">
-            <a class="text-black font-medium text-sm p-2 block" href="/books.ejs">Books</a>
+            <a class="text-black dark:text-white  font-medium text-sm p-2 block" href="/books.ejs">Books</a>
         </li>
         <li class="block mr-5">
-            <a class="text-black font-medium text-sm p-2 block" href="/videos.ejs">Videos</a>
+            <a class="text-black dark:text-white  font-medium text-sm p-2 block" href="/videos.ejs">Videos</a>
         </li>
         <li class="block mr-5">
-            <a href="/chemistryquiz.ejs" class="cursor-pointer text-black font-medium text-sm p-2 block">Quizzes</a>
+            <a href="/chemistryquiz.ejs" class="cursor-pointer text-black dark:text-white  font-medium text-sm p-2 block">Quizzes</a>
         </li>
         <li class="block mr-5">
-            <a class="text-black font-medium text-sm p-2 block" href="/shopping.ejs">Shopping</a>
+            <a class="text-black dark:text-white  font-medium text-sm p-2 block" href="/shopping.ejs">Shopping</a>
         </li>
         <li class="block mr-5">
-            <a class="text-black font-medium text-sm p-2 block" href="/about.ejs">About Us</a>
+            <a class="text-black dark:text-white  font-medium text-sm p-2 block" href="/about.ejs">About Us</a>
         </li>
         <li class="block mr-5">
-            <a class="text-black font-medium text-sm p-2 block" href="/orders">My Orders</a>
+            <a class="text-black dark:text-white  font-medium text-sm p-2 block" href="/orders">My Orders</a>
         </li>
         <li class="block mr-5">
-            <a class="text-black font-medium text-sm p-2 block" href="/cart.ejs">My Shopping Bag</a>
+            <a class="text-black dark:text-white  font-medium text-sm p-2 block" href="/cart.ejs">My Shopping Bag</a>
         </li>
     </ul>
 </nav>
