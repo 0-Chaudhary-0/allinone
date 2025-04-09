@@ -138,8 +138,17 @@ function initCarousel() {
 
   // 👉 Expose this so other logic can call it
   window.updateCarousel = updateCarousel;
-}
 
+  // Event listener for color selection
+  const colorButtons = document.querySelectorAll(".color-option");
+  colorButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      const imagesJson = this.getAttribute("data-images");
+      updateCarousel(imagesJson); // Update the carousel with the selected color's images
+      document.getElementById("selectedColorInput").value = this.getAttribute("data-color"); // Set the selected color in the hidden input
+    });
+  });
+}
 
 
 window.addEventListener('DOMContentLoaded', () => {
