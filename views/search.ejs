@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head') %>
+</head>
+<body>
+    <%- include("partials/header", { user }) %>
+
+<div class="text-center my-8">
+    <h1 class="text-2xl font-semibold">Search Results for "<%= query %>"</h1>
+</div>
+
+<% if (products.length > 0) { %>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto mb-10">
+    <% products.forEach(product => { %>
+      <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg hover:shadow-xl transition-all">
+        <!-- Product Images (Only first color) -->
+        <div class="mb-4">
+          <h3 class="font-semibold text-gray-800 dark:text-gray-200">Product Images:</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-2">
+            <% if (product.variants.length > 0) { %>
+              <% let variant = product.variants[0]; %> <!-- Display only the first variant -->
+              <% variant.images.forEach(image => { %>
+                <img src="<%= image %>" alt="<%= product.name %>" class="w-full h-48 object-cover rounded-lg shadow" />
+              <% }) %>
+            <% } %>
+          </div>
+        </div>
+
+        <!-- Product Details -->
+        <h2 class="text-lg font-semibold text-gray-900 dark:text-white mb-2"><%= product.name %></h2>
+        <p class="text-gray-700 dark:text-gray-300 mb-2"><%= product.description %></p>
+        <p class="text-gray-900 dark:text-white font-bold text-xl mb-2">$<%= product.price.toFixed(2) %></p>
+
+        <!-- Show only first color and size -->
+        <div class="mb-4">
+          <h3 class="font-semibold text-gray-800 dark:text-gray-200">Available Color:</h3>
+          <div class="flex items-center gap-2 mt-2">
+            <% if (product.variants.length > 0) { %>
+              <% let variant = product.variants[0]; %> <!-- Display only the first color -->
+              <span class="inline-block w-6 h-6 rounded-full" style="background-color: <%= variant.color %>;" title="<%= variant.color %>"></span>
+            <% } %>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <h3 class="font-semibold text-gray-800 dark:text-gray-200">Available Sizes:</h3>
+          <ul class="list-none mt-2">
+            <% if (product.variants.length > 0) { %>
+              <% let variant = product.variants[0]; %> <!-- Display only the first size variant -->
+              <li>
+                <h4 class="text-sm text-gray-700 dark:text-gray-400">Size(s):</h4>
+                <ul class="flex space-x-4 text-gray-800 dark:text-gray-200">
+                  <% variant.sizes.forEach(size => { %>
+                    <li class="bg-gray-200 dark:bg-gray-700 p-2 rounded-lg">
+                      <span><%= size.size %></span>
+                    </li>
+                  <% }) %>
+                </ul>
+              </li>
+            <% } %>
+          </ul>
+        </div>
+
+        <a href="/id=<%=product._id%>" class="inline-block bg-blue-500 text-white px-4 py-2 rounded-lg mt-4 hover:bg-blue-600 transition-all">View Product</a>
+      </div>
+    <% }) %>
+  </div>
+<% } else { %>
+  <p class="text-center text-gray-600 dark:text-gray-300">No products found for "<%= query %>".</p>
+<% } %>
+
+<%- include("partials/footer") %>
+
+</body>
+</html>

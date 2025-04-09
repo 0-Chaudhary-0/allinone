@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (shoppingBag.length === 0) {
         cartContainer.innerHTML = `
             <p class="text-center text-gray-700 mt-10 font-medium text-lg">
-                <a href="shopping.ejs" class="text-blue-600 hover:underline flex justify-center items-center gap-2">
+                <a href="/shopping" class="text-blue-600 hover:underline flex justify-center items-center gap-2">
                     No items added in the cart <i class="fas fa-shopping-cart text-xl"></i>
                 </a>
             </p>

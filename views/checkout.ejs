@@ -9,8 +9,8 @@
 <body class="dark:bg-black dark:text-white bg-gray-100 font-sans leading-normal tracking-normal">
   <%- include('partials/header') %>
 
-  <div class="dark:bg-black dark:text-white min-h-screen flex justify-center px-4 py-2 my-10">
-    <div class="dark:bg-black dark:text-white bg-white max-w-3xl w-full p-4 transition-transform transform hover:scale-[1.01] duration-300">
+  <div class="dark:bg-gray-900 dark:text-gray-100 min-h-screen flex justify-center px-4 py-2 my-10">
+    <div class="dark:bg-gray-900 dark:text-white bg-white max-w-3xl w-full p-4 transition-transform transform hover:scale-[1.01] duration-300">
 
       <!-- Product Details -->
       <div id="product-details" class="space-y-4">
@@ -20,23 +20,23 @@
 
       <!-- Address Form -->
       <div class="mt-4 space-y-2">
-        <h2 class="text-lg font-semibold text-gray-700">Shipping Address</h2>
+        <h2 class="text-lg font-semibold text-gray-900 dark:text-">Shipping Address</h2>
 
         <input id="name" type="text" placeholder="Full Name"
-          class="w-full p-3 border rounded focus:ring-2 focus:ring-blue-500" required />
+          class="w-full p-3 border rounded text-black" required />
         <input id="email" type="email" placeholder="Email Address"
-          class="w-full p-3 border rounded focus:ring-2 focus:ring-blue-500" required />
+          class="w-full p-3 border rounded text-black" required />
         <input id="phone" type="tel" placeholder="Phone Number (PK: 03XXXXXXXXX)" pattern="03[0-9]{9}"
-          class="w-full p-3 border rounded focus:ring-2 focus:ring-blue-500" required />
+          class="w-full p-3 border rounded text-black" required />
         <input id="province" type="text" placeholder="Country"
-          class="w-full p-3 border rounded focus:ring-2 focus:ring-blue-500" required />
+          class="w-full p-3 border rounded text-black" required />
         <input id="city" type="text" placeholder="City"
-          class="w-full p-3 border rounded focus:ring-2 focus:ring-blue-500" required />
+          class="w-full p-3 border rounded text-black" required />
         <input id="postalCode" type="text" placeholder="Postal Code"
-          class="w-full p-3 border rounded focus:ring-2 focus:ring-blue-500" required />
+          class="w-full p-3 border rounded text-black" required />
         <input id="street" type="text" placeholder="Street Address"
-          class="w-full p-3 border rounded focus:ring-2 focus:ring-blue-500" required />
-      </div>
+          class="w-full p-3 border rounded text-black" required />
+        </div>
 
       <!-- Payment Method -->
       <hr class="h-1 bg-gray-400 mt-5 border-0 rounded">
@@ -45,22 +45,22 @@
         <label
           class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg shadow-sm cursor-pointer hover:bg-gray-100 transition">
           <input type="radio" name="payment-method" value="card" id="card-radio" checked
-            class="form-radio text-blue-500 focus:ring-0" />
-          <span class="text-gray-700"><i class="fa-brands fa-cc-mastercard"></i> Credit/Debit Card</span>
+            class="form-radio text-black focus:ring-0" />
+          <span class="text-gray-900"><i class="fa-brands fa-cc-mastercard"></i> Credit/Debit Card</span>
         </label>
 
         <label
           class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg shadow-sm cursor-pointer hover:bg-gray-100 transition">
           <input type="radio" name="payment-method" value="cod" id="cod-radio"
-            class="form-radio text-blue-500 focus:ring-0" />
+            class="form-radio text-gray-100 focus:ring-0 " />
           <span class="text-gray-700"><i class="fa-solid fa-money-bill-1-wave"></i> Cash on Delivery (COD)</span>
         </label>
       </div>
 
       <!-- Stripe Card Details -->
       <div id="card-details" class="mt-6">
-        <label for="card-number" class="block mb-2 text-sm font-medium text-gray-700">Card Details</label>
-        <div id="card-number" class="w-full p-3 border rounded focus:ring-2 focus:ring-blue-500"></div>
+        <label for="card-number" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Card Details</label>
+        <div id="card-number" class="w-full p-3 border rounded dark:bg-white"></div>
       </div>
 
       <!-- Place Order Button -->

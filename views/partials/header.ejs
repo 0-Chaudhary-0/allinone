@@ -21,9 +21,6 @@
         </section>
         <section class="flex gap-3">
             <%- include('dark-mode-toggle') %>
-                <button>
-                    <i class="fas fa-search w-6 h-6 text-black dark:text-white"></i>
-                </button>
             <% if (user) { %>
                 <div id="user" class="relative cursor-pointer">
                     <!-- User is logged in: Show 'My Account' button -->
@@ -32,14 +29,14 @@
                                 <path fill-rule="evenodd" d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z" clip-rule="evenodd"/>
                             </svg>
                         </button>
-                    <p class="text-sm rotate-90 absolute bottom-0 right-0 rounded-full">&gt;</p>
+                    <p class="text-sm rotate-90 absolute bottom-0 right-0 rounded-full dark:text-white">&gt;</p>
                     <div class="handleUserToggle hidden absolute top-8 right-0 z-100 bg-green-600 free rounded-lg p-1">
-                        Logout <i class="fa fa-sign-out" aria-hidden="true"></i>
+                        <p class="w-32 cursor-pointer" onclick="confirmLogout()">Logout <i class="fa fa-sign-out" aria-hidden="true"></i></p>
                     </div>
                 </div>
             <% } else { %>
                 <!-- User is NOT logged in: Show 'Login' button -->
-                <a href="/login.ejs" id="add-user">
+                <a href="/login" id="add-user">
                     <button>
                         <svg class="w-6 h-6 text-black dark:text-white  dark:text-black dark:text-white  block text-right" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                             <path fill-rule="evenodd" d="M9 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4H7Zm8-1a1 1 0 0 1 1-1h1v-1a1 1 0 1 1 2 0v1h1a1 1 0 1 1 0 2h-1v1a1 1 0 1 1-2 0v-1h-1a1 1 0 0 1-1-1Z" clip-rule="evenodd"/>
@@ -55,25 +52,25 @@
             <a class="text-black dark:text-white  font-medium text-sm p-2 block" href="/">Home</a>
         </li>
         <li class="block mr-5">
-            <a class="text-black dark:text-white  font-medium text-sm p-2 block" href="/books.ejs">Books</a>
+            <a class="text-black dark:text-white  font-medium text-sm p-2 block" href="/books">Books</a>
         </li>
         <li class="block mr-5">
-            <a class="text-black dark:text-white  font-medium text-sm p-2 block" href="/videos.ejs">Videos</a>
+            <a class="text-black dark:text-white  font-medium text-sm p-2 block" href="/videos">Videos</a>
         </li>
         <li class="block mr-5">
-            <a href="/chemistryquiz.ejs" class="cursor-pointer text-black dark:text-white  font-medium text-sm p-2 block">Quizzes</a>
+            <a href="/chemistryquiz" class="cursor-pointer text-black dark:text-white  font-medium text-sm p-2 block">Quizzes</a>
         </li>
         <li class="block mr-5">
-            <a class="text-black dark:text-white  font-medium text-sm p-2 block" href="/shopping.ejs">Shopping</a>
+            <a class="text-black dark:text-white  font-medium text-sm p-2 block" href="/shopping">Shopping</a>
         </li>
         <li class="block mr-5">
-            <a class="text-black dark:text-white  font-medium text-sm p-2 block" href="/about.ejs">About Us</a>
+            <a class="text-black dark:text-white  font-medium text-sm p-2 block" href="/about">About Us</a>
         </li>
         <li class="block mr-5">
             <a class="text-black dark:text-white  font-medium text-sm p-2 block" href="/orders">My Orders</a>
         </li>
         <li class="block mr-5">
-            <a class="text-black dark:text-white  font-medium text-sm p-2 block" href="/cart.ejs">My Shopping Bag</a>
+            <a class="text-black dark:text-white  font-medium text-sm p-2 block" href="/cart">My Shopping Bag</a>
         </li>
     </ul>
 </nav>

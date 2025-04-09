@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const jwtSecret = "#@abdulsattar";
+const jwtSecret = process.env.JWT_SECRET;
 
 function authenticateToken(req, res, next) {
     // Extract token from cookie
@@ -10,7 +10,7 @@ function authenticateToken(req, res, next) {
         return res.status(401).render("message", {
             title: "Unauthorized",
             message: "You must be logged in to access this page.",
-            redirectUrl: "/login.ejs",
+            redirectUrl: "/login",
             buttonText: "Login",
             token: null
         });
@@ -27,7 +27,7 @@ function authenticateToken(req, res, next) {
         return res.status(403).render("message", {
             title: "Invalid Token",
             message: "Your session has expired or token is invalid.",
-            redirectUrl: "/login.ejs",
+            redirectUrl: "/login",
             buttonText: "Login Again",
             token: null
         });

@@ -43,48 +43,65 @@ router.get("/", async (req, res) => {
   res.render("index.ejs", { products, user: req.user });
 });
 
-router.get("/books.ejs", (req, res) => {
+router.get("/books", (req, res) => {
   res.render("books.ejs", { user: req.user });
 });
 
-router.get("/about.ejs", (req, res) => {
+router.get("/about", (req, res) => {
   res.render("about.ejs", { user: req.user });
 });
 
-router.get("/videos.ejs", (req, res) => {
+router.get("/videos", (req, res) => {
   res.render("videos.ejs", { user: req.user });
 });
 
-router.get("/login.ejs", (req, res) => {
+router.get("/login", (req, res) => {
+  let token = req.cookies.accessToken
+  if (token) {
+    res.redirect("/")
+  }
   res.render("login.ejs", { user: req.user });
 });
 
-router.get("/order-success.ejs", (req, res) => {
+router.get("/order-success", (req, res) => {
   res.render("order-success.ejs", { user: req.user });
 });
 
-router.get("/signup.ejs", (req, res) => {
+router.get("/signup", (req, res) => {
+  let token = req.cookies.accessToken
+  if (token) {
+    res.redirect("/")
+  }
   res.render("signup.ejs", { user: req.user });
 });
 
-router.get("/cart.ejs", (req, res) => {
+router.get("/cart", (req, res) => {
   res.render("cart.ejs", { user: req.user });
 });
 
-router.get("/chemistryquiz.ejs", (req, res) => {
+router.get("/chemistryquiz", (req, res) => {
   res.render("chemistryquiz.ejs", { user: req.user });
 });
 
-router.get("/shopping.ejs", async (req, res) => {
+router.get("/shopping", async (req, res) => {
   const products = await Product.find();
   res.render("shopping.ejs", { products, user: req.user });
+});
+
+router.get("/search", async (req, res) => {
+  const query = req.query.query?.toLowerCase() || "";
+
+  const products = await Product.find({
+    name: { $regex: new RegExp(query, "i") }
+  });
+
+  res.render("search.ejs", { products, user: req.user, query });
 });
 
 // Protected route: Checkout
 router.get("/checkout/:id", authenticateToken, async (req, res) => {
   res.render("checkout.ejs", { user: req.user, userId: req.user.userId });
 });
-
 
 router.get("/id=:id", async (req, res) => {
   try {
@@ -206,6 +223,13 @@ router.post("/comment", async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: "Internal Server Error" });
   }
+});
+
+// In your logout route
+router.get('/logout', (req, res) => {
+  res.clearCookie("accessToken", { path: "/" });
+  res.clearCookie("refreshToken", { path: "/" });
+  res.redirect("/"); // or wherever you want
 });
 
 module.exports = router;

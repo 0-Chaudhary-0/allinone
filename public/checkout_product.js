@@ -16,11 +16,11 @@ if (selectedProduct) {
   productContainer.innerHTML = `
     <div class="flex flex-col justify-between w-full">
       <div>
-        <h3 class="text-gray-900 text-xl font-semibold">${selectedProduct.name}</h3>
-        <p class="text-gray-600 mt-2"><span class="font-medium">Color:</span> ${selectedProduct.color}</p>
-        <p class="text-gray-600 mt-1"><span class="font-medium">Size:</span> ${selectedProduct.size}</p>
+        <h3 class="text-gray-900 dark:text-gray-100 text-xl font-semibold">${selectedProduct.name}</h3>
+        <p class="text-gray-600 dark:text-gray-200 mt-2"><span class="font-medium">Color:</span> ${selectedProduct.color}</p>
+        <p class="text-gray-600 dark:text-gray-200 mt-1"><span class="font-medium">Size:</span> ${selectedProduct.size}</p>
       </div>
-      <p class="text-right text-gray-600 mt-4"><span class="font-medium">Price :</span> ${selectedProduct.price}</p>
+      <p class="text-right text-gray-600 dark:text-gray-200 mt-4"><span class="font-medium">Price :</span> ${selectedProduct.price}</p>
       <p class="free text-right text-green-600 mt-1 font-semibold"><span class="font-medium text-green-600 free">Delivery fee :</span> Rs 0 </p>
       <p class="free text-right text-red-700 font-semibold text-lg">Total : ${selectedProduct.price}</p>
     </div>

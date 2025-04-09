@@ -142,68 +142,77 @@ function initCarousel() {
 
 
 
-document.addEventListener("DOMContentLoaded", () => {
-  const colorButtons = document.querySelectorAll(".color-option");
-  const sizeOptionsContainers = document.querySelectorAll(".size-options");
-  const selectedColorInput = document.getElementById("selectedColorInput");
-  const selectedSizeInput = document.getElementById("selectedSizeInput");
+window.addEventListener('DOMContentLoaded', () => {
+  // Select the first color button and make it selected
+  const colorButtons = document.querySelectorAll('.color-option');
+  const sizeContainers = document.querySelectorAll('.size-options');
 
-  let selectedColorButton = null;
-  let selectedSizeButton = null;
-
-  // Select first color by default
+  // Set default color selection (first color button)
   if (colorButtons.length > 0) {
-    colorButtons[0].click();
+    const firstColorButton = colorButtons[0];
+    firstColorButton.classList.add('selected');
+    const selectedColor = firstColorButton.dataset.color;
+    
+    // Set the color value in the hidden input
+    document.getElementById('selectedColorInput').value = selectedColor;
+
+    // Show the size options for the selected color
+    sizeContainers.forEach(container => {
+      if (container.getAttribute('data-color') === selectedColor) {
+        container.classList.remove('hidden');
+      } else {
+        container.classList.add('hidden');
+      }
+    });
   }
 
-  // Color Button Click
+  // Set default size selection (first size of the first color)
+  const sizeButtons = document.querySelectorAll('.size-option');
+  if (sizeButtons.length > 0) {
+    const firstSizeButton = sizeButtons[0];
+    firstSizeButton.classList.add('selected');
+    const selectedSize = firstSizeButton.dataset.size;
+
+    // Set the size value in the hidden input
+    document.getElementById('selectedSizeInput').value = selectedSize;
+  }
+
+  // Color button click event
   colorButtons.forEach(button => {
-    button.addEventListener("click", () => {
-      if (selectedColorButton) {
-        selectedColorButton.classList.remove("selected", "border-4", "border-blue-700", "free");
-      }
+    button.addEventListener('click', (e) => {
+      colorButtons.forEach(btn => btn.classList.remove('selected')); // Deselect all colors
+      e.target.classList.add('selected'); // Select clicked color
+      const selectedColor = e.target.dataset.color;
+      document.getElementById('selectedColorInput').value = selectedColor;
 
-      selectedColorButton = button;
-      button.classList.add("selected", "border-4", "border-blue-700", "free");
-
-      const selectedColor = button.dataset.color;
-      if (selectedColorInput) selectedColorInput.value = selectedColor;
-
-      sizeOptionsContainers.forEach(container => {
-        if (container.dataset.color === selectedColor) {
-          container.classList.remove("hidden");
-          const sizeButtons = container.querySelectorAll(".size-option");
-          if (sizeButtons.length > 0) {
-            sizeButtons[0].click();
-          }
+      // Show the corresponding size options for the selected color
+      sizeContainers.forEach(container => {
+        if (container.getAttribute('data-color') === selectedColor) {
+          container.classList.remove('hidden');
         } else {
-          container.classList.add("hidden");
+          container.classList.add('hidden');
         }
       });
 
-      const imagesJson = button.dataset.images.replace(/&quot;/g, '"');
-      const images = JSON.parse(imagesJson);
-      window.updateCarousel(JSON.stringify(images));
-    });
-  });
-
-  // Size Button Click
-  document.querySelectorAll(".size-option").forEach(button => {
-    button.addEventListener("click", () => {
-      if (selectedSizeButton) {
-        selectedSizeButton.classList.remove("selected", "border-4", "border-blue-700", "free");
+      // Reset and select the first available size for the selected color
+      const firstSizeButton = sizeContainers.querySelector('.size-option');
+      if (firstSizeButton) {
+        firstSizeButton.classList.add('selected');
+        document.getElementById('selectedSizeInput').value = firstSizeButton.dataset.size;
       }
+    });
+  });
 
-      selectedSizeButton = button;
-      button.classList.add("selected", "border-4", "border-blue-700", "free");
-
-      const selectedSize = button.dataset.size;
-      if (selectedSizeInput) selectedSizeInput.value = selectedSize;
+  // Size button click event
+  sizeButtons.forEach(button => {
+    button.addEventListener('click', (e) => {
+      sizeButtons.forEach(btn => btn.classList.remove('selected')); // Deselect all sizes
+      e.target.classList.add('selected'); // Select clicked size
+      document.getElementById('selectedSizeInput').value = e.target.dataset.size;
     });
   });
 });
 
 
-document.addEventListener("DOMContentLoaded", () => {
-  initCarousel();  // This sets up the carousel and exposes updateCarousel globally
-});
+
+initCarousel();  // This sets up the carousel and exposes updateCarousel globally

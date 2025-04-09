@@ -5,7 +5,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   cardElement.mount('#card-number');
 
   const placeOrderBtn = document.getElementById("next-btn");
-  placeOrderBtn.addEventListener("click", async () => {
+  placeOrderBtn.addEventListener("click", async (e) => {
+    // Disable the button and change color
+    placeOrderBtn.disabled = true;
+    placeOrderBtn.classList.add('bg-blue-200', 'cursor-not-allowed');
+    
     const userId = window.userId;
 
     if (!userId) {
@@ -13,7 +17,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         title: "❌ Error",
         message: "User not logged in!",
         showCancel: false
-      });      
+      });
+      placeOrderBtn.disabled = false;
+      placeOrderBtn.classList.remove('bg-blue-200', 'cursor-not-allowed');
       return;
     }
 
@@ -23,7 +29,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         title: "⚠️ Warning",
         message: "Please select a payment method.",
         showCancel: false
-      });      
+      });
+      placeOrderBtn.disabled = false;
+      placeOrderBtn.classList.remove('bg-blue-200', 'cursor-not-allowed');
       return;
     }
 
@@ -43,7 +51,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         title: "⚠️ Incomplete Address",
         message: "Please fill in all address fields.",
         showCancel: false
-      });      
+      });
+      placeOrderBtn.disabled = false;
+      placeOrderBtn.classList.remove('bg-blue-200', 'cursor-not-allowed');
       return;
     }
 
@@ -56,7 +66,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         title: "❌ Error",
         message: "Product not found in cart!",
         showCancel: false
-      });      
+      });
+      placeOrderBtn.disabled = false;
+      placeOrderBtn.classList.remove('bg-blue-200', 'cursor-not-allowed');
       return;
     }
 
@@ -77,23 +89,22 @@ document.addEventListener("DOMContentLoaded", async () => {
             title: "✅ Success",
             message: "Order Placed Successfully (Cash on Delivery)!",
             showCancel: false
-          });          
+          });
           localStorage.removeItem("shoppingBag");
-          window.location.href = "/order-success.ejs";
+          window.location.href = "/order-success";
         } else {
           showModal({
             title: "⚠️ Order Failed",
             message: "Error: " + result.error,
             showCancel: false
-          });          
+          });
         }
       } catch (err) {
         showModal({
           title: "⚠️ Order Error",
-          message: "Error: " + result.error,
+          message: "Error: " + err.message,
           showCancel: false
         });
-        
       }
     } else {
       try {
@@ -116,7 +127,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             title: "❌ Payment Failed",
             message: "Error: " + result.error.message,
             showCancel: false
-          });          
+          });
         } else {
           await fetch('/payment/confirm', {
             method: 'POST',
@@ -128,17 +139,21 @@ document.addEventListener("DOMContentLoaded", async () => {
             title: "✅ Payment Successful!",
             message: "Your payment has been completed successfully.",
             showCancel: false
-          });          
+          });
           localStorage.removeItem("shoppingBag");
-          window.location.href = "/order-success.ejs";
+          window.location.href = "/order-success";
         }
       } catch (err) {
         showModal({
           title: "⚠️ Payment Error",
           message: "Error: " + err.message,
           showCancel: false
-        });        
+        });
       }
     }
+
+    // Re-enable the button and restore its original color
+    placeOrderBtn.disabled = false;
+    placeOrderBtn.classList.remove('bg-blue-200', 'cursor-not-allowed');
   });
 });

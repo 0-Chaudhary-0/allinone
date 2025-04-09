@@ -23,75 +23,116 @@
 </head>
 
 <body class="dark:bg-gray-900 dark:text-whitebg-white text-black font-sans dark:bg-gray-900">
-    <%- include('partials/header') %> 
-    <%- include('partials/carousel') %>
-    <h1 class="sm:text-3xl text-2xl font-bold title-font mb-2 text-center my-4">COLLECTIONS</h1>
-    <div class="flex flex-wrap my-4 justify-center gap-5">
+    <%- include('partials/header') %>
+
+    <form action="/search" method="GET" class="flex items-center max-w-sm mx-auto relative my-8">
+        <div class="absolute inset-y-0 left-1 flex items-center ps-3 pointer-events-none">
+            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5v10M3 5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm0 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm12 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0V6a3 3 0 0 0-3-3H9m1.5-2-2 2 2 2"/>
+            </svg>
+        </div>
+        <input type="text" name="query" id="simple-search"
+            class="px-6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-4 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+            placeholder="Search branch name..." required />
+        <button type="submit"
+            class="p-2 ml-2 text-sm font-medium text-white absolute right-2 top-1 rounded-lg">
+            <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                viewBox="0 0 20 20">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+            </svg>
+            <span class="sr-only">Search</span>
+        </button>
+    </form>
     
-              <!-- Product Card Template -->
-               <a href="/shopping.ejs">
-      <div class="relative bg-white w-48 rounded-xl overflow-hidden shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer" data-aos="fade-up">
-        <img src="https://codeswear.nyc3.cdn.digitaloceanspaces.com/constants/landing/collections/caps.webp" alt="CAPS" class="w-full h-60 object-cover">
-        <!-- <h3 class="text-xl absolute bottom-3 left-1/2 transform -translate-x-1/2 bg-black/60 px-4 py-1 rounded text-white text-sm font-semibold z-10">CAPS</h3> -->
-      </div>
-    </a>
 
-    <a href="/shopping.ejs">
 
-      <div class="relative bg-white w-48 rounded-xl overflow-hidden shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer" data-aos="fade-up">
-        <img src="https://codeswear.nyc3.cdn.digitaloceanspaces.com/constants/landing/collections/hoodie.webp" alt="HOODIES" class="w-full h-60 object-cover">
-        <!-- <h3 class="text-xl absolute bottom-3 left-1/2 transform -translate-x-1/2 bg-black/60 px-4 py-1 rounded text-white text-sm font-semibold z-10">HOODIES</h3> -->
-      </div>
-      </a>
+        <%- include('partials/carousel') %>
 
-      <a href="/shopping.ejs">
-      <div class="relative bg-white w-48 rounded-xl overflow-hidden shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer" data-aos="fade-up">
-        <img src="https://codeswear.nyc3.cdn.digitaloceanspaces.com/constants/landing/collections/mousepad.webp" alt="MOUSE PAD" class="w-full h-60 object-cover">
-        <!-- <h3 class="text-xl absolute bottom-3 left-1/2 transform -translate-x-1/2 bg-black/60 px-4 py-1 rounded text-white text-sm font-semibold z-10">MOUSE PAD</h3> -->
-      </div>
-      </a>
-
-      <a href="/shopping.ejs">
-      <div class="relative bg-white w-48 rounded-xl overflow-hidden shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer" data-aos="fade-up">
-        <img src="https://codeswear.nyc3.cdn.digitaloceanspaces.com/constants/landing/collections/mugs.webp" alt="MUGS" class="w-full h-60 object-cover">
-        <!-- <h3 class="text-xl absolute bottom-3 left-1/2 transform -translate-x-1/2 bg-black/60 px-4 py-1 rounded text-white text-sm font-semibold z-10">MUGS</h3> -->
-      </div>
-      </a>
-
-      <a href="/shopping.ejs">
-      <div class="relative bg-white w-48 rounded-xl overflow-hidden shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer" data-aos="fade-up">
-        <img src="https://codeswear.nyc3.cdn.digitaloceanspaces.com/constants/landing/collections/oversizedtshirt.webp" alt="OVERSIZED T-SHIRTS" class="w-full h-60 object-cover">
-        <!-- <h3 class="text-xl absolute bottom-3 left-1/2 transform -translate-x-1/2 bg-black/60 px-4 py-1 rounded text-white text-sm font-semibold z-10">OVERSIZED T-SHIRTS</h3> -->
-      </div>
-      </a>
-
-      <a href="/shopping.ejs">
-      <div class="relative bg-white w-48 rounded-xl overflow-hidden shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer" data-aos="fade-up">
-        <img src="https://codeswear.nyc3.cdn.digitaloceanspaces.com/constants/landing/collections/polotshirts.webp" alt="POLO T-SHIRTS" class="w-full h-60 object-cover">
-        <!-- <h3 class="text-xl absolute bottom-3 left-1/2 transform -translate-x-1/2 bg-black/60 px-4 py-1 rounded text-white text-sm font-semibold z-10">POLO T-SHIRTS</h3> -->
-      </div></a>
-
-      <a href="/shopping.ejs">
-      <div class="relative bg-white w-48 rounded-xl overflow-hidden shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer" data-aos="fade-up">
-        <img src="https://codeswear.nyc3.cdn.digitaloceanspaces.com/constants/landing/collections/sweatshirt.webp" alt="SWEATSHIRTS" class="w-full h-60 object-cover">
-        <!-- <h3 class="text-xl absolute bottom-3 left-1/2 transform -translate-x-1/2 bg-black/60 px-4 py-1 rounded text-white text-sm font-semibold z-10">SWEATSHIRTS</h3> -->
-      </div>
-      </a>
-
-      <a href="/shopping.ejs">
-      <div class="relative bg-white w-48 rounded-xl overflow-hidden shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer" data-aos="fade-up">
-        <img src="https://codeswear.nyc3.cdn.digitaloceanspaces.com/constants/landing/collections/tshirt.webp" alt="T-SHIRTS" class="w-full h-60 object-cover">
-        <!-- <h3 class="text-xl absolute bottom-3 left-1/2 transform -translate-x-1/2 bg-black/60 px-4 py-1 rounded text-white text-sm font-semibold z-10">T-SHIRTS</h3> -->
-      </div>
-      </a>
-    
-      </div>
-    
             <h1 class="text-left ml-4 dark:bg-black dark:text-white mt-8 mb-4 font-semibold text-2xl">
                 Bestselling Products
             </h1>
 
             <%- include('partials/products_area', { products: products }) %>
+
+            <h1 class="sm:text-3xl text-2xl font-bold title-font mb-2 text-center my-4">COLLECTIONS</h1>
+            <div class="flex flex-wrap my-4 justify-center gap-4">
+
+                <!-- Product Card Template -->
+                <a href="/shopping">
+                    <div class="relative bg-white w-40 rounded-xl overflow-hidden shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer"
+                        data-aos="fade-up">
+                        <img src="https://codeswear.nyc3.cdn.digitaloceanspaces.com/constants/landing/collections/caps.webp"
+                            alt="CAPS" class="w-full h-60 object-cover">
+                        <!-- <h3 class="text-xl absolute bottom-3 left-1/2 transform -translate-x-1/2 bg-black/60 px-4 py-1 rounded text-white text-sm font-semibold z-10">CAPS</h3> -->
+                    </div>
+                </a>
+
+                <a href="/shopping">
+
+                    <div class="relative bg-white w-40 rounded-xl overflow-hidden shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer"
+                        data-aos="fade-up">
+                        <img src="https://codeswear.nyc3.cdn.digitaloceanspaces.com/constants/landing/collections/hoodie.webp"
+                            alt="HOODIES" class="w-full h-60 object-cover">
+                        <!-- <h3 class="text-xl absolute bottom-3 left-1/2 transform -translate-x-1/2 bg-black/60 px-4 py-1 rounded text-white text-sm font-semibold z-10">HOODIES</h3> -->
+                    </div>
+                </a>
+
+                <a href="/shopping">
+                    <div class="relative bg-white w-40 rounded-xl overflow-hidden shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer"
+                        data-aos="fade-up">
+                        <img src="https://codeswear.nyc3.cdn.digitaloceanspaces.com/constants/landing/collections/mousepad.webp"
+                            alt="MOUSE PAD" class="w-full h-60 object-cover">
+                        <!-- <h3 class="text-xl absolute bottom-3 left-1/2 transform -translate-x-1/2 bg-black/60 px-4 py-1 rounded text-white text-sm font-semibold z-10">MOUSE PAD</h3> -->
+                    </div>
+                </a>
+
+                <a href="/shopping">
+                    <div class="relative bg-white w-40 rounded-xl overflow-hidden shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer"
+                        data-aos="fade-up">
+                        <img src="https://codeswear.nyc3.cdn.digitaloceanspaces.com/constants/landing/collections/mugs.webp"
+                            alt="MUGS" class="w-full h-60 object-cover">
+                        <!-- <h3 class="text-xl absolute bottom-3 left-1/2 transform -translate-x-1/2 bg-black/60 px-4 py-1 rounded text-white text-sm font-semibold z-10">MUGS</h3> -->
+                    </div>
+                </a>
+
+                <a href="/shopping">
+                    <div class="relative bg-white w-40 rounded-xl overflow-hidden shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer"
+                        data-aos="fade-up">
+                        <img src="https://codeswear.nyc3.cdn.digitaloceanspaces.com/constants/landing/collections/oversizedtshirt.webp"
+                            alt="OVERSIZED T-SHIRTS" class="w-full h-60 object-cover">
+                        <!-- <h3 class="text-xl absolute bottom-3 left-1/2 transform -translate-x-1/2 bg-black/60 px-4 py-1 rounded text-white text-sm font-semibold z-10">OVERSIZED T-SHIRTS</h3> -->
+                    </div>
+                </a>
+
+                <a href="/shopping">
+                    <div class="relative bg-white w-40 rounded-xl overflow-hidden shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer"
+                        data-aos="fade-up">
+                        <img src="https://codeswear.nyc3.cdn.digitaloceanspaces.com/constants/landing/collections/polotshirts.webp"
+                            alt="POLO T-SHIRTS" class="w-full h-60 object-cover">
+                        <!-- <h3 class="text-xl absolute bottom-3 left-1/2 transform -translate-x-1/2 bg-black/60 px-4 py-1 rounded text-white text-sm font-semibold z-10">POLO T-SHIRTS</h3> -->
+                    </div>
+                </a>
+
+                <a href="/shopping">
+                    <div class="relative bg-white w-40 rounded-xl overflow-hidden shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer"
+                        data-aos="fade-up">
+                        <img src="https://codeswear.nyc3.cdn.digitaloceanspaces.com/constants/landing/collections/sweatshirt.webp"
+                            alt="SWEATSHIRTS" class="w-full h-60 object-cover">
+                        <!-- <h3 class="text-xl absolute bottom-3 left-1/2 transform -translate-x-1/2 bg-black/60 px-4 py-1 rounded text-white text-sm font-semibold z-10">SWEATSHIRTS</h3> -->
+                    </div>
+                </a>
+
+                <a href="/shopping">
+                    <div class="relative bg-white w-40 rounded-xl overflow-hidden shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer"
+                        data-aos="fade-up">
+                        <img src="https://codeswear.nyc3.cdn.digitaloceanspaces.com/constants/landing/collections/tshirt.webp"
+                            alt="T-SHIRTS" class="w-full h-60 object-cover">
+                        <!-- <h3 class="text-xl absolute bottom-3 left-1/2 transform -translate-x-1/2 bg-black/60 px-4 py-1 rounded text-white text-sm font-semibold z-10">T-SHIRTS</h3> -->
+                    </div>
+                </a>
+
+            </div>
 
                 <h1 class="dark:bg-black dark:text-white ml-10 mt-8 mb-4 font-semibold text-xl">
                     About Me

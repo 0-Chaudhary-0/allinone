@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const jwtSecret = "#@abdulsattar";
+const jwtSecret = process.env.JWT_SECRET;
 
 function checkLoginStatus(req, res, next) {
   const token = req.cookies.accessToken;

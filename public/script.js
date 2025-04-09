@@ -34,7 +34,7 @@ document.getElementById("submitComment").addEventListener("click", async functio
   const userLoggedIn = localStorage.getItem("token")
 
   if (!userLoggedIn) {
-    window.location.href = "/login.ejs"; // Redirect to login
+    window.location.href = "/login"; // Redirect to login
     return;
   }
 
@@ -96,3 +96,15 @@ user.addEventListener("click", () => {
         toggleIcon.innerHTML = "&lt;"; // '<' pointing left
     }
 });
+
+
+function confirmLogout() {
+  showModal({
+    title: "⚠️ Logout",
+    message: "Are you sure you want to logout?",
+    showCancel: true,
+    onConfirm: () => {
+      window.location.href = "/logout";
+    }
+  });
+}
