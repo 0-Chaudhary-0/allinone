@@ -126,7 +126,7 @@ router.get("/id=:id", async (req, res) => {
     // Fetch related reviews from Rating model
     const reviews = await Rating.find({ productId }).sort({ createdAt: -1 }); // Newest first
 
-    res.render("productDetails.ejs", { product, user: req.user, reviews });
+    res.render("productDetails.ejs", { product, user: req.user, reviews, products });
   } catch (error) {
     console.error("Error fetching product:", error);
     res.status(500).send("Server error");
