@@ -84,9 +84,18 @@ router.get("/chemistryquiz", (req, res) => {
 });
 
 router.get("/shopping", async (req, res) => {
-  const products = await Product.find();
+  const category = req.query.category;
+  let products;
+
+  if (category) {
+    products = await Product.find({ category: category.toLowerCase() });
+  } else {
+    products = await Product.find();
+  }
+
   res.render("shopping.ejs", { products, user: req.user });
 });
+
 
 router.get("/search", async (req, res) => {
   const query = req.query.query?.toLowerCase() || "";

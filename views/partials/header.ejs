@@ -1,4 +1,4 @@
-<header class="text-black dark:text-white  bg-gray-100 py-4 text-center dark:bg-gray-900 ">
+<header class="header bg-gray-100 dark:bg-gray-900 relative z-50 overflow-visible"> 
     <div class="flex justify-start items-center mx-2 px-2">
         <img class="h-20 rounded-full p-4" src="/images/azeem.jpg" alt="logo" />
         <a href="/"
@@ -9,7 +9,7 @@
     <p class="text-black dark:text-white">Your all-in-one platform for everything you need.</p>
 </header>
 
-<nav class="border-b border-gray-300 bg-gray-100 dark:bg-gray-900">
+<nav class="border-b border-gray-300 bg-gray-100 dark:bg-gray-900 relative z-50 overflow-visible h-[fit-content]">
     <section class="flex items-center justify-between px-4 py-2 free">
         <section>
             <button id="nav-toggle" class="text-black dark:text-white  focus:outline-none">
@@ -46,8 +46,7 @@
             <% } %>            
         </section>
     </section>
-    <ul id="mobile-menu"
-        class="hidden grid grid-cols-2 gap-2 text-center transition-height max-h-0 px-4 py-2 list-none p-0 m-0">
+    <ul id="mobile-menu" class="hidden grid grid-cols-2 gap-2 text-center transition-all px-4 py-4 list-none relative z-40">
         <li class="block mr-5">
             <a class="text-black dark:text-white  font-medium text-sm p-2 block" href="/">Home</a>
         </li>
@@ -60,9 +59,21 @@
         <li class="block mr-5">
             <a href="/chemistryquiz" class="cursor-pointer text-black dark:text-white  font-medium text-sm p-2 block">Quizzes</a>
         </li>
-        <li class="block mr-5">
-            <a class="text-black dark:text-white  font-medium text-sm p-2 block" href="/shopping">Shopping</a>
-        </li>
+        <div class="relative scroll">
+            <li class="relative dropdown w-full sm:w-auto">
+                <a href="#" onclick="toggleDropdown(event)" class="text-black dark:text-white font-medium text-sm p-2 block">Shopping ▾</a>
+                <div id="shopping-dropdown" class="dropdown-menu transition-opacity duration-300 ease-in-out opacity-0 pointer-events-none hidden bg-white dark:bg-gray-800 shadow-lg rounded-md">
+                    <p><a href="/shopping?category=caps" class="text-sm hover:bg-gray-200 dark:text-white dark:hover:bg-gray-400">Caps</a></p>
+                    <p><a href="/shopping?category=t-shirts" class="text-sm hover:bg-gray-200 dark:text-white dark:hover:bg-gray-400">T-Shirts</a></p>
+                    <p><a href="/shopping?category=hoodies" class="text-sm hover:bg-gray-200 dark:text-white dark:hover:bg-gray-400">Hoodies</a></p>
+                    <p><a href="/shopping?category=mousepad" class="text-sm hover:bg-gray-200 dark:text-white dark:hover:bg-gray-400">Mousepads</a></p>
+                    <p><a href="/shopping?category=mugs" class="text-sm hover:bg-gray-200 dark:text-white dark:hover:bg-gray-400">Mugs</a></p>
+                    <p><a href="/shopping?category=oversized-tshirts" class="text-sm hover:bg-gray-200 dark:text-white dark:hover:bg-gray-400">Oversized T-Shirts</a></p>
+                    <p><a href="/shopping?category=polo-tshirts" class="text-sm hover:bg-gray-200 dark:text-white dark:hover:bg-gray-400">Polo T-Shirts</a></p>
+                    <p><a href="/shopping?category=sweatshirts" class="text-sm hover:bg-gray-200 dark:text-white dark:hover:bg-gray-400">Sweatshirts</a></p>
+                </div>
+            </li>
+        </div>
         <li class="block mr-5">
             <a class="text-black dark:text-white  font-medium text-sm p-2 block" href="/about">About Us</a>
         </li>
@@ -76,3 +87,44 @@
 </nav>
 
 <%- include('modal') %>
+
+<script>
+    function toggleDropdown(event) {
+        event.preventDefault();
+        const dropdown = document.getElementById('shopping-dropdown');
+        dropdown.classList.toggle('show');
+    }
+  
+    // Optional: hide dropdown when clicking outside
+    window.addEventListener('click', function (e) {
+        const dropdown = document.getElementById('shopping-dropdown');
+        const trigger = e.target.closest('.dropdown');
+        if (!trigger && !dropdown.contains(e.target)) {
+            dropdown.classList.remove('show');
+        }
+    });
+</script>
+
+<style>
+
+    #shopping-dropdown {
+        position: absolute;
+    /* border-bottom: 1px solid red; */
+    top: -280%;
+    padding: 0 5px;
+    left: 125px;
+    width: 80%;
+    z-index: 100;
+    display: none;
+    opacity: 0;
+    pointer-events: none;
+    height: fit-content;
+    z-index: 1000;
+    }
+
+    #shopping-dropdown.show {
+        display: block;
+        opacity: 0.8;
+        pointer-events: all;
+    }
+</style>

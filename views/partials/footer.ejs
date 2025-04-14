@@ -1,41 +1,57 @@
 <footer class="text-black dark:text-white  py-10 px-4 md:px-20 bg-gray-100 dark:bg-gray-900">
   <h2 class="text-2xl font-semibold mb-2 text-gray-900">We Accept</h2>
   <div class="my-2 mx-4 flex justify-center flex-wrap">
-    <img class="w-72 rounded mb-4 ml-4" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCNwHB2dzRFN4LDT4RzB6LaM0Z2DYViq8ozw&s" alt="We Accept Card Payment">
+    <img class="w-72 rounded mb-4 ml-4"
+      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCNwHB2dzRFN4LDT4RzB6LaM0Z2DYViq8ozw&s"
+      alt="We Accept Card Payment">
+  </div>
+  <div class="flex flex-col md:flex-row justify-between items-center mb-6">
+    <div class="contact mb-4 md:mb-0 text-center md:text-left">
+      <p class="text-lg font-semibold mb-2">Contact us:</p>
+      <a class="block mb-2 hover:underline flex items-center justify-center md:justify-start"
+        href="mailto:azeemshahid565@gmail.com">
+        <i class="fas fa-envelope mr-2"></i>Email
+      </a>
+      <a class="block mb-2 hover:underline flex items-center justify-center md:justify-start"
+        href="https://wa.me/03173380426">
+        <i class="fab fa-whatsapp mr-2"></i>WhatsApp
+      </a>
     </div>
-    <div class="flex flex-col md:flex-row justify-between items-center mb-6">
-      <div class="contact mb-4 md:mb-0 text-center md:text-left">
-        <p class="text-lg font-semibold mb-2">Contact us:</p>
-        <a class="block mb-2 hover:underline flex items-center justify-center md:justify-start" href="mailto:azeemshahid565@gmail.com">
-          <i class="fas fa-envelope mr-2"></i>Email
-        </a>
-        <a class="block mb-2 hover:underline flex items-center justify-center md:justify-start" href="https://wa.me/03173380426">
-          <i class="fab fa-whatsapp mr-2"></i>WhatsApp
-        </a>
-      </div>
 
-      <div class="address mb-4 md:mb-0 text-center md:text-left">
-        <p class="text-lg font-semibold mb-2">Address:</p>
-        <p>At Superio Science Academy at Dawn High School Daulatpur</p>
-      </div>
-      <div class="comments w-full md:w-auto">
-        <p class="text-lg font-semibold mb-2">Leave your comments and feedback below:</p>
-        <form id="commentForm" class="flex flex-col items-center md:items-start">
-          <label class="mb-2 w-full" for="email">Email Address:</label>
-          <input id="email" class="mb-4 w-full border border-gray-300 rounded p-2 text-black" type="email" name="email" placeholder="Write your email address">
-          
-          <textarea id="comment" minlength="20" class="mb-4 w-full border border-gray-300 rounded p-2 text-black" name="comment" rows="5" placeholder="Write your comments here:"></textarea>
-        
-          <button id="submitComment" class="free bg-blue-600 text-white hover:bg-gray-800 font-semibold px-4 py-2 rounded">
-            Submit
+    <div class="address mb-4 md:mb-0 text-center md:text-left">
+      <p class="text-lg font-semibold mb-2">Address:</p>
+      <p>At Superio Science Academy at Dawn High School Daulatpur</p>
+    </div>
+    <div class="comments w-full md:w-auto">
+      <p class="text-lg font-semibold mb-2">Leave your comments and feedback below:</p>
+      <form id="commentForm" class="flex flex-col items-center md:items-start">
+        <label class="mb-2 w-full" for="email">Email Address:</label>
+        <input id="email" class="mb-4 w-full border border-gray-300 rounded p-2 text-black" type="email" name="email"
+          placeholder="Write your email address">
+
+        <textarea id="comment" minlength="20" class="mb-4 w-full border border-gray-300 rounded p-2 text-black"
+          name="comment" rows="5" placeholder="Write your comments here:"></textarea>
+
+        <button id="submitComment"
+          class="free bg-blue-600 text-white hover:bg-gray-800 font-semibold px-4 py-2 rounded">
+          Submit
         </button>
-        
-        </form>
-        
-      </div>
+
+      </form>
+
     </div>
-    <div class="text-center text-black dark:text-white   text-sm">
-      &copy; 2024 Kemistry Knots. All rights reserved.
-    </div>
-  </footer>
-  
+  </div>
+  <div class="text-center text-black dark:text-white   text-sm">
+    &copy; 2024 Kemistry Knots. All rights reserved.
+  </div>
+</footer>
+
+
+<!-- AOS JS -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({
+      duration: 800,
+      once: true,
+  });
+</script>
