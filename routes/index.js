@@ -8,6 +8,7 @@ const nodemailer = require("nodemailer");
 const Order = require('../models/Order');
 const User = require('../models/User');
 const Rating = require("../models/Rating"); // Import your Rating schema
+const passport = require('passport');
 
 // Configure Nodemailer transporter
 const transporter = nodemailer.createTransport({
@@ -240,5 +241,26 @@ router.get('/logout', (req, res) => {
   res.clearCookie("refreshToken", { path: "/" });
   res.redirect("/"); // or wherever you want
 });
+
+router.get('/auth/google', passport.authenticate('google', {
+  scope: ['profile', 'email']
+}));
+
+// Example route after Google login
+router.get('/auth/google/callback',
+  passport.authenticate('google', { failureRedirect: '/login' }),
+  (req, res) => {
+    const user = req.user;
+    const token = jwt.sign({ id: user._id, email: user.email }, process.env.JWT_SECRET, {
+      expiresIn: '20d'
+    });
+
+    req.session.token = token; // ✅ Save token in session
+
+    res.redirect('/'); // Redirect to home or dashboard
+  }
+);
+
+
 
 module.exports = router;

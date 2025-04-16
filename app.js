@@ -6,25 +6,20 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
+const passport = require('passport');
+const session = require('express-session');
 
-console.log(process.env.EMAIL_USER)
+// 👉 MUST be before app.use()
+const app = express(); 
 
-// Routes
-const loginRoute = require('./routes/login');
-const signupRoute = require('./routes/signup');
-const indexRoutes = require('./routes/index');
-const productRoute = require("./routes/products");
-const paymentRoute = require("./routes/payment");
+require('./config/passport');
 
-const app = express();
-const jwtSecret = process.env.JWT_SECRET; // Secret for JWT
-
-// Connect to MongoDB
-connectDB();
-
-// Set up view engine
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "ejs");
+// Session setup (must be before passport)
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: true,
+}));
 
 // Middleware
 app.use(cors());
@@ -32,14 +27,21 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(passport.initialize());
+app.use(passport.session());
 
-// 🔥 Global middleware to set user for all views
+// View engine
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
+
+// JWT middleware for EJS global user access
+const jwtSecret = process.env.JWT_SECRET;
 app.use((req, res, next) => {
     const token = req.cookies.token;
     if (token) {
         try {
             const verified = jwt.verify(token, jwtSecret);
-            res.locals.user = verified; // Accessible in all EJS files (partials too)
+            res.locals.user = verified;
         } catch (err) {
             res.locals.user = null;
         }
@@ -50,13 +52,20 @@ app.use((req, res, next) => {
 });
 
 // Routes
+const loginRoute = require('./routes/login');
+const signupRoute = require('./routes/signup');
+const indexRoutes = require('./routes/index');
+const productRoute = require("./routes/products");
+const paymentRoute = require("./routes/payment");
+
 app.use('/login', loginRoute);
 app.use('/signup', signupRoute);
 app.use('/products', productRoute);
 app.use('/payment', paymentRoute);
 app.use('/', indexRoutes);
 
-// Start server
+// Connect DB and Start Server
+connectDB();
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`🚀 Server is running on port ${PORT}`);
