@@ -34,22 +34,25 @@ app.use(passport.session());
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-// JWT middleware for EJS global user access
 const jwtSecret = process.env.JWT_SECRET;
+
 app.use((req, res, next) => {
-    const token = req.cookies.token;
-    if (token) {
-        try {
-            const verified = jwt.verify(token, jwtSecret);
-            res.locals.user = verified;
-        } catch (err) {
-            res.locals.user = null;
-        }
-    } else {
-        res.locals.user = null;
+  const token = req.cookies.accessToken || req.session.token; // ✅ check both
+
+  if (token) {
+    try {
+      const verified = jwt.verify(token, jwtSecret);
+      res.locals.user = verified; // makes user available in EJS
+    } catch (err) {
+      res.locals.user = null;
     }
-    next();
+  } else {
+    res.locals.user = null;
+  }
+
+  next();
 });
+
 
 // Routes
 const loginRoute = require('./routes/login');

@@ -12,7 +12,7 @@ addButtons.forEach(button => {
         title: "⚠️ Select Color",
         message: "Please select a color before adding to the bag.",
         showCancel: false
-      });      
+      });
       return;
     }
     const selectedColor = selectedColorButton.dataset.color;
@@ -23,7 +23,7 @@ addButtons.forEach(button => {
         title: "⚠️ Select Size",
         message: "Please select a size before adding to the bag.",
         showCancel: false
-      });      
+      });
       return;
     }
     const selectedSize = selectedSizeButton.dataset.size;
@@ -52,7 +52,7 @@ addButtons.forEach(button => {
       message: `${product.name} (${selectedColor}, ${selectedSize}) has been added to your bag.`,
       showCancel: false
     });
-    
+
     if (action === 'checkout') {
       window.location.href = `/checkout/${button.getAttribute("data-product-id")}`;
     }
@@ -161,7 +161,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const firstColorButton = colorButtons[0];
     firstColorButton.classList.add('selected');
     const selectedColor = firstColorButton.dataset.color;
-    
+
     // Set the color value in the hidden input
     document.getElementById('selectedColorInput').value = selectedColor;
 
@@ -196,19 +196,31 @@ window.addEventListener('DOMContentLoaded', () => {
 
       // Show the corresponding size options for the selected color
       sizeContainers.forEach(container => {
+        const buttons = container.querySelectorAll('.size-option');
+        buttons.forEach(btn => btn.classList.remove('selected'));
+
         if (container.getAttribute('data-color') === selectedColor) {
           container.classList.remove('hidden');
+          // Assuming 'container' is your div with class 'size-options free'
+          const buttons = container.querySelectorAll('.size-option');
+
+          // Remove 'selected' class from all buttons
+          buttons.forEach(btn => btn.classList.remove('selected'));
+
+          // container is the parent div that holds the size buttons
+          const firstSizeButton = container.querySelector('.size-option');
+
+          if (firstSizeButton) {
+            firstSizeButton.classList.add('selected');
+            document.getElementById('selectedSizeInput').value = firstSizeButton.dataset.size;
+          }
+
+
         } else {
           container.classList.add('hidden');
+          container.classList.remove("selected")
         }
       });
-
-      // Reset and select the first available size for the selected color
-      const firstSizeButton = sizeContainers.querySelector('.size-option');
-      if (firstSizeButton) {
-        firstSizeButton.classList.add('selected');
-        document.getElementById('selectedSizeInput').value = firstSizeButton.dataset.size;
-      }
     });
   });
 
