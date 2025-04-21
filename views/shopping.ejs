@@ -50,7 +50,7 @@
                 <span class="font-semibold text-gray-700 dark:text-gray-300">Colors:</span>
                 <div class="flex mt-1 space-x-1 justify-center">
                   <% uniqueColors.forEach(color => { %>
-                    <div class="w-4 h-4 rounded-full border border-gray-300" style="background-color: <%= color %>"></div>
+                    <div class="w-4 h-4 rounded-full border border-gray-300" style="background-color: <%= color == 'Colorful' ? 'red' : color %>"></div>
                   <% }) %>
                 </div>
               </div>

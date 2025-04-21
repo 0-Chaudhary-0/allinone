@@ -3,24 +3,41 @@
 
 <head>
     <%- include('partials/head') %>
+    <style>
+        .masked-image {
+            width: 300px;
+            height: 300px;
+            background: url("https://picsum.photos/400/400") center / cover no-repeat;
+
+            -webkit-mask-image: url("images/mask3.png");
+            -webkit-mask-size: cover;
+            -webkit-mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+
+            mask-image: url("images/mask3.png");
+            mask-size: cover;
+            mask-repeat: no-repeat;
+            mask-position: center;
+        }
+    </style>
 </head>
 
 <body class="dark:bg-black dark:text-white bg-white text-black font-sans">
     <%- include('partials/header') %>
     <div class="dark:bg-black dark:text-white py-6 text-center">
-        <h1 class="dark:bg-black dark:text-white text-3xl font-bold">About Us</h1>
+        <h1 class="dark:bg-black dark:text-white text-3xl font-bold">About Me</h1>
     </div>
     
     <main class="dark:bg-black dark:text-white container mx-auto py-8 px-4">
-        <div class="dark:bg-black dark:text-white p-6">
-            <div class="dark:bg-black dark:text-white flex flex-col md:flex-row items-center">
-                <img class="dark:bg-black dark:text-white w-32 h-32 rounded-full mb-4 md:mb-0 md:mr-6" src="teacher.jpg" alt="Professional Chemistry Teacher">
-                <div>
-                    <h2 class="dark:bg-black dark:text-white text-2xl font-bold mb-2">Dr. John Doe</h2>
-                    <p class="dark:bg-black dark:text-white text-gray-600">Professional Chemistry Teacher</p>
-                    <p class="dark:bg-black dark:text-white mt-4">Dr. John Doe is a highly experienced Chemistry teacher with a passion for educating students of all ages. With a deep understanding of Organic, Inorganic, and Physical Chemistry, Dr. Doe brings a wealth of knowledge to the classroom.</p>
-                    <p class="dark:bg-black dark:text-white mt-4">In addition to Chemistry, Dr. Doe is proficient in web development languages such as HTML, CSS, and JavaScript. He is also skilled in using Microsoft Office Suite for various educational and administrative purposes.</p>
-                </div>
+        <div class="dark:bg-black dark:text-white">
+            <div class="dark:bg-black dark:text-white mb-4 flex flex-col items-center w-[90vw] mx-auto">
+                <div class="dark:bg-black dark:text-white masked-image free"></div>
+                <p class="dark:bg-black dark:text-white mx-4 my-1 mt-5 font-semibold text-xl text-center">
+                    I am a self-taught full-stack and Android developer with a deep passion for building user-friendly and practical applications. I specialize in JavaScript, Kotlin, React, and Jetpack Compose.
+                </p>
+                <p class="dark:bg-black dark:text-white mx-4 my-1 font-semibold text-xl text-center">
+                    I’ve developed multiple projects, blending creativity and functionality — from e-learning platforms to e-commerce apps. I'm driven by curiosity and a commitment to continuous learning.
+                </p>
             </div>
     
             <div class="dark:bg-black dark:text-white mt-6">
@@ -28,15 +45,15 @@
                 <ul class="dark:bg-black dark:text-white list-none">
                     <li class="dark:bg-black dark:text-white mb-2 flex items-center">
                         <i class="dark:bg-black dark:text-white fas fa-envelope mr-2"></i>
-                        <a href="mailto:john.doe@example.com" class="dark:bg-black dark:text-white text-blue-900 hover:underline">john.doe@example.com</a>
-                    </li>
-                    <li class="dark:bg-black dark:text-white mb-2 flex items-center">
-                        <i class="dark:bg-black dark:text-white fab fa-whatsapp mr-2"></i>
-                        <a href="https://wa.me/1234567890" class="dark:bg-black dark:text-white text-blue-900 hover:underline">+1234567890</a>
+                        <a href="mailto:azeemshahid565@gmail.com" class="dark:bg-black dark:text-white text-blue-900 hover:underline">azeemshahid565@gmail.com</a>
                     </li>
                     <li class="dark:bg-black dark:text-white mb-2 flex items-center">
                         <i class="dark:bg-black dark:text-white fas fa-phone mr-2"></i>
-                        <span class="dark:bg-black dark:text-white text-blue-900">+1-234-567-890</span>
+                        <a href="tel:+923173380426" class="dark:bg-black dark:text-white text-blue-900 hover:underline">+923173380426</a>
+                    </li>
+                    <li class="dark:bg-black dark:text-white mb-2 flex items-center">
+                        <i class="dark:bg-black dark:text-white fab fa-whatsapp mr-2"></i>
+                        <a href="https://wa.me/923173380426" class="dark:bg-black dark:text-white text-blue-900">+923173380426</a>
                     </li>
                 </ul>
             </div>
@@ -49,12 +66,6 @@
                     <li>Skilled in Microsoft Office Suite (Word, Excel, PowerPoint, Access)</li>
                     <li>Experience with online teaching and digital educational tools</li>
                 </ul>
-            </div>
-    
-            <div class="dark:bg-black dark:text-white mt-6">
-                <h3 class="dark:bg-black dark:text-white text-xl font-semibold mb-2">Professional Experience</h3>
-                <p class="dark:bg-black dark:text-white mb-4">Dr. John Doe has over 15 years of experience teaching Chemistry at various educational institutions. He has a proven track record of helping students achieve their academic goals through interactive and engaging lessons.</p>
-                <p>He has also conducted numerous workshops and seminars on Chemistry and web development, sharing his knowledge and expertise with a wider audience.</p>
             </div>
         </div>
     </main>

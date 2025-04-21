@@ -27,16 +27,18 @@
 
           <!-- Product Image Carousel -->
           <%- include('partials/productsCarousel', { product: product }) %>
+            <h1 class="text-gray-700 text-left ml-2">Keminstry Knots</h1>
 
             <!-- Color Buttons -->
             <div class="dark:bg-black dark:text-white flex free">
-              <span class="dark:bg-black dark:text-white my-2 text-2xl free">Color : </span>
+              <span class="dark:bg-black dark:text-white my-2 text-2xl free">Color: </span>
               <% if (product.variants && product.variants.length> 0) { %>
                 <% product.variants.forEach((variant)=> { %>
                   <button
                     class="dark:bg-black dark:text-white color-option border-gray-400 rounded-full w-8 h-8 mx-1 my-2 border free"
-                    style="background-color: <%= variant.color.toLowerCase() %>;" data-color="<%= variant.color %>"
-                    data-images="<%= JSON.stringify(variant.images).replace(/" /g, '&quot;' ) %>"
+                    style="background-color: <%= variant.color.toLowerCase() == 'colorful' ? 'red' : variant.color.toLowerCase() %>;"
+                    data-color="<%= variant.color %>" data-images="<%= JSON.stringify(variant.images).replace(/"
+                    /g, '&quot;' ) %>"
                     data-sizes="<%= JSON.stringify(variant.sizes).replace(/"/g, '&quot;' ) %>">
                   </button>
                   <% }); %>
@@ -47,7 +49,7 @@
 
             <!-- Sizes Section -->
             <div class="dark:bg-black dark:text-white flex free" id="size-container">
-              <span class="dark:bg-black dark:text-white my-2 text-2xl free">Size : </span>
+              <span class="dark:bg-black dark:text-white my-2 text-2xl free">Size: </span>
               <% if (product.variants && product.variants.length> 0) { %>
                 <% product.variants.forEach((variant)=> { %>
                   <div class="dark:bg-black dark:text-white size-options hidden free" data-color="<%= variant.color %>">
@@ -81,14 +83,14 @@
             <div class="dark:bg-black dark:text-white px-4 py-1 flex flex-row">
               <!-- Add In Bag Button -->
               <button
-                class="dark:bg-black dark:text-white mt-3 mr-3 w-80 free btn-xs text-white bg-yellow-400 hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800 add-in-bag"
+                class="rounded-full dark:bg-black dark:text-white mt-3 mr-3 w-80 free btn-xs text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 add-in-bag"
                 data-product="<%= JSON.stringify(product) %>" data-action="add">
                 Add In Bag
               </button>
 
               <!-- Checkout Button -->
               <button
-                class="dark:bg-black dark:text-white mt-3 w-80 free btn-xs text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 add-in-bag"
+                class="dark:bg-black dark:text-white mt-3 w-80 free btn-xs text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 add-in-bag"
                 data-product="<%= JSON.stringify(product) %>" data-product-id="<%= product ? product._id : '' %>"
                 data-action="checkout">
                 Checkout
@@ -97,7 +99,9 @@
         </div>
 
         <h5 class="dark:bg-black dark:text-white text-2xl mt-6 font-semibold text-left ml-8">Reviews</h5>
-        <hr class="dark:bg-black dark:text-white free h-1 bg-gray-400 border-0 rounded">
+        <div class="px-8">
+          <hr class="dark:bg-black dark:text-white free h-1 bg-gray-400 border-0 rounded">
+        </div>
 
         <!-- Add Review Button -->
         <div id="toggleReviewForm" title="Drop Review"
@@ -165,11 +169,11 @@
               </article>
               <% }) %>
 
-              <h1 class="text-left ml-4 dark:bg-black dark:text-white mt-8 mb-4 font-semibold text-2xl">
-                Recommended Products
-            </h1>
+                <h1 class="text-left ml-4 dark:bg-black dark:text-white mt-8 mb-4 font-semibold text-2xl">
+                  Recommended Products
+                </h1>
 
-            <%- include('partials/products_area', { products: products }) %>
+                <%- include('partials/products_area', { products: products }) %>
       </div>
     </div>
 

@@ -11,7 +11,8 @@
 
     <!-- Scrollable Product Row -->
     <div id="productScroll" class="w-full flex flex-row p-2 overflow-x-scroll scroll-smooth space-x-4 scrollbar-hide">
-        <% products.forEach((product, index) => { %>
+        <% products.forEach((product, index) => { 
+            if (index < 15) { %>
             <a href="/id=<%= product._id %>">
                 <div class="border border-gray-200 rounded w-48 px-1 flex-shrink-0 relative">
                     <!-- Badge -->
@@ -25,18 +26,18 @@
                          alt="Product Image">
     
                     <!-- Product Details -->
-                    <h2 class="text-black dark:text-white font-medium my-2 px-1">
+                    <h2 class="text-black dark:text-white font-medium my-2 px-1 truncate">
                         <%= product.name %>
                     </h2>
-                    <h3 class="text-black dark:text-white font-medium my-2 px-1">
+                    <h3 class="text-black dark:text-white font-medium my-2 px-1 truncate">
                         Price: <%= product.price %>
                     </h3>
                 </div>
             </a>
-        <% }) %>
+        <% } }) %>
     </div>
-    
 </div>
+
 
 <!-- Tailwind Custom Scrollbar Hide -->
 <style>
