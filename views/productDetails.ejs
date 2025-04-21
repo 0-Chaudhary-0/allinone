@@ -34,17 +34,20 @@
               <span class="dark:bg-black dark:text-white my-2 text-2xl free">Color: </span>
               <% if (product.variants && product.variants.length> 0) { %>
                 <% product.variants.forEach((variant)=> { %>
-                  <button
-                    class="dark:bg-black dark:text-white color-option border-gray-400 rounded-full w-8 h-8 mx-1 my-2 border free"
-                    style="background-color: <%= variant.color.toLowerCase() == 'colorful' ? 'red' : variant.color.toLowerCase() %>;"
-                    data-color="<%= variant.color %>" data-images="<%= JSON.stringify(variant.images).replace(/"
-                    /g, '&quot;' ) %>"
-                    data-sizes="<%= JSON.stringify(variant.sizes).replace(/"/g, '&quot;' ) %>">
-                  </button>
-                  <% }); %>
-                    <% } else { %>
-                      <span> - - - - - </span>
-                      <% } %>
+                  <% const escapedImages=JSON.stringify(variant.images).replace(/"/g, '&quot;' ); const
+                    escapedSizes=JSON.stringify(variant.sizes).replace(/"/g, '&quot;' ); %>
+                    <button
+                      class="dark:bg-black dark:text-white color-option border-gray-400 rounded-full w-8 h-8 mx-1 my-2 border free"
+                      style="background-color: <%= variant.color.toLowerCase() == 'colorful' ? 'red' : variant.color.toLowerCase() %>;"
+                      data-color="<%= variant.color %>" data-images="<%- escapedImages %>"
+                      data-sizes="<%- escapedSizes %>">
+                    </button>
+
+
+                    <% }); %>
+                      <% } else { %>
+                        <span> - - - - - </span>
+                        <% } %>
             </div>
 
             <!-- Sizes Section -->
