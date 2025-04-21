@@ -79,8 +79,24 @@ router.get("/id=:id", async (req, res) => {
     const products = await Product.find();
     const product = products.find(p => p._id.toString() === productId);
     if (!product) return res.status(404).render("404", { message: "Product not found" });
+
     const reviews = await Rating.find({ productId }).sort({ createdAt: -1 });
-    res.render("productDetails.ejs", { product, reviews, products });
+
+    // Fetch user details for each review
+    const populatedReviews = await Promise.all(reviews.map(async review => {
+      let user = null;
+      if (review.userId) {
+        user = await User.findById(review.userId);
+      }
+      return {
+        ...review.toObject(),
+        userName: user?.name || "Anonymous",
+        userImage: user?.image || "/images/user.png"
+      };
+    }));
+
+    console.log(populatedReviews)
+    res.render("productDetails.ejs", { product, reviews: populatedReviews, products });
   } catch (error) {
     console.error("Error fetching product:", error);
     res.status(500).send("Server error");
@@ -172,12 +188,20 @@ router.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/login' }),
   (req, res) => {
     const user = req.user;
+  
+    // ✅ Save user to session
+    req.session.user = {
+      _id: user._id,
+      name: user.name,
+      image: user.image
+    };
+  
     const accessToken = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: "20d" });
     const refreshToken = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: "20d" });
-
+  
     res.cookie("accessToken", accessToken, { httpOnly: true });
     res.cookie("refreshToken", refreshToken, { httpOnly: true });
-
+  
     res.redirect('/');
   });
 
