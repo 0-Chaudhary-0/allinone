@@ -3,10 +3,32 @@
 
 <head>
     <%- include('partials/head') %>
+    <title>Kemistry Knots | Learn Chemistry the Smarter Way</title>
 </head>
 
 <body class="dark:bg-gray-900 dark:text-whitebg-white text-black font-sans dark:bg-gray-900">
     <%- include('partials/header') %>
+
+    <div class="relative w-full">
+        <!-- Background Image -->
+        <img 
+          src="https://img.freepik.com/free-photo/shirt-mockup-concept-with-plain-clothing_23-2149448749.jpg" 
+          alt="Group Fashion" 
+          class="w-full h-96 object-cover"
+        />
+    
+        <!-- Text & Buttons -->
+        <div class="absolute bottom-6 left-4 text-left">
+          <h1 class="text-gray-100 dark:text-gray-900 text-2xl md:text-5xl font-semibold mb-4 drop-shadow-lg">
+            Start with the basics
+          </h1>
+          <div class="">
+            <a href="/shopping?category=t-shirts" class="bg-white text-gray-900 px-6 py-2 rounded-md font-medium hover:bg-gray-100 dark:bg-gray-900 dark:text-white dark:hover:gray-700 transition">
+              Shop Men
+            </a>
+          </div>
+        </div>
+      </div>
 
     <div class="mx-4">
     <form action="/search" method="GET" class="flex items-center max-w-sm mx-auto relative my-8">
@@ -114,12 +136,12 @@
             <h1 class="text-xl font-bold my-6 text-center">Bestselling Products</h1>
             <% if (products && products.length > 0) { %>
                 <div class="grid gap-4 mx-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 object-cover my-3" data-aos="fade-up">
-                  <% products.slice(0, 12).forEach(product => { 
+                  <% products.slice(0, 6).forEach(product => { 
                       const productImage = (product.variants && product.variants.length > 0 && product.variants[0].images.length > 0)
                         ? product.variants[0].images[0]
                         : 'default-image.jpg';
                   %>
-                  <div class="bg-white dark:bg-gray-900 shadow rounded-md overflow-hidden hover:shadow-md transition text-black dark:text-white">
+                  <div class="border dark:bg-gray-900 shadow rounded-md overflow-hidden hover:shadow-md transition text-black dark:text-white">
                     <a href="id=<%= product._id %>">
                       <img src="<%= productImage %>" alt="<%= product.name %>" class="w-full h-44 object-cover" />
                     </a>

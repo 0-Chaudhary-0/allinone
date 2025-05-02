@@ -24,10 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 "bg-white",
                 "dark:bg-gray-900",
                 "dark:border-gray-700",
-                "p-4",
-                "shadow",
-                "border-b",
-                "border-gray-100" // Added bottom border with gray-100
+                "p-4"
             );
 
             productCard.innerHTML = `

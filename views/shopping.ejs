@@ -3,6 +3,7 @@
 
 <head>
   <%- include('partials/head') %>
+  <title>Allinone Shopping | Educational Tools, Wearing Items & More</title>
 </head>
 
 <body class="bg-white text-black dark:bg-black dark:text-white font-sans">
@@ -20,7 +21,7 @@
               ? product.variants[0].images[0]
               : 'default-image.jpg';
         %>
-        <div class="bg-white dark:bg-gray-900 shadow rounded-md overflow-hidden hover:shadow-md transition text-black dark:text-white">
+        <div class="border bg-white dark:bg-gray-900 shadow rounded-md overflow-hidden hover:shadow-md transition text-black dark:text-white">
           <a href="id=<%= product._id %>">
             <img src="<%= productImage %>" alt="<%= product.name %>" class="w-full h-44 object-cover" />
           </a>

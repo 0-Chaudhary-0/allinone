@@ -9,7 +9,9 @@
     <p class="text-black dark:text-white">Your all-in-one platform for everything you need.</p>
 </header>
 
-<nav class="border-b border-gray-300 bg-gray-100 dark:bg-gray-900 relative z-50 overflow-visible h-[fit-content]">
+<nav class="border-b dark:border-gray-600 border-gray-300 bg-gray-100 dark:bg-gray-900 relative z-50 overflow-visible h-[fit-content]">
+    
+        
     <section class="flex items-center justify-between px-4 py-2 free">
         <section>
             <button id="nav-toggle" class="text-black dark:text-white  focus:outline-none">
@@ -34,9 +36,9 @@
                         <p class="w-32 cursor-pointer" onclick="confirmLogout()">Logout <i class="fa fa-sign-out" aria-hidden="true"></i></p>
                     </div>
                 </div>
-            <% } else { %>
-                <!-- User is NOT logged in: Show 'Login' button -->
-                <a href="/login" id="add-user">
+                <% } else { %>
+                    <!-- User is NOT logged in: Show 'Login' button -->
+                    <a href="/login" id="add-user">
                     <button>
                         <svg class="w-6 h-6 text-black dark:text-white  dark:text-black dark:text-white  block text-right" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                             <path fill-rule="evenodd" d="M9 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4H7Zm8-1a1 1 0 0 1 1-1h1v-1a1 1 0 1 1 2 0v1h1a1 1 0 1 1 0 2h-1v1a1 1 0 1 1-2 0v-1h-1a1 1 0 0 1-1-1Z" clip-rule="evenodd"/>
@@ -63,14 +65,14 @@
             <li class="relative dropdown w-full sm:w-auto">
                 <a href="#" onclick="toggleDropdown(event)" class="text-black dark:text-white font-medium text-sm p-2 block">Shopping ▾</a>
                 <div id="shopping-dropdown" class="dropdown-menu transition-opacity duration-300 ease-in-out opacity-0 pointer-events-none hidden bg-white dark:bg-gray-800 shadow-lg rounded-md">
-                    <p><a href="/shopping?category=caps" class="text-sm hover:bg-gray-200 dark:text-white dark:hover:bg-gray-400">Caps</a></p>
-                    <p><a href="/shopping?category=t-shirts" class="text-sm hover:bg-gray-200 dark:text-white dark:hover:bg-gray-400">T-Shirts</a></p>
-                    <p><a href="/shopping?category=hoodies" class="text-sm hover:bg-gray-200 dark:text-white dark:hover:bg-gray-400">Hoodies</a></p>
-                    <p><a href="/shopping?category=mousepad" class="text-sm hover:bg-gray-200 dark:text-white dark:hover:bg-gray-400">Mousepads</a></p>
-                    <p><a href="/shopping?category=mugs" class="text-sm hover:bg-gray-200 dark:text-white dark:hover:bg-gray-400">Mugs</a></p>
-                    <p><a href="/shopping?category=oversized-tshirts" class="text-sm hover:bg-gray-200 dark:text-white dark:hover:bg-gray-400">Oversized T-Shirts</a></p>
-                    <p><a href="/shopping?category=polo-tshirts" class="text-sm hover:bg-gray-200 dark:text-white dark:hover:bg-gray-400">Polo T-Shirts</a></p>
-                    <p><a href="/shopping?category=sweatshirts" class="text-sm hover:bg-gray-200 dark:text-white dark:hover:bg-gray-400">Sweatshirts</a></p>
+                    <p><a href="/shopping?category=caps" class="text-sm hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700 px-2 rounded-md">Caps</a></p>
+                    <p><a href="/shopping?category=t-shirts" class="text-sm hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700 px-2 rounded-md">T-Shirts</a></p>
+                    <p><a href="/shopping?category=hoodies" class="text-sm hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700 px-2 rounded-md">Hoodies</a></p>
+                    <p><a href="/shopping?category=mousepad" class="text-sm hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700 px-2 rounded-md">Mousepads</a></p>
+                    <p><a href="/shopping?category=mugs" class="text-sm hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700 px-2 rounded-md">Mugs</a></p>
+                    <p><a href="/shopping?category=oversized-tshirts" class="text-sm hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700 px-2 rounded-md">Oversized T-Shirts</a></p>
+                    <p><a href="/shopping?category=polo-tshirts" class="text-sm hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700 px-2 rounded-md">Polo T-Shirts</a></p>
+                    <p><a href="/shopping?category=sweatshirts" class="text-sm hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700 px-2 rounded-md">Sweatshirts</a></p>
                 </div>
             </li>
         </div>
