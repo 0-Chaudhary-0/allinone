@@ -22,8 +22,15 @@ const transporter = nodemailer.createTransport({
 
 const sendEmail = async (to, subject, text) => {
   try {
-    await transporter.sendMail({ from: process.env.EMAIL_USER, to, subject, text });
+    await transporter.sendMail({
+      from: '"Allinone" <no-reply@yourdomain.com>',
+      to,
+      subject: "Your Order Confirmation",
+      text: "Thanks for your order! We'll notify you once it's shipped.",
+      html: "<p>Thanks for your order! We'll notify you once it's shipped.</p>"
+    });
     console.log("Email sent successfully");
+    console.log("Sending to:", to); // Check what value is passed
   } catch (error) {
     console.error("Error sending email:", error);
   }
