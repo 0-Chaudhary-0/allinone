@@ -10,6 +10,7 @@ const User = require('../models/User');
 const Rating = require("../models/Rating");
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
+const Fuse = require("fuse.js");
 
 // Configure Nodemailer transporter
 const transporter = nodemailer.createTransport({
@@ -72,8 +73,38 @@ router.get("/shopping", async (req, res) => {
 
 router.get("/search", async (req, res) => {
   const query = req.query.query?.toLowerCase() || "";
-  const products = await Product.find({ name: { $regex: new RegExp(query, "i") } });
-  res.render("search.ejs", { products, query });
+
+  if (!query) {
+    return res.render("search.ejs", { products: [], query: "", suggestion: null });
+  }
+
+  // First: Try exact/partial match via regex
+  let products = await Product.find({
+    name: { $regex: new RegExp(query, "i") }
+  });
+
+  // If no results, use fuzzy match to suggest a close product name
+  let suggestion = null;
+  if (products.length === 0) {
+    const allProducts = await Product.find({});
+    const fuse = new Fuse(allProducts, {
+      keys: ["name"],
+      includeScore: true,
+      threshold: 0.4, // lower = stricter match
+    });
+
+    const result = fuse.search(query);
+    if (result.length > 0) {
+      suggestion = result[0].item.name;
+
+      // Also return best-matching products if desired:
+      products = await Product.find({
+        name: { $regex: new RegExp(suggestion, "i") }
+      });
+    }
+  }
+
+  res.render("search.ejs", { products, query, suggestion });
 });
 
 router.get("/checkout/:id", authenticateToken, (req, res) => {

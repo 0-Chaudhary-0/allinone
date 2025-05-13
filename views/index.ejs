@@ -12,7 +12,7 @@
     <div class="relative w-full">
         <!-- Background Image -->
         <video class="w-full h-full object-cover" autoplay loop muted playsinline> 
-          <source src="/videos/bgImage.mp4" type="video/mp4">
+          <source src="/videos/bg-vid.mp4" type="video/mp4">
         </video>
     
         <!-- Text & Buttons -->
@@ -142,7 +142,7 @@
                         ? product.variants[0].images[0]
                         : 'default-image.jpg';
                   %>
-                  <div class="border dark:bg-gray-900 shadow rounded-md overflow-hidden hover:shadow-md transition text-black dark:text-white">
+                  <div class="bg-gray-200 dark:bg-gray-700 shadow rounded-md overflow-hidden hover:shadow-md transition text-black dark:text-white">
                     <a href="id=<%= product._id %>">
                       <img src="<%= productImage %>" alt="<%= product.name %>" class="w-full h-44 object-cover" />
                     </a>
