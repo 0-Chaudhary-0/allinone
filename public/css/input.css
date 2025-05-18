@@ -1,0 +1,64 @@
+
+h1 {
+  padding-bottom: 30px;
+  font-weight: 900;
+  font-size: 35px;
+}
+
+.form {
+    width: 100%; /* use full width on smaller screens, or adjust */
+    position: relative;
+    /* height: 60px; ❌ Remove this */
+    overflow: visible; /* allow labels to move freely */
+    margin-bottom: 1rem; /* optional spacing between inputs */
+  }
+
+.form input {
+  width: 100%;
+  height: 100%;
+  padding-top: 20px;
+  border: none;
+}
+.form label {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  outline: none;
+  border-bottom: 1px solid #4134f4;
+}
+.form label::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  /* border-bottom: 3px solid #4134f4; */
+  transform: translateX(-100%);
+  transition: all 0.3s ease;
+}
+
+.content-name {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  padding-bottom: 5px;
+  transition: all 0.3s ease;
+}
+.form input:focus {
+  outline: none;
+}
+.form input:focus + .label-name .content-name,
+.form input:valid + .label-name .content-name {
+  transform: translateY(-150%);
+  font-size: 14px;
+  left: 0px;
+  color: #4134f4;
+}
+.form input:focus + .label-name::after,
+.form input:valid + .label-name::after {
+  transform: translateX(0%);
+}

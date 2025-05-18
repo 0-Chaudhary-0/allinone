@@ -1,116 +1,254 @@
-<header class="header bg-gray-100 dark:bg-gray-900 relative z-50 overflow-visible"> 
-    <div class="flex justify-start items-center mx-2 px-2">
-        <img class="h-20 rounded-full p-4" src="/images/azeem.jpg" alt="logo" />
-        <a href="/"
-            class="text-black dark:text-white text-xls relative inline-block py-3 px-12 font-semibold text-lg text-transparent bg-clip-text bg-gradient-to-r from-black via-gray-600 to-gray-800 animate-shine">
-            Welcome To My Site
-        </a>
-    </div>
-    <p class="text-black dark:text-white">Your all-in-one platform for everything you need.</p>
+<header
+  class="header bg-gray-100 dark:bg-gray-900 relative z-50 overflow-visible"
+>
+  <div class="flex justify-start items-center mx-2 px-2">
+    <img class="h-20 rounded-full p-4" src="/images/azeem.jpg" alt="logo" />
+    <a
+      href="/"
+      class="text-black dark:text-white text-xls relative inline-block py-3 px-12 font-semibold text-lg text-transparent bg-clip-text bg-gradient-to-r from-black via-gray-600 to-gray-800 animate-shine"
+    >
+      Welcome To My Site
+    </a>
+  </div>
+  <p class="text-black dark:text-white">
+    Your all-in-one platform for everything you need.
+  </p>
 </header>
 
-<nav class="border-b dark:border-gray-600 border-gray-300 bg-gray-100 dark:bg-gray-900 relative z-50 overflow-visible h-[fit-content]">
-    
-    <section class="flex items-center justify-between px-4 py-2 free">
-        <section>
-            <button id="nav-toggle" class="text-black dark:text-white  focus:outline-none">
-                <svg class="w-6 h-6 dark:text-black dark:text-white " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
-                    height="24" fill="none" viewBox="0 0 24 24">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h10" />
-                </svg>
-            </button>
-        </section>
-        <h1 class="font-bold sm:text-lg md:text-xl lg:text-xl">Kemistry <span class="text-purple-600 font-bold">Knots</span> </h1>
-        <section class="flex gap-3">
-            <%- include('dark-mode-toggle') %>
-            <% if (user) { %>
-                <div id="user" class="relative cursor-pointer">
-                    <!-- User is logged in: Show 'My Account' button -->
-                        <button  class="flex mr-2">
-                            <svg class="w-6 h-6 text-black dark:text-white  dark:text-black dark:text-white  block text-right" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                                <path fill-rule="evenodd" d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z" clip-rule="evenodd"/>
-                            </svg>
-                        </button>
-                    <p class="text-sm rotate-90 absolute bottom-0 right-0 rounded-full dark:text-white">&gt;</p>
-                    <div class="handleUserToggle hidden absolute top-8 right-0 z-100 bg-green-600 free rounded-lg p-1">
-                        <p class="w-32 cursor-pointer" onclick="confirmLogout()">Logout <i class="fa fa-sign-out" aria-hidden="true"></i></p>
-                    </div>
-                </div>
-                <% } else { %>
-                    <!-- User is NOT logged in: Show 'Login' button -->
-                    <a href="/login" id="add-user">
-                    <button>
-                        <svg class="w-6 h-6 text-black dark:text-white  dark:text-black dark:text-white  block text-right" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                            <path fill-rule="evenodd" d="M9 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4H7Zm8-1a1 1 0 0 1 1-1h1v-1a1 1 0 1 1 2 0v1h1a1 1 0 1 1 0 2h-1v1a1 1 0 1 1-2 0v-1h-1a1 1 0 0 1-1-1Z" clip-rule="evenodd"/>
-                        </svg>
-                    </button>
-                </a>
-            <% } %>            
-        </section>
+<nav
+  class="border-b dark:border-gray-600 border-gray-300 bg-gray-100 dark:bg-gray-900 relative z-50 overflow-visible h-[fit-content]"
+>
+  <section class="flex items-end justify-between px-4 py-2 free">
+    <section>
+      <button
+        id="nav-toggle"
+        class="text-black dark:text-white focus:outline-none"
+      >
+        <svg
+          class="w-6 h-6 dark:text-black dark:text-white"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-width="2"
+            d="M5 7h14M5 12h14M5 17h10"
+          />
+        </svg>
+      </button>
     </section>
-    <ul id="mobile-menu" class="hidden grid grid-cols-2 gap-2 text-center transition-all px-4 py-4 list-none relative z-40">
-        <li class="block mr-5">
-            <a class="text-black dark:text-white  font-medium text-sm p-2 block" href="/">Home</a>
-        </li>
-        <li class="block mr-5">
-            <a class="text-black dark:text-white  font-medium text-sm p-2 block" href="/books">Books</a>
-        </li>
-        <li class="block mr-5">
-            <a class="text-black dark:text-white  font-medium text-sm p-2 block" href="/videos">Videos</a>
-        </li>
-        <li class="block mr-5">
-            <a href="/chemistryquiz" class="cursor-pointer text-black dark:text-white  font-medium text-sm p-2 block">Quizzes</a>
-        </li>
-        <div class="relative scroll">
-            <li class="relative dropdown w-full sm:w-auto">
-                <a href="#" onclick="toggleDropdown(event)" class="text-black dark:text-white font-medium text-sm p-2 block">Shopping ▾</a>
-                <div id="shopping-dropdown" class="dropdown-menu transition-opacity duration-300 ease-in-out opacity-0 pointer-events-none hidden bg-white dark:bg-gray-800 shadow-lg rounded-md">
-                    <p><a href="/shopping?category=caps" class="text-sm hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700 px-2 rounded-md">Caps</a></p>
-                    <p><a href="/shopping?category=t-shirts" class="text-sm hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700 px-2 rounded-md">T-Shirts</a></p>
-                    <p><a href="/shopping?category=hoodies" class="text-sm hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700 px-2 rounded-md">Hoodies</a></p>
-                    <p><a href="/shopping?category=mousepad" class="text-sm hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700 px-2 rounded-md">Mousepads</a></p>
-                    <p><a href="/shopping?category=mugs" class="text-sm hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700 px-2 rounded-md">Mugs</a></p>
-                    <p><a href="/shopping?category=oversized-tshirts" class="text-sm hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700 px-2 rounded-md">Oversized T-Shirts</a></p>
-                    <p><a href="/shopping?category=polo-tshirts" class="text-sm hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700 px-2 rounded-md">Polo T-Shirts</a></p>
-                    <p><a href="/shopping?category=sweatshirts" class="text-sm hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700 px-2 rounded-md">Sweatshirts</a></p>
-                </div>
-            </li>
+
+        <h1 class="font-bold sm:text-lg md:text-xl lg:text-xl">
+          Kemistry <span class="text-purple-600 font-bold">Knots</span>
+        </h1>
+      
+
+    <section class="flex gap-3">
+      <%- include('dark-mode-toggle') %> <% if (user) { %>
+      <div id="user" class="relative cursor-pointer">
+        <!-- User is logged in: Show 'My Account' button -->
+        <button class="flex mr-2">
+          <svg
+            class="w-6 h-6 text-black dark:text-white dark:text-black dark:text-white block text-right"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </button>
+        <p
+          class="text-sm rotate-90 absolute bottom-0 right-0 rounded-full dark:text-white"
+        >
+          &gt;
+        </p>
+        <div
+          class="handleUserToggle hidden absolute top-8 right-0 z-100 bg-green-600 free rounded-lg p-1"
+        >
+          <p class="w-32 cursor-pointer" onclick="confirmLogout()">
+            Logout <i class="fa fa-sign-out" aria-hidden="true"></i>
+          </p>
         </div>
-        <li class="block mr-5">
-            <a class="text-black dark:text-white  font-medium text-sm p-2 block" href="/about">About Us</a>
-        </li>
-        <li class="block mr-5">
-            <a class="text-black dark:text-white  font-medium text-sm p-2 block" href="/orders">My Orders</a>
-        </li>
-        <li class="block mr-5">
-            <a class="text-black dark:text-white  font-medium text-sm p-2 block" href="/cart">My Shopping Bag</a>
-        </li>
-    </ul>
+      </div>
+      <% } else { %>
+      <!-- User is NOT logged in: Show 'Login' button -->
+      <a href="/login" id="add-user">
+        <button>
+          <svg
+            class="w-6 h-6 text-black dark:text-white dark:text-black dark:text-white block text-right"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M9 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4H7Zm8-1a1 1 0 0 1 1-1h1v-1a1 1 0 1 1 2 0v1h1a1 1 0 1 1 0 2h-1v1a1 1 0 1 1-2 0v-1h-1a1 1 0 0 1-1-1Z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </button>
+      </a>
+      <% } %>
+    </section>
+  </section>
+  <ul
+    id="mobile-menu"
+    class="hidden grid grid-cols-2 gap-2 text-center transition-all px-4 py-4 list-none relative z-40"
+  >
+    <li class="block mr-5">
+      <a
+        class="text-black dark:text-white font-medium text-sm p-2 block"
+        href="/"
+        >Home</a
+      >
+    </li>
+    <li class="block mr-5">
+      <a
+        class="text-black dark:text-white font-medium text-sm p-2 block"
+        href="/books"
+        >Books</a
+      >
+    </li>
+    <li class="block mr-5">
+      <a
+        class="text-black dark:text-white font-medium text-sm p-2 block"
+        href="/videos"
+        >Videos</a
+      >
+    </li>
+    <li class="block mr-5">
+      <a
+        href="/chemistryquiz"
+        class="cursor-pointer text-black dark:text-white font-medium text-sm p-2 block"
+        >Quizzes</a
+      >
+    </li>
+    <div class="relative scroll">
+      <li class="relative dropdown w-full sm:w-auto">
+        <a
+          href="#"
+          onclick="toggleDropdown(event)"
+          class="text-black dark:text-white font-medium text-sm p-2 block"
+          >Shopping ▾</a
+        >
+        <div
+          id="shopping-dropdown"
+          class="dropdown-menu transition-opacity duration-300 ease-in-out opacity-0 pointer-events-none hidden bg-white dark:bg-gray-800 shadow-lg rounded-md"
+        >
+          <p>
+            <a
+              href="/shopping?category=caps"
+              class="text-sm hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700 px-2 rounded-md"
+              >Caps</a
+            >
+          </p>
+          <p>
+            <a
+              href="/shopping?category=t-shirts"
+              class="text-sm hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700 px-2 rounded-md"
+              >T-Shirts</a
+            >
+          </p>
+          <p>
+            <a
+              href="/shopping?category=hoodies"
+              class="text-sm hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700 px-2 rounded-md"
+              >Hoodies</a
+            >
+          </p>
+          <p>
+            <a
+              href="/shopping?category=mousepad"
+              class="text-sm hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700 px-2 rounded-md"
+              >Mousepads</a
+            >
+          </p>
+          <p>
+            <a
+              href="/shopping?category=mugs"
+              class="text-sm hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700 px-2 rounded-md"
+              >Mugs</a
+            >
+          </p>
+          <p>
+            <a
+              href="/shopping?category=oversized-tshirts"
+              class="text-sm hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700 px-2 rounded-md"
+              >Oversized T-Shirts</a
+            >
+          </p>
+          <p>
+            <a
+              href="/shopping?category=polo-tshirts"
+              class="text-sm hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700 px-2 rounded-md"
+              >Polo T-Shirts</a
+            >
+          </p>
+          <p>
+            <a
+              href="/shopping?category=sweatshirts"
+              class="text-sm hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700 px-2 rounded-md"
+              >Sweatshirts</a
+            >
+          </p>
+        </div>
+      </li>
+    </div>
+    <li class="block mr-5">
+      <a
+        class="text-black dark:text-white font-medium text-sm p-2 block"
+        href="/about"
+        >About Us</a
+      >
+    </li>
+    <li class="block mr-5">
+      <a
+        class="text-black dark:text-white font-medium text-sm p-2 block"
+        href="/orders"
+        >My Orders</a
+      >
+    </li>
+    <li class="block mr-5">
+      <a
+        class="text-black dark:text-white font-medium text-sm p-2 block"
+        href="/cart"
+        >My Shopping Bag</a
+      >
+    </li>
+  </ul>
 </nav>
 
 <%- include('modal') %>
 
 <script>
-    function toggleDropdown(event) {
-        event.preventDefault();
-        const dropdown = document.getElementById('shopping-dropdown');
-        dropdown.classList.toggle('show');
+  function toggleDropdown(event) {
+    event.preventDefault();
+    const dropdown = document.getElementById("shopping-dropdown");
+    dropdown.classList.toggle("show");
+  }
+
+  // Optional: hide dropdown when clicking outside
+  window.addEventListener("click", function (e) {
+    const dropdown = document.getElementById("shopping-dropdown");
+    const trigger = e.target.closest(".dropdown");
+    if (!trigger && !dropdown.contains(e.target)) {
+      dropdown.classList.remove("show");
     }
-  
-    // Optional: hide dropdown when clicking outside
-    window.addEventListener('click', function (e) {
-        const dropdown = document.getElementById('shopping-dropdown');
-        const trigger = e.target.closest('.dropdown');
-        if (!trigger && !dropdown.contains(e.target)) {
-            dropdown.classList.remove('show');
-        }
-    });
+  });
 </script>
 
 <style>
-
-    #shopping-dropdown {
-        position: absolute;
+  #shopping-dropdown {
+    position: absolute;
     /* border-bottom: 1px solid red; */
     top: -280%;
     padding: 0 5px;
@@ -122,11 +260,11 @@
     pointer-events: none;
     height: fit-content;
     z-index: 1000;
-    }
+  }
 
-    #shopping-dropdown.show {
-        display: block;
-        opacity: 0.8;
-        pointer-events: all;
-    }
+  #shopping-dropdown.show {
+    display: block;
+    opacity: 0.8;
+    pointer-events: all;
+  }
 </style>
