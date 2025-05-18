@@ -5,14 +5,14 @@
     <title>Login to Allinone | Access Your Account</title>
     <link rel="stylesheet" href="/css/input.css" />
   </head>
-  <body class="dark:bg-black dark:text-white bg-white text-black font-sans">
+  <body class="dark:bg-black font-sans">
     <%- include('partials/header') %>
-    <div class="dark:bg-black dark:text-white text-gray-900">
-      <div class="dark:bg-black dark:text-white">
-        <div class="dark:bg-black dark:text-white p-6 sm:p-12">
-          <div class="w-96 dark:bg-black dark:text-white mt-12 mx-auto">
+    <div class="dark:bg-black">
+      <div class="dark:bg-black">
+        <div class="dark:bg-black p-6 sm:p-12">
+          <div class="w-80 sm:w-80 lg:w-96 dark:bg-black mt-12 mx-auto">
             <h1
-              class="dark:bg-black dark:text-white text-2xl xl:text-3xl font-extrabold"
+              class="text-shadow-lg dark:text-purple-700 text-purple-700 text-2xl xl:text-3xl font-extrabold"
             >
               Login
             </h1>
@@ -58,7 +58,7 @@
                   </div>
                   <button
                     type="submit"
-                    class="dark:bg-black dark:text-white free mt-5 tracking-wide font-semibold bg-indigo-500 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
+                    class="dark:bg-black dark:text-white free mt-5 tracking-wide font-semibold bg-purple-500 text-gray-100 w-full py-4 rounded-lg hover:bg-purple-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
                   >
                     <i
                       class="dark:bg-black dark:text-white fa-solid fa-right-to-bracket free w-6 h-6 pt-1"
@@ -73,7 +73,7 @@
                 >
                   <a
                     href="/signup"
-                    class="dark:bg-black dark:text-white text-blue-600 font-semibold drop-shadow-md"
+                    class="dark:bg-black dark:text-blue-600 text-blue-600 font-semibold drop-shadow-md"
                     >Don't have an account? Sign up now</a
                   >
                 </p>
@@ -82,7 +82,7 @@
           </div>
         </div>
         <div
-          class="dark:bg-black dark:text-white flex-1 bg-indigo-100 text-center hidden lg:flex"
+          class="dark:bg-black dark:text-white flex-1 bg-purple-100 text-center hidden lg:flex"
         >
           <div
             class="dark:bg-black dark:text-white m-12 xl:m-16 w-full bg-contain bg-center bg-no-repeat"
@@ -94,8 +94,8 @@
       </div>
     </div>
     <!-- Google Login Button -->
-    <h2 class="text-xl text-purple-800 font-bold">Social Login</h2>
-    <div class="w-96 mx-auto mb-8 mt-3 px-8">
+    <h2 class="text-xl text-purple-600 font-bold">Social Login</h2>
+    <div class="w-80 sm:w-80 lg:w-96 mx-auto mb-8 mt-3 px-8">
       <a
         href="/auth/google"
         class="flex items-center justify-center gap-3 px-6 py-3 bg-white text-gray-700 border border-gray-300 rounded-full shadow hover:shadow-md transition"

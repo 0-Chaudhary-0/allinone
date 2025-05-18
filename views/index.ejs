@@ -55,12 +55,12 @@
 
 
         <%- include('partials/carousel') %>
-            <h1 class="sm:text-3xl text-2xl font-bold title-font mb-2 text-center my-4">COLLECTIONS</h1>
+            <h1 class="sm:text-3xl text-2xl font-bold title-font mb-2 text-center my-4 text-black dark:text-white">COLLECTIONS</h1>
             <div class="flex flex-wrap my-4 justify-center gap-4">
 
                 <!-- Product Card Template -->
                 <a href="/shopping?category=caps">
-                    <div class="relative bg-white w-40 rounded-xl overflow-hidden shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer"
+                    <div class="relative bg-white w-40 h-40 rounded-xl overflow-hidden shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer"
                         data-aos="fade-up">
                         <img src="https://codeswear.nyc3.cdn.digitaloceanspaces.com/constants/landing/collections/caps.webp"
                             alt="CAPS" class="w-full h-60 object-cover">
@@ -70,7 +70,7 @@
 
                 <a href="/shopping?category=hoodies">
 
-                    <div class="relative bg-white w-40 rounded-xl overflow-hidden shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer"
+                    <div class="relative bg-white w-40 h-40 rounded-xl overflow-hidden shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer"
                         data-aos="fade-up">
                         <img src="https://codeswear.nyc3.cdn.digitaloceanspaces.com/constants/landing/collections/hoodie.webp"
                             alt="HOODIES" class="w-full h-60 object-cover">
@@ -79,7 +79,7 @@
                 </a>
 
                 <a href="/shopping?category=mousepad">
-                    <div class="relative bg-white w-40 rounded-xl overflow-hidden shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer"
+                    <div class="relative bg-white w-40 h-40 rounded-xl overflow-hidden shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer"
                         data-aos="fade-up">
                         <img src="https://codeswear.nyc3.cdn.digitaloceanspaces.com/constants/landing/collections/mousepad.webp"
                             alt="MOUSE PAD" class="w-full h-60 object-cover">
@@ -88,7 +88,7 @@
                 </a>
 
                 <a href="/shopping?category=mugs">
-                    <div class="relative bg-white w-40 rounded-xl overflow-hidden shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer"
+                    <div class="relative bg-white w-40 h-40 rounded-xl overflow-hidden shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer"
                         data-aos="fade-up">
                         <img src="https://codeswear.nyc3.cdn.digitaloceanspaces.com/constants/landing/collections/mugs.webp"
                             alt="MUGS" class="w-full h-60 object-cover">
@@ -97,7 +97,7 @@
                 </a>
 
                 <a href="/shopping?category=oversized-tshirts">
-                    <div class="relative bg-white w-40 rounded-xl overflow-hidden shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer"
+                    <div class="relative bg-white w-40 h-40 rounded-xl overflow-hidden shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer"
                         data-aos="fade-up">
                         <img src="https://codeswear.nyc3.cdn.digitaloceanspaces.com/constants/landing/collections/oversizedtshirt.webp"
                             alt="OVERSIZED T-SHIRTS" class="w-full h-60 object-cover">
@@ -106,7 +106,7 @@
                 </a>
 
                 <a href="/shopping?category=polo-tshirts">
-                    <div class="relative bg-white w-40 rounded-xl overflow-hidden shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer"
+                    <div class="relative bg-white w-40 h-40 rounded-xl overflow-hidden shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer"
                         data-aos="fade-up">
                         <img src="https://codeswear.nyc3.cdn.digitaloceanspaces.com/constants/landing/collections/polotshirts.webp"
                             alt="POLO T-SHIRTS" class="w-full h-60 object-cover">
@@ -115,7 +115,7 @@
                 </a>
 
                 <a href="/shopping?category=sweatshirts">
-                    <div class="relative bg-white w-40 rounded-xl overflow-hidden shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer"
+                    <div class="relative bg-white w-40 h-40 rounded-xl overflow-hidden shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer"
                         data-aos="fade-up">
                         <img src="https://codeswear.nyc3.cdn.digitaloceanspaces.com/constants/landing/collections/sweatshirt.webp"
                             alt="SWEATSHIRTS" class="w-full h-60 object-cover">
@@ -124,7 +124,7 @@
                 </a>
 
                 <a href="/shopping?category=t-shirts">
-                    <div class="relative bg-white w-40 rounded-xl overflow-hidden shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer"
+                    <div class="relative bg-white w-40 h-40 rounded-xl overflow-hidden shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer"
                         data-aos="fade-up">
                         <img src="https://codeswear.nyc3.cdn.digitaloceanspaces.com/constants/landing/collections/tshirt.webp"
                             alt="T-SHIRTS" class="w-full h-60 object-cover">
@@ -134,7 +134,7 @@
 
             </div>
         
-            <h1 class="text-xl font-bold my-6 text-center">Bestselling Products</h1>
+            <h1 class="text-xl font-bold my-6 text-center text-black dark:text-white">Bestselling Products</h1>
             <% if (products && products.length > 0) { %>
                 <div class="grid gap-4 mx-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 object-cover my-3" data-aos="fade-up">
                   <% products.slice(0, 6).forEach(product => { 
