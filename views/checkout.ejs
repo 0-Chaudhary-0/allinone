@@ -5,6 +5,7 @@
   <script src="https://js.stripe.com/v3/"></script>
   <%- include('partials/head') %>
   <title>Checkout | Complete Your Purchase on Allinone</title>
+  <link rel="stylesheet" href="/css/input.css">
 </head>
 
 <body class="dark:bg-black dark:text-white font-sans leading-normal tracking-normal">
@@ -20,23 +21,101 @@
       </div>
 
       <!-- Address Form -->
+      
       <div class="mt-4 space-y-2">
         <h2 class="text-lg font-semibold text-gray-900 dark:text-">Shipping Address</h2>
 
-        <input id="name" type="text" placeholder="Full Name"
-          class="w-full p-3 border rounded text-black" required />
-        <input id="email" type="email" placeholder="Email Address"
-          class="w-full p-3 border rounded text-black" required />
-        <input id="phone" type="tel" placeholder="Phone Number (PK: 03XXXXXXXXX)" pattern="03[0-9]{9}"
-          class="w-full p-3 border rounded text-black" required />
-        <input id="province" type="text" placeholder="Country"
-          class="w-full p-3 border rounded text-black" required />
-        <input id="city" type="text" placeholder="City"
-          class="w-full p-3 border rounded text-black" required />
-        <input id="postalCode" type="text" placeholder="Postal Code"
-          class="w-full p-3 border rounded text-black" required />
-        <input id="street" type="text" placeholder="Street Address"
-          class="w-full p-3 border rounded text-black" required />
+        <!-- Full Name Input -->
+        
+        <div class="form mt-5">
+          <input
+            type="text"
+            id="name"
+            name="email"
+            autocomplete="off"
+            required
+            class="rounded text-black dark:text-white bg-white dark:bg-gray-900"
+          />
+          <label for="name" class="label-name">
+            <span class="content-name font-semibold text-black dark:text-gray-200">Full Name</span>
+          </label>
+        </div>
+        
+        <!-- Email Input -->
+        
+        <div class="form mt-5">
+          <input
+            id="email"
+            type="email"
+            autocomplete="new-email"
+            required
+            class="rounded text-black dark:text-white bg-white dark:bg-gray-900"
+          />
+          <label for="email" class="label-name">
+            <span class="content-name font-semibold text-black dark:text-gray-200">Email</span>
+          </label>
+        </div>
+          
+        <!-- Phone Number Input -->
+        
+        <div class="form mt-5">
+          <input
+            id="phone"
+            type="tel"
+            autocomplete="off"
+            required
+            class="rounded text-black dark:text-white bg-white dark:bg-gray-900"
+          />
+          <label for="phone" class="label-name">
+            <span class="content-name font-semibold text-black dark:text-gray-200">Phone</span>
+          </label>
+        </div>
+        
+        <!-- City Input -->
+        
+        <div class="form mt-5">
+            <input
+              type="text"
+              id="city"
+              autocomplete="off"
+              required
+              class="rounded text-black dark:text-white bg-white dark:bg-gray-900"
+            />
+            <label for="city" class="label-name">
+              <span class="content-name font-semibold text-black dark:text-gray-200">City</span>
+            </label>
+          </div>
+
+          <!-- Postal Code Input -->
+          
+          <div class="form mt-5">
+            <input
+              type="text"
+              id="postalCode"
+              autocomplete="off"
+              required
+              class="rounded text-black dark:text-white bg-white dark:bg-gray-900"
+            />
+            <label for="postalCode" class="label-name">
+              <span class="content-name font-semibold text-black dark:text-gray-200">PostalCode</span>
+            </label>
+          </div>
+
+          <!-- Street Address Input -->
+
+          <div class="form mt-5">
+            <input
+              type="text"
+              id="street"
+              autocomplete="new-email"
+              required
+              class="rounded text-black dark:text-white bg-white dark:bg-gray-900"
+            />
+            <label for="street" class="label-name">
+              <span class="content-name font-semibold text-black dark:text-gray-200">Street Address</span>
+            </label>
+          </div>
+        
         </div>
 
       <!-- Payment Method -->
